@@ -213,7 +213,7 @@
 
     .product-container {
       display: grid;
-      grid-template-columns: repeat(2, 1fr); /* 2x2 grid */
+      grid-template-columns: repeat(2, 1fr);
       gap: clamp(0.5rem, 2vw, 1rem);
       padding: 0 clamp(0.5rem, 2vw, 1rem);
     }
@@ -342,27 +342,11 @@
     }
 
     .best-selling-products .header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
       margin-bottom: 1rem;
     }
 
     .best-selling-products h2 {
       font-size: clamp(1.5rem, 4vw, 2rem);
-    }
-
-    .best-selling-products .arrows button {
-      background: none;
-      border: none;
-      color: #fff;
-      font-size: clamp(1rem, 2vw, 1.5rem);
-      cursor: pointer;
-      width: 44px;
-      height: 44px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
     }
 
     .product-carousel {
@@ -372,7 +356,19 @@
 
     .product-list {
       display: flex;
-      transition: transform 0.5s ease;
+      gap: clamp(0.5rem, 2vw, 1rem);
+      overflow-x: auto;
+      scrollbar-width: thin;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .product-list::-webkit-scrollbar {
+      height: 6px;
+    }
+
+    .product-list::-webkit-scrollbar-thumb {
+      background-color: #ccc;
+      border-radius: 3px;
     }
 
     .product-item {
@@ -383,7 +379,6 @@
       padding: clamp(0.5rem, 2vw, 1rem);
       border-radius: 10px;
       text-align: center;
-      margin-right: clamp(0.5rem, 2vw, 1rem);
     }
 
     .product-item img {
@@ -1035,11 +1030,6 @@
         min-width: clamp(100px, 30vw, 120px);
       }
 
-      .best-selling-products .arrows button {
-        width: 40px;
-        height: 40px;
-      }
-
       .testimonials-section .testimonials-grid {
         flex-direction: column;
         align-items: center;
@@ -1056,16 +1046,15 @@
         margin-bottom: clamp(1rem, 3vw, 1.5rem);
       }
 
-      /* Adjust "Animals for Adoption" for smaller screens */
       .product-container {
-        grid-template-columns: 1fr; /* Stack on very small screens */
+        grid-template-columns: 1fr;
         grid-template-rows: auto;
       }
     }
 
     @media (max-width: 480px) {
       .product-container {
-        grid-template-columns: 1fr; /* Ensure stacking on very small screens */
+        grid-template-columns: 1fr;
       }
 
       .product-item {
@@ -1189,10 +1178,6 @@
   <section class="best-selling-products">
     <div class="header">
       <h2>Our Best Selling Products</h2>
-      <div class="arrows">
-        <button onclick="moveCarousel('left')">←</button>
-        <button onclick="moveCarousel('right')">→</button>
-      </div>
     </div>
     <div class="product-carousel">
       <div class="product-list" id="productList">
@@ -1388,7 +1373,7 @@
       <h3>About us</h3>
       <p>We are a team of passionate pet care providers committed to delivering super-standard pet products and healthcare services while enriching the bond between our clients and their animal companions.</p>
       <p>Our vision is to become a leading brand name in the Veterinary field, effortlessly promoting responsible pet ownership and commitment to improving the quality of life of all humans and their pets.</p>
-      <p>VETLANE Shop delivers to all Nigeria States - Abia | Adamawa | Akwa Ibom | Anambra | Bauchi | Bayelsa | Benue | Borno | Cross River | Delta | Ebonyi | Edo | Ekiti | Enugu | Gombe | Imo | Jigawa | Kaduna | Kano | Katsina | Kebbi | Kogi | Kwara | Lagos | Nasarawa | Niger | Ogun | Ondo | Osun | Oyo | Plateau | Rivers | Sokoto | Taraba | Yobe | Zamfara</p>
+      <p>VETLANE Shop delivers to all U.S. States - Alabama | Alaska | Arizona | Arkansas | California | Colorado | Connecticut | Delaware | Florida | Georgia | Hawaii | Idaho | Illinois | Indiana | Iowa | Kansas | Kentucky | Louisiana | Maine | Maryland | Massachusetts | Michigan | Minnesota | Mississippi | Missouri | Montana | Nebraska | Nevada | New Hampshire | New Jersey | New Mexico | New York | North Carolina | North Dakota | Ohio | Oklahoma | Oregon | Pennsylvania | Rhode Island | South Carolina | South Dakota | Tennessee | Texas | Utah | Vermont | Virginia | Washington | West Virginia | Wisconsin | Wyoming</p>
     </div>
     <div class="connect">
       <h3>Connect with us</h3>
@@ -1424,30 +1409,6 @@
       }
       reviewList.style.transform = `translateX(-${reviewIndex * 100}%)`;
     }
-
-    // Product Carousel
-    let currentIndex = 0;
-    const itemsToShow = window.innerWidth <= 768 ? 2 : 4;
-    const totalItems = document.querySelectorAll('.product-item').length;
-    const productList = document.getElementById('productList');
-
-    function moveCarousel(direction) {
-      const visibleItems = window.innerWidth <= 768 ? 2 : 4;
-      if (direction === 'right' && currentIndex < totalItems - visibleItems) {
-        currentIndex++;
-      } else if (direction === 'left' && currentIndex > 0) {
-        currentIndex--;
-      }
-      productList.style.transform = `translateX(-${currentIndex * (100 / visibleItems)}%)`;
-    }
-
-    window.addEventListener('resize', () => {
-      const visibleItems = window.innerWidth <= 768 ? 2 : 4;
-      if (currentIndex > totalItems - visibleItems) {
-        currentIndex = Math.max(0, totalItems - visibleItems);
-      }
-      productList.style.transform = `translateX(-${currentIndex * (100 / visibleItems)}%)`;
-    });
 
     // Slideshow
     const images = [
