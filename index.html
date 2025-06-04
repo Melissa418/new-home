@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -12,179 +12,10 @@
       background-color: #ffffff;
       color: #333333;
     }
-   
-    
-    
-    
-    
-    
-    /* Image Slider Section */
-.image-slider-container {
-  display: flex;
-  max-width: 1200px;
-  margin: 0 auto;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.image-slider1 {
-  flex: 3;
-  position: relative;
-  max-width: 100%;
-  overflow: hidden;
-}
-
-.image-slider1 img {
-  width: 100%;
-  height: auto;
-  max-height: 500px;
-  object-fit: cover;
-  display: block;
-  transition: opacity 0.5s ease-in-out;
-}
-    
-    
-    
-    
-    /* Add these styles to your existing CSS */
-
-/* Make the header responsive */
-.header-top {
-  text-align: center;
-  padding: 10px;
-}
-
-.header-main {
-  padding: 10px;
-  text-align: center;
-}
-
-.header-main .nav {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.header-main .nav a {
-  margin: 10px;
-}
-
-/* Make the main image and thumbnails responsive */
-.container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-
-/* Make the product strip responsive */
-.product-strip {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.product-item {
-  margin: 10px;
-  flex: 1 1 200px;
-}
-
-    
-    /* Top Categories Section */
-.top-categories {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  padding: 40px;
-  max-width: 1200px;
-  margin: 0 auto;
-  background: #f5f5f5;
-}
-    
-/* Make the top categories responsive */
-.top-categories {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.top-categories div {
-  display: grid; 
-  gap: 10px; 
-  margin-bottom: 10px}
-    
-    .top-categories-image {
-  width: 100%;
-  aspect-ratio: 3 / 2; /* Maintains proportional scaling */
-  object-fit: cover;
-  display: block;
-}
-
-
-    
-    
-    /* Responsive adjustments for top categories */
-@media (max-width: 768px) {
-  .top-categories div:first-child {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .top-categories div:last-child {
-    grid-template-columns: 1fr;
-  }
-  .category-image {
-    aspect-ratio: 3 / 2; /* Maintain proportion on smaller screens */
-  }
-}
-
-@media (max-width: 480px) {
-  .top-categories div:first-child,
-  .top-categories div:last-child {
-    grid-template-columns: 1fr;
-  }
-  .category-image {
-    aspect-ratio: 3 / 2; /* Maintain proportion on very small screens */
-  }
-}
-    
-    
-    
-  
-  .top-categories div {
-    flex: 1 1 100%;
-  }
-}
-
-@media (max-width: 480px) {
-  .header-top {
-    padding: 5px;
-  }
-  
-  .header-main {
-    padding: 5px;
-  }
-  
-  .header-main .nav a {
-    margin: 5px;
-  }
-  
-  .main-image img {
-    height: auto;
-  }
-  
-  .thumbnail img {
-    width: 50px;
-    height: 50px;
-  }
-}
-    
-    
-    
-    
-    
-  
+    /* Header Styles */
     .header-top {
       background-color: #f5f5f5;
-      padding: 5px 20px;
+      padding: 5px 10px;
       text-align: right;
     }
     .header-top a {
@@ -197,7 +28,7 @@
     }
     .header-main {
       background-color: #ffffff;
-      padding: 10px 20px;
+      padding: 10px;
       box-shadow: 0 2px 5px #0000001a;
       text-align: center;
     }
@@ -208,11 +39,14 @@
       margin-bottom: 10px;
     }
     .header-main .nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
       margin-bottom: 10px;
     }
     .header-main .nav a {
       color: #333333;
-      margin: 0 10px;
       text-decoration: none;
       font-size: 0.9em;
     }
@@ -221,15 +55,17 @@
     }
     .header-main .search-bar {
       margin: 0 auto;
-      width: 200px;
+      width: 100%;
+      max-width: 300px;
       position: relative;
     }
     .header-main .search-bar input {
-      padding: 5px 10px;
+      padding: 8px 12px;
       border: 1px solid #dddddd;
       border-radius: 5px;
       width: 100%;
       font-size: 0.9em;
+      box-sizing: border-box;
     }
     .header-main .search-bar button {
       position: absolute;
@@ -245,28 +81,42 @@
       height: 16px;
       stroke: #666666;
     }
-    .container {
+    /* Image Slider Section */
+    .image-slider-container {
       display: flex;
       max-width: 1200px;
       margin: 0 auto;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 10px;
     }
-    .main-image {
+    .image-slider1 {
       flex: 3;
       position: relative;
+      width: 100%;
+      max-width: 800px;
+      overflow: hidden;
     }
-    
+    .image-slider1 img {
+      width: 100%;
+      height: auto;
+      max-height: 500px;
+      object-fit: cover;
+      display: block;
+      transition: opacity 0.5s ease-in-out;
+    }
     .thumbnails {
       flex: 1;
       display: flex;
       flex-direction: column;
       margin-left: 20px;
-    }
-    .thumbnail {
-      margin-bottom: 10px;
+      gap: 10px;
+      min-width: 100px;
     }
     .thumbnail img {
       width: 100%;
-      height: 90px;
+      height: auto;
+      max-height: 90px;
       object-fit: cover;
       border: 3px solid #ffc107;
       border-radius: 5px;
@@ -276,10 +126,10 @@
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      font-size: 40px;
+      font-size: 2em;
       color: #fff;
       background-color: rgba(0, 0, 0, 0.5);
-      padding: 10px;
+      padding: 5px 10px;
       cursor: pointer;
       user-select: none;
     }
@@ -289,181 +139,79 @@
     .right-arrow {
       right: 10px;
     }
-    section.comment-section {
-      width: 100%;
-      max-width: 1200px;
-      background: #ffffff;
-      border-radius: 15px;
-      padding: 40px;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
-      background: linear-gradient(45deg, #fff8e1, #fff);
-    }
-    h1 {
-      color: #FFC107;
-      font-size: 2.5em;
-      margin-bottom: 40px;
-      font-weight: 700;
-      text-align: center;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-    }
-    div.comments {
-      display: flex;
-      flex-direction: column;
-      gap: 25px;
-    }
-    article.comment {
-      display: flex;
-      align-items: flex-start;
-      background: #fff;
+    /* Rumble Profile Section */
+    .rumble-profile {
+      max-width: 900px;
+      margin: 20px auto;
+      background: linear-gradient(135deg, #ab47bc, #f48fb1);
       padding: 20px;
-      width: 60%;
-      border-radius: 12px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      border: 2px solid transparent;
-      background: linear-gradient(to right, #fff, #fff) padding-box,
-                  linear-gradient(to right, #FFC107, #ffecb3) border-box;
+      border-radius: 15px;
+      color: #fff;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.4);
     }
-    article.comment.left {
-      align-self: flex-start;
+    .rumble-profile h1 {
+      font-size: 2.5em;
+      margin: 0 0 10px 0;
+      color: #fff;
+      text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+      animation: pulse 2s infinite;
     }
-    article.comment.right {
-      align-self: flex-end;
-    }
-    article.comment:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 10px 25px rgba(255, 193, 7, 0.3);
-    }
-    article.comment .avatar {
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      margin-right: 20px;
-      flex-shrink: 0;
-      overflow: hidden;
-      border: 3px solid #FFC107;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    }
-    article.comment.right .avatar {
-      margin-right: 0;
-      margin-left: 20px;
-      order: 2;
-    }
-    article.comment .avatar img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    article.comment .content {
-      flex: 1;
-    }
-    article.comment.right .content {
-      text-align: right;
-    }
-    article.comment .author {
-      color: #FFC107;
-      font-weight: 600;
-      margin: 0;
-      font-size: 1.1em;
-    }
-    article.comment p {
-      margin: 8px 0 0;
-      color: #555;
-      line-height: 1.5;
-    }
-    article.comment .time {
-      color: #888;
-      font-size: 0.8em;
-      margin-top: 8px;
-    }
-    .hidden {
-      display: none;
-    }
-    section.comment-form {
-      margin-top: 40px;
-      padding: 25px;
-      background: #fff;
-      border-radius: 12px;
-      border: 2px solid transparent;
-      background: linear-gradient(to right, #fff, #fff) padding-box,
-                  linear-gradient(to right, #FFC107, #ffecb3) border-box;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    }
-    section.comment-form h2 {
-      color: #FFC107;
-      font-size: 1.8em;
-      margin-bottom: 20px;
-      font-weight: 600;
-    }
-    section.comment-form input[type="text"],
-    section.comment-form textarea {
-      width: 100%;
-      padding: 12px;
-      margin-bottom: 20px;
-      border: 2px solid #ddd;
-      border-radius: 8px;
+    .rumble-profile p {
       font-size: 1em;
-      transition: border-color 0.3s ease;
-    }
-    section.comment-form input[type="text"]:focus,
-    section.comment-form textarea:focus {
-      border-color: #FFC107;
-      outline: none;
-    }
-    section.comment-form input[type="file"] {
-      margin-bottom: 20px;
-    }
-    section.comment-form button {
-      background: #FFC107;
+      margin: 0 0 20px 0;
       color: #fff;
-      border: none;
-      padding: 12px 30px;
-      border-radius: 25px;
-      cursor: pointer;
-      font-weight: 600;
-      transition: background 0.3s ease, transform 0.2s ease;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+      animation: fadeIn 2s;
     }
-    section.comment-form button:hover {
-      background: #ffca28;
-      transform: scale(1.05);
+    .rumble-profile .details-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
     }
-    section.comment-form button:active {
-      transform: scale(0.95);
+    .rumble-profile .details {
+      flex: 2;
+      min-width: 200px;
     }
-    div.buttons {
-      margin-top: 30px;
+    .rumble-profile .details ul {
+      list-style: none;
+      padding: 15px;
+      margin: 0;
+      background: rgba(255,255,255,0.15);
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    .rumble-profile .details li {
+      display: flex;
+      justify-content: space-between;
+      padding: 5px 0;
+      border-bottom: 1px dashed #fff;
+      color: #fff;
+      transition: transform 0.3s;
+    }
+    .rumble-profile .details li:hover {
+      transform: scale(1.02);
+    }
+    .rumble-profile .adopt-section {
+      flex: 1;
+      background: linear-gradient(135deg, #8e24aa, #ec407a);
+      padding: 20px;
+      border-radius: 10px;
       text-align: center;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+      min-width: 200px;
     }
-    div.buttons button {
-      background: #FFC107;
+    .rumble-profile .adopt-section h3 {
+      font-size: 1.2em;
+      margin: 0 0 20px 0;
       color: #fff;
-      border: none;
-      padding: 12px 30px;
-      border-radius: 25px;
-      cursor: pointer;
-      margin: 0 15px;
-      font-weight: 600;
-      transition: background 0.3s ease, transform 0.2s ease;
-    }
-    div.buttons button:hover {
-      background: #ffca28;
-      transform: scale(1.05);
-    }
-    div.buttons button:active {
-      transform: scale(0.95);
-    }
-    @keyframes slideIn {
-      from { transform: translateY(20px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
-    }
-    article.comment.show {
-      animation: slideIn 0.5s ease-out;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
     }
     .adopt-button {
       background: linear-gradient(90deg, #ce93d8, #f06292);
       border: none;
       padding: 12px;
       color: #fff;
-      font-size: 16px;
+      font-size: 1em;
       border-radius: 5px;
       cursor: pointer;
       width: 100%;
@@ -482,6 +230,563 @@
     .adopt-button:active {
       transform: scale(0.95);
     }
+    .rumble-profile .adopt-section button {
+      background: rgba(255,255,255,0.2);
+      border: none;
+      padding: 10px;
+      color: #fff;
+      font-size: 0.9em;
+      border-radius: 20px;
+      cursor: pointer;
+      width: 100%;
+      margin-bottom: 20px;
+      transition: background 0.3s;
+    }
+    .rumble-profile .adopt-section button:hover {
+      background: rgba(255,255,255,0.4);
+    }
+    .rumble-profile .adopt-section p {
+      font-size: 0.9em;
+      margin: 0 0 15px 0;
+      color: #fff;
+      font-weight: bold;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    }
+    .rumble-profile .adopt-section .social {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+    .rumble-profile .adopt-section .social a {
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      color: #fff;
+      transition: all 0.3s;
+    }
+    .rumble-profile .adopt-section .social a:hover {
+      transform: rotate(360deg) scale(1.2);
+      color: #ffeb3b;
+    }
+    .rumble-profile .about-rumble {
+      margin-top: 30px;
+    }
+    .rumble-profile .about-rumble h2 {
+      font-size: 1.5em;
+      margin: 0 0 10px 0;
+      color: #fff;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      transition: transform 0.3s;
+    }
+    .rumble-profile .about-rumble h2:hover {
+      transform: scale(1.02);
+    }
+    .rumble-profile .about-rumble p {
+      font-size: 1em;
+      margin: 0 0 20px 0;
+      color: #fff;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+      animation: fadeIn 2s;
+    }
+    /* Adoption Process Section */
+    .adoption-process {
+      max-width: 900px;
+      margin: 20px auto;
+      padding: 0 20px;
+      color: #333;
+      background-color: #fff;
+    }
+    .adoption-process h1 {
+      font-size: 1.8em;
+      margin: 0 0 20px 0;
+      color: #000;
+      font-weight: bold;
+      text-align: center;
+    }
+    .adoption-process .timeline {
+      position: relative;
+      padding-left: 40px;
+    }
+    .adoption-process .timeline::before {
+      content: '';
+      width: 2px;
+      background-color: #ffc107;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 10px;
+    }
+    .adoption-process .step {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 20px;
+      position: relative;
+    }
+    .adoption-process .step .number {
+      width: 24px;
+      height: 24px;
+      background-color: #ffc107;
+      border-radius: 50%;
+      color: #fff;
+      text-align: center;
+      line-height: 24px;
+      font-weight: bold;
+      margin-right: 15px;
+      position: absolute;
+      left: -32px;
+    }
+    .adoption-process .step .content h3 {
+      font-size: 1.1em;
+      margin: 0 0 5px 0;
+      color: #000;
+      font-weight: bold;
+    }
+    .adoption-process .step .content p {
+      margin: 0 0 5px 0;
+      color: #757575;
+      font-size: 0.9em;
+    }
+    .adoption-process .step .content a {
+      color: #ffc107;
+      text-decoration: none;
+      font-size: 0.8em;
+    }
+    .adoption-process .step .content a:hover {
+      text-decoration: underline;
+    }
+    .adoption-process .step .details {
+      display: none;
+      margin-top: 10px;
+      padding: 10px;
+      background-color: #f5f5f5;
+      border-radius: 4px;
+      color: #333;
+      font-size: 0.8em;
+    }
+    /* Best Selling Products Section */
+    .best-selling {
+      margin-bottom: 40px;
+      position: relative;
+      z-index: 1;
+    }
+    .best-selling h2 {
+      font-size: 1.2em;
+      color: #fff;
+      background: linear-gradient(90deg, #ffc107, #ffca28);
+      padding: 15px 30px;
+      display: inline-flex;
+      align-items: center;
+      border-radius: 10px;
+      margin: 0 auto 30px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 700;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      border: 2px solid #fff;
+    }
+    .best-selling h2 span:last-child {
+      margin-left: 20px;
+      font-size: 1em;
+      animation: bounce 1.5s infinite ease-in-out;
+    }
+    .product-strip {
+      display: flex;
+      gap: 20px;
+      overflow-x: auto;
+      padding: 10px 20px;
+      scrollbar-width: thin;
+      scrollbar-color: #ccc #f5f5f5;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .product-item {
+      min-width: 150px;
+      background-color: white;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      text-align: center;
+      flex-shrink: 0;
+      flex: 1 1 200px;
+    }
+    .product-item img {
+      width: 100%;
+      max-width: 150px;
+      height: auto;
+      max-height: 150px;
+      object-fit: cover;
+    }
+    .product-item h3 {
+      font-size: 1em;
+      margin: 5px 0;
+      color: #333;
+    }
+    .product-item p {
+      font-size: 0.9em;
+      color: #ff4d4d;
+      margin: 5px 0;
+    }
+    .product-item p.reviews {
+      font-size: 0.8em;
+      color: #666;
+    }
+    .product-item p.discount {
+      font-size: 0.7em;
+      color: #800000;
+    }
+    /* Top Categories Section */
+    .top-categories {
+      padding: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+      background: #f5f5f5;
+    }
+    .top-categories h2 {
+      font-size: 1.5em;
+      color: #333;
+      margin-bottom: 20px;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 700;
+    }
+    .top-categories .row {
+      display: grid;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .top-categories .row.top {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .top-categories .row.bottom {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .top-categories .category {
+      background: #fff;
+      border-radius: 5px;
+      overflow: hidden;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .top-categories .category:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    }
+    .top-categories .category img {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 3 / 2;
+      object-fit: cover;
+    }
+    .top-categories .category p {
+      font-size: 1.1em;
+      color: #333;
+      padding: 10px;
+      margin: 0;
+      font-weight: 600;
+    }
+    /* Comment Section */
+    section.comment-section {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto 40px;
+      background: linear-gradient(135deg, #e0f7f9, #b2dfdb);
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+      position: relative;
+      overflow: hidden;
+      font-family: 'Roboto', sans-serif;
+    }
+    .comment-section .banner {
+      background: linear-gradient(90deg, #26a69a, #4db6ac);
+      padding: 15px;
+      text-align: center;
+      border-radius: 10px 10px 0 0;
+      position: relative;
+      z-index: 1;
+      animation: pulse 4s infinite;
+    }
+    .comment-section .banner p {
+      font-size: 1.2em;
+      color: #fff;
+      margin: 0;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-family: 'Playfair Display', serif;
+    }
+    .comment-section .banner::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255, 202, 40, 0.2) 0%, transparent 70%);
+      animation: rotate 15s infinite linear;
+      z-index: 0;
+    }
+    .comment-section h1 {
+      font-size: 1.5em;
+      color: #1a2b2e;
+      text-align: center;
+      margin: 20px 0;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 700;
+      background: linear-gradient(90deg, #ffc107, #ffca28);
+      padding: 10px 20px;
+      border-radius: 10px;
+      display: inline-block;
+      font-family: 'Playfair Display', serif;
+    }
+    .comments {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+    article.comment {
+      display: flex;
+      align-items: flex-start;
+      background: #fff;
+      padding: 15px;
+      width: 100%;
+      max-width: 60%;
+      border-radius: 12px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 2px solid transparent;
+      background: linear-gradient(to right, #fff, #fff) padding-box,
+                  linear-gradient(to right, #ffc107, #ffecb3) border-box;
+    }
+    article.comment.left {
+      align-self: flex-start;
+    }
+    article.comment.right {
+      align-self: flex-end;
+    }
+    article.comment:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 25px rgba(255, 193, 7, 0.3);
+    }
+    article.comment .avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      margin-right: 15px;
+      flex-shrink: 0;
+      overflow: hidden;
+      border: 3px solid #ffc107;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    article.comment.right .avatar {
+      margin-right: 0;
+      margin-left: 15px;
+      order: 2;
+    }
+    article.comment .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    article.comment .content {
+      flex: 1;
+    }
+    article.comment.right .content {
+      text-align: right;
+    }
+    article.comment .author {
+      color: #ffc107;
+      font-weight: 600;
+      margin: 0;
+      font-size: 1em;
+    }
+    article.comment p {
+      margin: 8px 0 0;
+      color: #555;
+      line-height: 1.5;
+    }
+    article.comment .time {
+      color: #888;
+      font-size: 0.8em;
+      margin-top: 8px;
+    }
+    .hidden {
+      display: none;
+    }
+    .comment-form {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      border: 2px solid #26a69a;
+      margin-top: 20px;
+    }
+    .comment-form h2 {
+      font-size: 1.5em;
+      color: #1a2b2e;
+      text-align: center;
+      margin-bottom: 20px;
+      font-weight: 600;
+      font-family: 'Playfair Display', serif;
+    }
+    .comment-form form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    .comment-form input[type="text"],
+    .comment-form textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 1em;
+      outline: none;
+      transition: border-color 0.3s ease;
+      font-family: 'Roboto', sans-serif;
+    }
+    .comment-form input[type="text"]:focus,
+    .comment-form textarea:focus {
+      border-color: #ffc107;
+    }
+    .comment-form input[type="file"] {
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 1em;
+      font-family: 'Roboto', sans-serif;
+    }
+    .comment-form button {
+      background: linear-gradient(90deg, #ffc107, #ffca28);
+      color: #1a2b2e;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 25px;
+      font-size: 1em;
+      cursor: pointer;
+      font-weight: 600;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      font-family: 'Roboto', sans-serif;
+    }
+    .comment-form button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    }
+    .buttons {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .buttons button {
+      background: linear-gradient(90deg, #26a69a, #4db6ac);
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 25px;
+      font-size: 1em;
+      cursor: pointer;
+      margin: 0 10px;
+      font-weight: 500;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      font-family: 'Roboto', sans-serif;
+    }
+    .buttons button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    }
+    .buttons button[onclick="showLess()"] {
+      background: linear-gradient(90deg, #ff4d4d, #ff6b6b);
+    }
+    /* Thanks Section */
+    .thanks-section {
+      padding: 20px;
+      text-align: center;
+      background: linear-gradient(135deg, #fff, #f0f0f0);
+      max-width: 1200px;
+      margin: 0 auto;
+      border-radius: 15px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+      position: relative;
+      overflow: hidden;
+      font-family: 'Roboto', sans-serif;
+    }
+    .thanks-section h2 {
+      font-size: 1.5em;
+      color: #1a2b2e;
+      margin-bottom: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-family: 'Playfair Display', serif;
+    }
+    .thanks-section p {
+      font-size: 1em;
+      color: #1a2b2e;
+      margin-bottom: 20px;
+      font-weight: 500;
+      font-family: 'Roboto', sans-serif;
+    }
+    .thanks-section .logo-container {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(90deg, #26a69a, #4db6ac);
+      border-radius: 50%;
+      margin: 20px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease;
+    }
+    .thanks-section .logo-container img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+    }
+    .thanks-section h3 {
+      font-size: 1.2em;
+      color: #1a2b2e;
+      margin-bottom: 10px;
+      font-weight: 600;
+      font-family: 'Playfair Display', serif;
+    }
+    .thanks-section p.italic {
+      font-size: 0.9em;
+      color: #1a2b2e;
+      margin-bottom: 20px;
+      font-style: italic;
+      font-family: 'Roboto', sans-serif;
+    }
+    .thanks-section button {
+      background: linear-gradient(90deg, #ffc107, #ffca28);
+      color: #1a2b2e;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 25px;
+      font-size: 1em;
+      cursor: pointer;
+      font-weight: 600;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease, background 0.3s ease;
+      font-family: 'Roboto', sans-serif;
+    }
+    .thanks-section button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    }
+    .thanks-section::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(38, 166, 154, 0.1) 0%, transparent 70%);
+      animation: rotate 20s infinite linear;
+      z-index: 0;
+    }
+    /* Modal Styles */
     .modal {
       display: none;
       position: fixed;
@@ -495,13 +800,9 @@
       z-index: 1000;
       animation: fadeIn 0.3s ease;
     }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
     .modal-content {
       background: #fff;
-      padding: 30px;
+      padding: 20px;
       border-radius: 15px;
       width: 90%;
       max-width: 600px;
@@ -524,14 +825,10 @@
       z-index: -1;
       pointer-events: none;
     }
-    @keyframes rotate {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
     .modal-content h2 {
       color: #f06292;
       margin-top: 0;
-      font-size: 2em;
+      font-size: 1.5em;
       text-align: center;
       font-weight: 700;
       text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
@@ -540,8 +837,8 @@
     .modal-content input,
     .modal-content textarea {
       width: 100%;
-      padding: 12px;
-      margin: 15px 0;
+      padding: 10px;
+      margin: 10px 0;
       border: 2px solid #e0e0e0;
       border-radius: 8px;
       font-size: 1em;
@@ -557,7 +854,7 @@
     }
     .modal-content .button-group {
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       margin-top: 20px;
       z-index: 1002;
     }
@@ -601,21 +898,14 @@
       content: "Success!";
       visibility: visible;
     }
-    @keyframes spin {
-      0% { transform: translate(-50%, -50%) rotate(0deg); }
-      100% { transform: translate(-50%, -50%) rotate(360deg); }
-    }
     .modal-content .submit-btn:hover {
       transform: scale(1.05);
       box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
     }
-    .modal-content .submit-btn:active {
-      transform: scale(0.95);
-    }
     .modal-content .close {
       position: absolute;
-      top: 15px;
-      right: 20px;
+      top: 10px;
+      right: 15px;
       font-size: 1.5em;
       cursor: pointer;
       color: #f06292;
@@ -640,7 +930,7 @@
     }
     .success-content {
       background: #fff;
-      padding: 30px;
+      padding: 20px;
       border-radius: 15px;
       text-align: center;
       width: 90%;
@@ -652,7 +942,7 @@
     }
     .success-content p {
       color: #f06292;
-      font-size: 1.2em;
+      font-size: 1.1em;
       margin: 0 0 20px;
       font-weight: 600;
     }
@@ -671,9 +961,7 @@
       transform: scale(1.05);
       box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
     }
-    .success-content button:active {
-      transform: scale(0.95);
-    }
+    /* Animations */
     @keyframes pulse {
       0% { transform: scale(1); }
       50% { transform: scale(1.05); }
@@ -683,6 +971,130 @@
       from { opacity: 0; }
       to { opacity: 1; }
     }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+    @keyframes rotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    @keyframes slideIn {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    @keyframes spin {
+      0% { transform: translate(-50%, -50%) rotate(0deg); }
+      100% { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+    article.comment.show {
+      animation: slideIn 0.5s ease-out;
+    }
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .header-main .logo {
+        font-size: 1.2em;
+      }
+      .header-main .nav {
+        flex-direction: column;
+        align-items: center;
+      }
+      .header-main .nav a {
+        margin: 5px 0;
+      }
+      .image-slider-container {
+        flex-direction: column;
+      }
+      .thumbnails {
+        flex-direction: row;
+        margin-left: 0;
+        margin-top: 10px;
+        overflow-x: auto;
+      }
+      .thumbnail img {
+        max-width: 80px;
+        max-height: 80px;
+      }
+      .rumble-profile h1 {
+        font-size: 2em;
+      }
+      .rumble-profile .details-container {
+        flex-direction: column;
+      }
+      .adoption-process h1 {
+        font-size: 1.5em;
+      }
+      .top-categories .row.top {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .top-categories .row.bottom {
+        grid-template-columns: 1fr;
+      }
+      article.comment {
+        max-width: 80%;
+      }
+      .comment-section h1 {
+        font-size: 1.2em;
+      }
+      .comment-form h2 {
+        font-size: 1.2em;
+      }
+      .thanks-section h2 {
+        font-size: 1.2em;
+      }
+    }
+    @media (max-width: 480px) {
+      .header-top {
+        padding: 5px;
+        text-align: center;
+      }
+      .header-top a {
+        margin: 5px;
+      }
+      .header-main .search-bar {
+        max-width: 100%;
+      }
+      .arrow {
+        font-size: 1.5em;
+        padding: 5px;
+      }
+      .rumble-profile {
+        padding: 15px;
+      }
+      .rumble-profile h1 {
+        font-size: 1.5em;
+      }
+      .rumble-profile .about-rumble h2 {
+        font-size: 1.2em;
+      }
+      .adoption-process .timeline {
+        padding-left: 30px;
+      }
+      .adoption-process .step .number {
+        left: -25px;
+      }
+      .product-item {
+        min-width: 120px;
+      }
+      .top-categories .row.top {
+        grid-template-columns: 1fr;
+      }
+      article.comment {
+        max-width: 100%;
+      }
+      .comment-section .banner p {
+        font-size: 1em;
+      }
+      .modal-content {
+        padding: 15px;
+      }
+      .modal-content h2 {
+        font-size: 1.2em;
+      }
+      .success-content {
+        padding: 15px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -690,14 +1102,14 @@
     <a href="#">Donate</a>
   </div>
   <div class="header-main">
-    <div class="logo">Petco</div>
+    <div class="logo">Pet Shop</div>
     <div class="nav">
-      <a href="#">Home</a>
-      <a href="#">Pets for Adoption</a>
-      <a href="#">Rescue Groups & Shelters</a>
-      <a href="#">PetRescue Partners</a>
-      <a href="https://weselldogs.blogspot.com/p/contact-us.html">Contact Us</a>
-      <a href="https://weselldogs.blogspot.com/p/about-us.html">About</a>
+      <a href="https://vetlane.com/">Pets & People</a>
+      <a href="https://vetlane.com/">Pets for Adoption</a>
+      <a href="https://vetlane.com/">Rescue Groups & Shelters</a>
+      <a href="https://vetlane.com/">PetRescue Partners</a>
+      <a href="https://vetlane.com/">Good Reads</a>
+      <a href="#">About Petco</a>
     </div>
     <div class="search-bar">
       <input type="text" placeholder="Search PetRescue">
@@ -708,307 +1120,268 @@
       </button>
     </div>
   </div>
-  
+
   <!-- Main Image and Alternative Images -->
   <div class="image-slider-container">
-  <div class="image-slider1">
-    <img id="mainImg" src="https://i.ibb.co/SDmTNQLP/a4q3gqehyekvi3qrrp2n.webp" alt="Main Dog Image">
-    <div class="arrow left-arrow" onclick="changeImage(-1)">◀</div>
-    <div class="arrow right-arrow" onclick="changeImage(1)">▶</div>
+    <div class="image-slider1">
+      <img id="mainImg" src="https://i.ibb.co/SDmTNQLP/a4q3gqehyekvi3qrrp2n.webp" alt="Main Dog Image">
+      <div class="arrow left-arrow" onclick="changeImage(-1)">◄</div>
+      <div class="arrow right-arrow" onclick="changeImage(1)">►</div>
+    </div>
+    <div class="thumbnails">
+      <div class="thumbnail">
+        <img src="https://i.im.ge/2025/06/01/vBcpV9.k1p19qwctpxczsoa1xim.webp" alt="Dog 1" onclick="setMainImage(this.src)">
+      </div>
+      <div class="thumbnail">
+        <img src="https://i.im.ge/2025/06/01/vBcH6K.a4q3gqehyekvi3qrrp2n.webp" alt="Dog 2" onclick="setMainImage(this.src)">
+      </div>
+      <div class="thumbnail">
+        <img src="https://i.im.ge/2025/06/01/vBcH6K.a4q3gqehyekvi3qrrp2n.webp" alt="Dog 3" onclick="setMainImage(this.src)">
+      </div>
+      <div class="thumbnail">
+        <img src="https://i.im.ge/2025/06/01/vBcJrX.d7rbznhaxhlmlwfk2ryh.webp" alt="Dog 4" onclick="setMainImage(this.src)">
+      </div>
+    </div>
   </div>
-  <div class="thumbnails">
-    <div class="thumbnail">
-      <img src="https://i.im.ge/2025/06/01/vBcpV9.k1p19qwctpxczsoa1xim.webp" alt="Dog 1" onclick="setMainImage(this.src)">
-    </div>
-    <div class="thumbnail">
-      <img src="https://i.im.ge/2025/06/01/vBcH6K.a4q3gqehyekvi3qrrp2n.webp" alt="Dog 2" onclick="setMainImage(this.src)">
-    </div>
-    <div class="thumbnail">
-      <img src="https://i.im.ge/2025/06/01/vBcH6K.a4q3gqehyekvi3qrrp2n.webp" alt="Dog 3" onclick="setMainImage(this.src)">
-    </div>
-    <div class="thumbnail">
-      <img src="https://i.im.ge/2025/06/01/vBcJrX.d7rbznhaxhlmlwfk2ryh.webp" alt="Dog 4" onclick="setMainImage(this.src)">
-    </div>
-  </div>
-</div>
 
-  <div style="max-width: 900px; margin: 20px auto; background: linear-gradient(135deg, #ab47bc, #f48fb1); padding: 30px; border-radius: 15px; font-family: Arial, sans-serif; color: #fff; box-shadow: 0 10px 20px rgba(0,0,0,0.4);">
-    <h1 style="font-size: 48px; margin: 0 0 10px 0; color: #fff; text-shadow: 3px 3px 6px rgba(0,0,0,0.3); animation: pulse 2s infinite;">RUMBLE</h1>
-    <p style="font-size: 16px; margin: 0 0 20px 0; color: #fff; text-shadow: 1px 1px 3px rgba(0,0,0,0.2); animation: fadeIn 2s;">Hey, i'm Rumble i am looking for my forever home. Could you be my perfect match?</p>
-    <div style="display: flex; gap: 20px;">
-      <div style="flex: 2;">
-        <ul style="list-style: none; padding: 0; margin: 0; background: rgba(255,255,255,0.15); border-radius: 10px; padding: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
-          <li style="display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px dashed #fff; color: #fff; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.02)';" onmouseout="this.style.transform='scale(1)';"><span>Breed</span> <span>Stumpy Tail Cattle Dog</span></li>
-          <li style="display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px dashed #fff; color: #fff; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.02)';" onmouseout="this.style.transform='scale(1)';"><span>Age</span> <span>10-11 Weeks</span></li>
-          <li style="display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px dashed #fff; color: #fff; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.02)';" onmouseout="this.style.transform='scale(1)';"><span>Sex</span> <span>Male</span></li>
-          <li style="display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px dashed #fff; color: #fff; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.02)';" onmouseout="this.style.transform='scale(1)';"><span>Location</span> <span>Doreen, VIC</span></li>
-          <li style="display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px dashed #fff; color: #fff; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.02)';" onmouseout="this.style.transform='scale(1)';"><span>May live with</span> <span>Family and friends.</span></li>
-          <li style="display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px dashed #fff; color: #fff; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.02)';" onmouseout="this.style.transform='scale(1)';"><span>Size</span> <span>Puppy</span></li>
-          <li style="display: flex; justify-content: space-between; padding: 5px 0; color: #fff; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.02)';" onmouseout="this.style.transform='scale(1)';"><span>Reference ID</span> <span>1120517</span></li>
-          <li style="display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px dashed #fff; color: #fff; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.02)';" onmouseout="this.style.transform='scale(1)';"><span>Price</span> <span>$900.00</span></li>
+  <!-- Rumble Profile Section -->
+  <div class="rumble-profile">
+    <h1>RUMBLE</h1>
+    <p>Hey, I'm Rumble, I am looking for my forever home. Could you be my perfect match?</p>
+    <div class="details-container">
+      <div class="details">
+        <ul>
+          <li><span>Breed</span> <span>Stumpy Tail Cattle Dog</span></li>
+          <li><span>Age</span> <span>10-11 Weeks</span></li>
+          <li><span>Sex</span> <span>Male</span></li>
+          <li><span>Location</span> <span>Doreen, VIC</span></li>
+          <li><span>May live with</span> <span>Family and friends.</span></li>
+          <li><span>Size</span> <span>Puppy</span></li>
+          <li><span>Reference ID</span> <span>1120517</span></li>
+          <li><span>Price</span> <span>$900.00</span></li>
         </ul>
       </div>
-      <div style="flex: 1; background: linear-gradient(135deg, #8e24aa, #ec407a); padding: 20px; border-radius: 10px; text-align: center; box-shadow: 0 6px 12px rgba(0,0,0,0.3);">
-        <h3 style="font-size: 18px; margin: 0 0 20px 0; color: #fff; text-shadow: 1px 1px 2px rgba(0,0,0,0.2);">Fill in adoption form to proceed</h3>
+      <div class="adopt-section">
+        <h3>Fill in adoption form to proceed</h3>
         <button class="adopt-button" onclick="showForm()">Adopt Rumble</button>
-        <button style="background: rgba(255,255,255,0.2); border: none; padding: 10px; color: #fff; font-size: 14px; border-radius: 20px; cursor: pointer; width: 100%; margin-bottom: 20px; transition: background 0.3s;" onmouseover="this.style.background='rgba(255,255,255,0.4)';" onmouseout="this.style.background='rgba(255,255,255,0.2)';">
+        <button>
           <span style="display: inline-block; width: 16px; height: 16px; margin-right: 5px;">❤️</span> Add Rumble to your favourites
         </button>
-        <p style="font-size: 14px; margin: 0 0 15px 0; color: #fff; font-weight: bold; text-shadow: 1px 1px 2px rgba(0,0,0,0.2);">HELP ME FIND A HOME</p>
-        <div style="display: flex; justify-content: center; gap: 15px;">
-          <a href="#" style="display: inline-block; width: 24px; height: 24px; color: #fff; transition: all 0.3s;" onmouseover="this.style.transform='rotate(360deg) scale(1.2)'; this.style.color='#ffeb3b';" onmouseout="this.style.transform='rotate(0deg) scale(1)'; this.style.color='#fff';">🌟</a>
-          <a href="#" style="display: inline-block; width: 24px; height: 24px; color: #fff; transition: all 0.3s;" onmouseover="this.style.transform='rotate(360deg) scale(1.2)'; this.style.color='#ffeb3b';" onmouseout="this.style.transform='rotate(0deg) scale(1)'; this.style.color='#fff';">📢</a>
-          <a href="#" style="display: inline-block; width: 24px; height: 24px; color: #fff; transition: all 0.3s;" onmouseover="this.style.transform='rotate(360deg) scale(1.2)'; this.style.color='#ffeb3b';" onmouseout="this.style.transform='rotate(0deg) scale(1)'; this.style.color='#fff';">💌</a>
+        <p>HELP ME FIND A HOME</p>
+        <div class="social">
+          <a href="#">🌟</a>
+          <a href="#">📢</a>
+          <a href="#">💌</a>
         </div>
       </div>
     </div>
-    
-  
-    <!--ARE YOU RIGHT FOR RUMBLE SECTION-->
-    <div style="margin-top: 30px;">
-      <h2 style="font-size: 24px; margin: 0 0 10px 0; color: #fff; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.02)';" onmouseout="this.style.transform='scale(1)';">Are you right for Rumble?</h2>
-      <p style="font-size: 16px; margin: 0 0 20px 0; color: #fff; text-shadow: 1px 1px 2px rgba(0,0,0,0.1); animation: fadeIn 2s;">Rumble is an 11-week-old playful pup who is looking to find his forever home with a patient and loving family who can provide gentle guidance as he grows. As a very young dog, he is just beginning his training and is not yet house-trained, requiring time and care to develop these skills. Rumble is full of love and curiosity and would thrive with access to a safe, enclosed space where he can explore and play.
-</p>
-      <h2 style="font-size: 24px; margin: 0 0 10px 0; color: #fff; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.02)';" onmouseout="this.style.transform='scale(1)';">Is Rumble right for you?</h2>
-      <p style="font-size: 16px; margin: 0 0 20px 0; color: #fff; text-shadow: 1px 1px 2px rgba(0,0,0,0.1); animation: fadeIn 2s;">Rumble could potentially live with another dog(s) or older children with supervision, given his young age. He has no recall training yet, so he should be kept on a leash until this is established. Rumble should not be left alone for long periods as he adjusts, but with gradual introduction, short absences may be manageable. He enjoys soft treats and would love a family dedicated to his early development! Animal Welfare licence details are all available.</p>
+    <div class="about-rumble">
+      <h2>Are you right for Rumble?</h2>
+      <p>Rumble is an 11-week-old playful pup who is looking to find his forever home with a patient and loving family who can provide gentle guidance as he grows. As a very young dog, he is just beginning his training and is not yet house-trained, requiring time and care to develop these skills. Rumble is full of love and curiosity and would thrive with access to a safe, enclosed space where he can explore and play.</p>
+      <h2>Is Rumble right for you?</h2>
+      <p>Rumble could potentially live with another dog(s) or older children with supervision, given his young age. He has no recall training yet, so he should be kept on a leash until this is established. Rumble should not be left alone for long periods as he adjusts, but with gradual introduction, short absences may be manageable. He enjoys soft treats and would love a family dedicated to his early development! Animal Welfare licence details are all available.</p>
     </div>
   </div>
 
-  <div style="max-width: 600px; margin: 20px auto; padding: 0 20px; font-family: Arial, sans-serif; color: #333; background-color: #fff;">
-    <h1 style="font-size: 28px; margin: 0 0 20px 0; color: #000; font-weight: bold;">Our Adopting Process</h1>
-    <div style="position: relative; padding-left: 30px;">
-      <div style="width: 2px; background-color: #ffc107; position: absolute; top: 0; bottom: 0; left: 10px;"></div>
-      <div>
-        <div style="display: flex; align-items: flex-start; margin-bottom: 30px;">
-          <div style="width: 24px; height: 24px; background-color: #ffc107; border-radius: 50%; color: #fff; text-align: center; line-height: 24px; font-weight: bold; margin-right: 15px; position: absolute; left: -32px;">1</div>
-          <div>
-            <h3 style="font-size: 16px; margin: 0 0 5px 0; color: #000; font-weight: bold;">Choose the pet you want</h3>
-            <p style="margin: 0 0 5px 0; color: #757575; font-size: 14px;">Browse our available pets, like Rumble, and select the one that captures your heart.</p>
-            <a href="#" style="color: #ffc107; text-decoration: none; font-size: 12px;" onclick="this.nextElementSibling.style.display = (this.nextElementSibling.style.display === 'block' ? 'none' : 'block'); return false;">Show details ▼</a>
-            <div style="display: none; margin-top: 10px; padding: 10px; background-color: #f5f5f5; border-radius: 4px; color: #333; font-size: 12px;">
-              <p>View pet profiles to learn about their age, breed, and needs. Add your favorite to your list.</p>
-            </div>
+  <!-- Adoption Process Section -->
+  <div class="adoption-process">
+    <h1>Our Adopting Process</h1>
+    <div class="timeline">
+      <div class="step">
+        <div class="number">1</div>
+        <div class="content">
+          <h3>Choose the pet you want</h3>
+          <p>Browse our available pets, like Rumble, and select the one that captures your heart.</p>
+          <a href="#" onclick="this.nextElementSibling.style.display = (this.nextElementSibling.style.display === 'block' ? 'none' : 'block'); return false;">Show details ▼</a>
+          <div class="details">
+            <p>View pet profiles to learn about their age, breed, and needs. Add your favorite to your list.</p>
           </div>
         </div>
-        <div style="display: flex; align-items: flex-start; margin-bottom: 30px;">
-          <div style="width: 24px; height: 24px; background-color: #ffc107; border-radius: 50%; color: #fff; text-align: center; line-height: 24px; font-weight: bold; margin-right: 15px; position: absolute; left: -32px;">2</div>
-          <div>
-            <h3 style="font-size: 16px; margin: 0 0 5px 0; color: #000; font-weight: bold;">Fill in your adoption information</h3>
-            <p style="margin: 0 0 5px 0; color: #757575; font-size: 14px;">Provide your name, address, and other details to start the adoption process.</p>
-            <a href="#" style="color: #ffc107; text-decoration: none; font-size: 12px;" onclick="this.nextElementSibling.style.display = (this.nextElementSibling.style.display === 'block' ? 'none' : 'block'); return false;">Show details ▼</a>
-            <div style="display: none; margin-top: 10px; padding: 10px; background-color: #f5f5f5; border-radius: 4px; color: #333; font-size: 12px;">
-              <p>Include contact info and home details to help us verify your suitability.</p>
-            </div>
+      </div>
+      <div class="step">
+        <div class="number">2</div>
+        <div class="content">
+          <h3>Fill in your adoption information</h3>
+          <p>Provide your name, address, and other details to start the adoption process.</p>
+          <a href="#" onclick="this.nextElementSibling.style.display = (this.nextElementSibling.style.display === 'block' ? 'none' : 'block'); return false;">Show details ▼</a>
+          <div class="details">
+            <p>Include contact info and home details to help us verify your suitability.</p>
           </div>
         </div>
-        <div style="display: flex; align-items: flex-start; margin-bottom: 30px;">
-          <div style="width: 24px; height: 24px; background-color: #ffc107; border-radius: 50%; color: #fff; text-align: center; line-height: 24px; font-weight: bold; margin-right: 15px; position: absolute; left: -32px;">3</div>
-          <div>
-            <h3 style="font-size: 16px; margin: 0 0 5px 0; color: #000; font-weight: bold;">Submit and contact Admin for adoption</h3>
-            <p style="margin: 0 0 5px 0; color: #757575; font-size: 14px;">Submit your application and click "Contact Admin" to proceed with adoption.</p>
-            <a href="#" style="color: #ffc107; text-decoration: none; font-size: 12px;" onclick="this.nextElementSibling.style.display = (this.nextElementSibling.style.display === 'block' ? 'none' : 'block'); return false;">Show details ▼</a>
-            <div style="display: none; margin-top: 10px; padding: 10px; background-color: #f5f5f5; border-radius: 4px; color: #333; font-size: 12px;">
-              <p>An admin will review your application by June 5, 2025, and reach out.</p>
-            </div>
+      </div>
+      <div class="step">
+        <div class="number">3</div>
+        <div class="content">
+          <h3>Submit and contact Admin for adoption</h3>
+          <p>Submit your application and click "Contact Admin" to proceed with adoption.</p>
+          <a href="#" onclick="this.nextElementSibling.style.display = (this.nextElementSibling.style.display === 'block' ? 'none' : 'block'); return false;">Show details ▼</a>
+          <div class="details">
+            <p>An admin will review your application by June 5, 2025, and reach out.</p>
           </div>
         </div>
-        <div style="display: flex; align-items: flex-start; margin-bottom: 30px;">
-          <div style="width: 24px; height: 24px; background-color: #ffc107; border-radius: 50%; color: #fff; text-align: center; line-height: 24px; font-weight: bold; margin-right: 15px; position: absolute; left: -32px;">4</div>
-          <div>
-            <h3 style="font-size: 16px; margin: 0 0 5px 0; color: #000; font-weight: bold;">Make payment for the pet and items</h3>
-            <p style="margin: 0 0 5px 0; color: #757575; font-size: 14px;">Pay for your pet and any additional items you’ve added to your cart.</p>
-            <a href="#" style="color: #ffc107; text-decoration: none; font-size: 12px;" onclick="this.nextElementSibling.style.display = (this.nextElementSibling.style.display === 'block' ? 'none' : 'block'); return false;">Show details ▼</a>
-            <div style="display: none; margin-top: 10px; padding: 10px; background-color: #f5f5f5; border-radius: 4px; color: #333; font-size: 12px;">
-              <p>Payment covers adoption fees and optional items like pet supplies.</p>
-            </div>
+      </div>
+      <div class="step">
+        <div class="number">4</div>
+        <div class="content">
+          <h3>Make payment for the pet and items</h3>
+          <p>Pay for your pet and any additional items you’ve added to your cart.</p>
+          <a href="#" onclick="this.nextElementSibling.style.display = (this.nextElementSibling.style.display === 'block' ? 'none' : 'block'); return false;">Show details ▼</a>
+          <div class="details">
+            <p>Payment covers adoption fees and optional items like pet supplies.</p>
           </div>
         </div>
-        <div style="display: flex; align-items: flex-start;">
-          <div style="width: 24px; height: 24px; background-color: #ffc107; border-radius: 50%; color: #fff; text-align: center; line-height: 24px; font-weight: bold; margin-right: 15px; position: absolute; left: -32px;">5</div>
-          <div>
-            <h3 style="font-size: 16px; margin: 0 0 5px 0; color: #000; font-weight: bold;">Wait for delivery of your new pet and items.</h3>
-            <p style="margin: 0 0 5px 0; color: #757575; font-size: 14px;">Your order will be added to the delivery queue as you await your pet and other items.</p>
-            <a href="#" style="color: #ffc107; text-decoration: none; font-size: 12px;" onclick="this.nextElementSibling.style.display = (this.nextElementSibling.style.display === 'block' ? 'none' : 'block'); return false;">Show details ▼</a>
-            <div style="display: none; margin-top: 10px; padding: 10px; background-color: #f5f5f5; border-radius: 4px; color: #333; font-size: 12px;">
-              <p>Delivery may take a few days; we’ll confirm the schedule after payment.</p>
-            </div>
+      </div>
+      <div class="step">
+        <div class="number">5</div>
+        <div class="content">
+          <h3>Wait for delivery of your new pet and items.</h3>
+          <p>Your order will be added to the delivery queue as you await your pet and other items.</p>
+          <a href="#" onclick="this.nextElementSibling.style.display = (this.nextElementSibling.style.display === 'block' ? 'none' : 'block'); return false;">Show details ▼</a>
+          <div class="details">
+            <p>Delivery may take a few days; we’ll confirm the schedule after payment.</p>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  
-  <!-- BEST SELLING PRODUCTS SECTION-->
-<div style="margin-bottom: 40px; transition: transform 0.3s ease; position: relative; z-index: 1;">
-    <h2 style="font-size: 1.2em; color: #fff; background: linear-gradient(90deg, #ffc107, #ffca28); padding: 15px 30px; display: inline-flex; align-items: center; border-radius: 10px; margin-bottom: 30px; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); border: 2px solid #fff;">
-  <span>Best Selling Products</span>
-  <span style="margin-left: 20px; font-size: 1em; animation: bounce 1.5s infinite ease-in-out;">🐶</span>
-</h2>
-<!-- Animation Style -->
-<style>
-  @keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-15px); }
-  }
-</style>
-  <div class="product-strip" style="display: flex; gap: 20px; overflow-x: auto; padding-bottom: 10px; scrollbar-width: thin; scrollbar-color: #ccc #f5f5f5;">
-      <div class="product-item" style="min-width: 50px; background-color: white; padding: 10px; border: 1px solid #ddd; border-radius: 5px; text-align: center; flex-shrink: 0;">
-        <P><IMG SRC="https://i.im.ge/2025/05/29/vJGQqP.attachment-113748359.jpeg" ALT="French Bulldog Lagos" WIDTH="150" HEIGHT="150"><BR>
-        <h3 style="font-size: 1em; margin: 5px 0; color: #333;">Dog Food</h3>
-        <p style="font-size: 0.9em; color: #ff4d4d; margin: 5px 0;">$11.00-$160.00</p>
-        <p style="font-size: 0.8em; color: #666;">4.3 ★★★★★ (219 Reviews)</p>
-        <p style="font-size: 0.7em; color: #800000;">New Buyers Gets 10% off all purchases</p>
+  <!-- Best Selling Products Section -->
+  <div class="best-selling">
+    <h2>
+      <span>Best Selling Products</span>
+      <span>🐶</span>
+    </h2>
+    <div class="product-strip">
+      <div class="product-item">
+        <img src="https://i.im.ge/2025/05/29/vJGQqP.attachment-113748359.jpeg" alt="Dog Food">
+        <h3>Dog Food</h3>
+        <p>$11.00-$160.00</p>
+        <p class="reviews">4.3 ★★★★★ (219 Reviews)</p>
+        <p class="discount">New Buyers Gets 10% off all purchases</p>
       </div>
-      <div class="product-item" style="min-width: 50px; background-color: white; padding: 10px; border: 1px solid #ddd; border-radius: 5px; text-align: center; flex-shrink: 0;">
-        <P><IMG SRC="https://i.im.ge/2025/05/29/vnQChS.Screenshot-2025-05-29-005240.png" ALT="French Bulldog Lagos" WIDTH="150" HEIGHT="150"><BR>
-        <h3 style="font-size: 1em; margin: 5px 0; color: #333;">Cat Food</h3>
-        <p style="font-size: 0.9em; color: #ff4d4d; margin: 5px 0;">$9.99-$59.00</p>
-        <p style="font-size: 0.8em; color: #666;">4.4 ★★★★★ (302 Reviews)</p>
-        <p style="font-size: 0.7em; color: #800000;">New Buyers Gets 10% off all purchases</p>
+      <div class="product-item">
+        <img src="https://i.im.ge/2025/05/29/vnQChS.Screenshot-2025-05-29-005240.png" alt="Cat Food">
+        <h3>Cat Food</h3>
+        <p>$9.99-$59.00</p>
+        <p class="reviews">4.4 ★★★★★ (302 Reviews)</p>
+        <p class="discount">New Buyers Gets 10% off all purchases</p>
       </div>
-      <div class="product-item" style="min-width: 50px; background-color: white; padding: 10px; border: 1px solid #ddd; border-radius: 5px; text-align: center; flex-shrink: 0;">
-        <P><IMG SRC="https://i.im.ge/2025/05/29/vnTrpL.download-15.jpeg" ALT="French Bulldog Lagos" WIDTH="150" HEIGHT="150"><BR>
-        <h3 style="font-size: 1em; margin: 5px 0; color: #333;">Cat Litter</h3>
-        <p style="font-size: 0.9em; color: #ff4d4d; margin: 5px 0;">$9.99 - $31.99</p>
-        <p style="font-size: 0.8em; color: #666;">4.2 ★★★★★ (690 Reviews)</p>
-        <p style="font-size: 0.7em; color: #800000;">New Buyers Gets 10% off all purchases</p>
+      <div class="product-item">
+        <img src="https://i.im.ge/2025/05/29/vnTrpL.download-15.jpeg" alt="Cat Litter">
+        <h3>Cat Litter</h3>
+        <p>$9.99 - $31.99</p>
+        <p class="reviews">4.2 ★★★★★ (690 Reviews)</p>
+        <p class="discount">New Buyers Gets 10% off all purchases</p>
       </div>
-      <div class="product-item" style="min-width: 200px; background-color: white; padding: 10px; border: 1px solid #ddd; border-radius: 5px; text-align: center; flex-shrink: 0;">
-        <P><IMG SRC="https://i.im.ge/2025/06/01/vBg8kq.Screenshot-2025-06-01-074024.png" ALT="French Bulldog Lagos" WIDTH="150" HEIGHT="150"><BR>
-        <h3 style="font-size: 1em; margin: 5px 0; color: #333;">Pet Toys</h3>
-        <p style="font-size: 0.9em; color: #ff4d4d; margin: 5px 0;">$16.00 - $25.00</p>
-        <p style="font-size: 0.8em; color: #666;">4.7 ★★★★★ (2,789 Reviews)</p>
-        <p style="font-size: 0.7em; color: #800000;">New Buyers Gets 10% off all purchases</p>
+      <div class="product-item">
+        <img src="https://i.im.ge/2025/06/01/vBg8kq.Screenshot-2025-06-01-074024.png" alt="Pet Toys">
+        <h3>Pet Toys</h3>
+        <p>$16.00 - $25.00</p>
+        <p class="reviews">4.7 ★★★★★ (2,789 Reviews)</p>
+        <p class="discount">New Buyers Gets 10% off all purchases</p>
       </div>
-<div class="product-item" style="min-width: 200px; background-color: white; padding: 10px; border: 1px solid #ddd; border-radius: 5px; text-align: center; flex-shrink: 0;">
-        <P><IMG SRC="https://i.im.ge/2025/05/29/vnTlAc.1237380.webp" ALT="French Bulldog Lagos" WIDTH="150" HEIGHT="150"><BR>
-        <h3 style="font-size: 1em; margin: 5px 0; color: #333;">Dog Flea & Tick</h3>
-        <p style="font-size: 0.9em; color: #ff4d4d; margin: 5px 0;">$69.99 - $224.00</p>
-        <p style="font-size: 0.8em; color: #666;">4.7 ★★★★★ (1,198 Reviews)</p>
-        <p style="font-size: 0.7em; color: #800000;">New Buyers Gets 10% off all purchases</p>
+      <div class="product-item">
+        <img src="https://i.im.ge/2025/05/29/vnTlAc.1237380.webp" alt="Dog Flea & Tick">
+        <h3>Dog Flea & Tick</h3>
+        <p>$69.99 - $224.00</p>
+        <p class="reviews">4.7 ★★★★★ (1,198 Reviews)</p>
+        <p class="discount">New Buyers Gets 10% off all purchases</p>
       </div>
-<div class="product-item" style="min-width: 200px; background-color: white; padding: 10px; border: 1px solid #ddd; border-radius: 5px; text-align: center; flex-shrink: 0;">
-        <P><IMG SRC="https://i.im.ge/2025/06/01/vBggPC.Screenshot-2025-06-01-074046.png" ALT="French Bulldog Lagos" WIDTH="150" HEIGHT="150"><BR>
-        <h3 style="font-size: 1em; margin: 5px 0; color: #333;">Playpaw Touch Chew Ring</h3>
-        <p style="font-size: 0.9em; color: #ff4d4d; margin: 5px 0;">$7.99 - $15.00</p>
-        <p style="font-size: 0.8em; color: #666;">4.7 ★★★★★ (98 Reviews)</p>
-        <p style="font-size: 0.7em; color: #800000;">New Buyers Gets 10% off all purchases</p>
+      <div class="product-item">
+        <img src="https://i.im.ge/2025/06/01/vBggPC.Screenshot-2025-06-01-074046.png" alt="Playpaw Touch Chew Ring">
+        <h3>Playpaw Touch Chew Ring</h3>
+        <p>$7.99 - $15.00</p>
+        <p class="reviews">4.7 ★★★★★ (98 Reviews)</p>
+        <p class="discount">New Buyers Gets 10% off all purchases</p>
       </div>
-<div class="product-item" style="min-width: 200px; background-color: white; padding: 10px; border: 1px solid #ddd; border-radius: 5px; text-align: center; flex-shrink: 0;">
-        <P><IMG SRC="https://i.im.ge/2025/06/01/vBgcd4.Screenshot-2025-06-01-074058.png" ALT="French Bulldog Lagos" WIDTH="150" HEIGHT="150"><BR>
-        <h3 style="font-size: 1em; margin: 5px 0; color: #333;">Smart Dog Toy Ball</h3>
-        <p style="font-size: 0.9em; color: #ff4d4d; margin: 5px 0;">$36.99 - $79.00</p>
-        <p style="font-size: 0.8em; color: #666;">4.7 ★★★★★ (103 Reviews)</p>
-        <p style="font-size: 0.7em; color: #800000;">New Buyers Gets 10% off all purchases</p>
+      <div class="product-item">
+        <img src="https://i.im.ge/2025/06/01/vBgcd4.Screenshot-2025-06-01-074058.png" alt="Smart Dog Toy Ball">
+        <h3>Smart Dog Toy Ball</h3>
+        <p>$36.99 - $79.00</p>
+        <p class="reviews">4.7 ★★★★★ (103 Reviews)</p>
+        <p class="discount">New Buyers Gets 10% off all purchases</p>
       </div>
-<div class="product-item" style="min-width: 200px; background-color: white; padding: 10px; border: 1px solid #ddd; border-radius: 5px; text-align: center; flex-shrink: 0;">
-        <P><IMG SRC="https://i.im.ge/2025/06/01/vBbfmP.attachment-153827741.jpeg" ALT="French Bulldog Lagos" WIDTH="150" HEIGHT="150"><BR>
-        <h3 style="font-size: 1em; margin: 5px 0; color: #333;">Pork Crackle</h3>
-        <p style="font-size: 0.9em; color: #ff4d4d; margin: 5px 0;">$69.99 - $224.00</p>
-        <p style="font-size: 0.8em; color: #666;">4.7 ★★★★★ (1,121 Reviews)</p>
-        <p style="font-size: 0.7em; color: #800000;">New Buyers Gets 10% off all purchases</p>
+      <div class="product-item">
+        <img src="https://i.im.ge/2025/06/01/vBbfmP.attachment-153827741.jpeg" alt="Pork Crackle">
+        <h3>Pork Crackle</h3>
+        <p>$69.99 - $224.00</p>
+        <p class="reviews">4.7 ★★★★★ (1,121 Reviews)</p>
+        <p class="discount">New Buyers Gets 10% off all purchases</p>
       </div>
-<div class="product-item" style="min-width: 200px; background-color: white; padding: 10px; border: 1px solid #ddd; border-radius: 5px; text-align: center; flex-shrink: 0;">
-        <P><IMG SRC="https://i.im.ge/2025/06/01/vBbZHq.General-Offers-B-1000x1000-2.jpeg" ALT="French Bulldog Lagos" WIDTH="150" HEIGHT="150"><BR>
-        <h3 style="font-size: 1em; margin: 5px 0; color: #333;">Rare Birds</h3>
-        <p style="font-size: 0.9em; color: #ff4d4d; margin: 5px 0;">$189 - $599.99</p>
-        <p style="font-size: 0.8em; color: #666;">4.7 ★★★★★ (221 Reviews)</p>
-        <p style="font-size: 0.7em; color: #800000;">New Buyers Gets 10% off all purchases</p>
-      </div>    
+      <div class="product-item">
+        <img src="https://i.im.ge/2025/06/01/vBbZHq.General-Offers-B-1000x1000-2.jpeg" alt="Rare Birds">
+        <h3>Rare Birds</h3>
+        <p>$189 - $599.99</p>
+        <p class="reviews">4.7 ★★★★★ (221 Reviews)</p>
+        <p class="discount">New Buyers Gets 10% off all purchases</p>
+      </div>
     </div>
   </div>
-    
-    <!--TOP CATHEGORIES SECTION-->
-     <section class="top-categories" style="padding: 40px; max-width: 1200px; margin: 0 auto; background: #f5f5f5;">
-  <h2 style="font-size: 2em; color: #333; margin-bottom: 30px; text-align: center; text-transform: uppercase; letter-spacing: 1px; font-weight: 700;">Top Categories</h2>
-  <!-- Top Row: 3 Smaller Images -->
-  <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 20px;">
-    <div style="background: #fff; border-radius: 5px; overflow: hidden; text-align: center; transition: transform 0.3s ease, box-shadow 0.3s ease;">
-      <img src="https://i.im.ge/2025/05/29/vndsyJ.OIP.jpeg" alt="Dog Food" style="width: 300%; height: 200px; object-fit: cover;">
-      <p style="font-size: 1.1em; color: #333; padding: 10px; margin: 0; font-weight: 600;">Rare Bird Feed</p>
-    </div>
-    <div style="background: #fff; border-radius: 5px; overflow: hidden; text-align: center; transition: transform 0.3s ease, box-shadow 0.3s ease;">
-      <img src="https://i.im.ge/2025/05/29/vndImz.Elite-Parrot-Food-12-75kg.png" alt="Dog Treats" style="width: 100%; height: 200px; object-fit: cover;">
-      <p style="font-size: 1.1em; color: #333; padding: 10px; margin: 0; font-weight: 600;">Rare Treats x1</p>
-    </div>
-    <div style="background: #fff; border-radius: 5px; overflow: hidden; text-align: center; transition: transform 0.3s ease, box-shadow 0.3s ease;">
-      <img src="https://i.im.ge/2025/05/29/vndaHy.e4f36b246ccf4cd6a50e4118abba1744.jpeg" alt="Dog Toys" style="width: 100%; height: 200px; object-fit: cover;">
-      <p style="font-size: 1.1em; color: #333; padding: 10px; margin: 0; font-weight: 600;">Rare Treats x2</p>
-    </div>
-  </div>
-  <!-- Bottom Row: 2 Larger Images -->
-  <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;">
-    <div style="background: #fff; border-radius: 5px; overflow: hidden; text-align: center; transition: transform 0.3s ease, box-shadow 0.3s ease;">
-      <img src="https://i.im.ge/2025/05/29/vn2iV6.Blue-and-Gold-Elegant-Background-Zoom-Virtual-Background.jpeg" alt="Dog Bowls & Feeders" style="width: 100%; height: 200px; object-fit: cover;">
-      <p style="font-size: 1.1em; color: #333; padding: 10px; margin: 0; font-weight: 600;">Pet Toys & Feeders</p>
-    </div>
-    <div style="background: #fff; border-radius: 5px; overflow: hidden; text-align: center; transition: transform 0.3s ease, box-shadow 0.3s ease;">
-      <img src="https://i.im.ge/2025/05/29/vnqH8C.Screenshot-2025-05-29-062809.png" style="width: 100%; height: 200px; object-fit: cover;">
-      <p style="font-size: 1.1em; color: #333; padding: 10px; margin: 0; font-weight: 600;">Pet Accessories</p>
-    </div>
-  </div>
-  <style>
-    .top-categories div:hover {
-      transform: scale(1.05);
-      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-    }
-    
-    
-    @media (max-width: 480px) {
-  .top-categories div:first-child,
-  .top-categories div:last-child {
-    grid-template-columns: 1fr;
-  }
-  .category-image {
-    aspect-ratio: 3 / 2; /* Maintain proportion on very small screens */
-  }
-}  
-    </style>
-</section>
-  
 
-  
-  <!-- COMMENT SECTION -->
-<section class="comment-section" style="padding: 40px; max-width: 1200px; margin: 0 auto; background: linear-gradient(135deg, #e0f7f9, #b2dfdb); border-radius: 15px; box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15); margin-bottom: 40px; position: relative; overflow: hidden; font-family: 'Roboto', sans-serif;">
-  <!-- Top Part: Decorative Banner -->
-  <div style="background: linear-gradient(90deg, #26a69a, #4db6ac); padding: 20px; text-align: center; border-radius: 10px 10px 0 0; position: relative; z-index: 1; animation: pulse 4s infinite;">
-    <p style="font-size: 1.5em; color: #fff; margin: 0; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-family: 'Playfair Display', serif;">Share Your Thoughts on Our Pets! 🐾</p>
-    <div style="position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(255, 202, 40, 0.2) 0%, transparent 70%); animation: rotate 15s infinite linear; z-index: 0;"></div>
-  </div>
-  <h1 style="font-size: 2em; color: #1a2b2e; text-align: center; margin: 30px 0; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; background: linear-gradient(90deg, #ffc107, #ffca28); padding: 10px 20px; border-radius: 10px; display: inline-block; font-family: 'Playfair Display', serif;">Comments</h1>
-  <div class="comments" id="comments" style="margin-bottom: 20px;">
-    <!-- Initial comments will be populated by JavaScript -->
-  </div>
-  <div class="buttons" style="text-align: center; margin-bottom: 30px;">
-    <button onclick="showMore()" style="background: linear-gradient(90deg, #26a69a, #4db6ac); color: #fff; border: none; padding: 10px 20px; border-radius: 25px; font-size: 1em; cursor: pointer; margin-right: 10px; transition: transform 0.3s ease, box-shadow 0.3s ease; font-family: 'Roboto', sans-serif; font-weight: 500;">See More</button>
-    <button onclick="showLess()" style="display: none; background: linear-gradient(90deg, #ff4d4d, #ff6b6b); color: #fff; border: none; padding: 10px 20px; border-radius: 25px; font-size: 1em; cursor: pointer; transition: transform 0.3s ease, box-shadow 0.3s ease; font-family: 'Roboto', sans-serif; font-weight: 500;">See Less</button>
-  </div>
-  <section class="comment-form" style="background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); border: 2px solid #26a69a;">
-    <h2 style="font-size: 1.8em; color: #1a2b2e; text-align: center; margin-bottom: 20px; font-weight: 600; font-family: 'Playfair Display', serif;">Add Your Comment</h2>
-    <form id="commentForm" style="display: flex; flex-direction: column; gap: 15px;">
-      <input type="text" name="name" placeholder="Your Name" required style="padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 1em; outline: none; transition: border-color 0.3s ease; font-family: 'Roboto', sans-serif;">
-      <textarea name="comment" placeholder="Write your comment..." rows="4" required style="padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 1em; resize: none; outline: none; transition: border-color 0.3s ease; font-family: 'Roboto', sans-serif;"></textarea>
-      <input type="file" name="photo" accept="image/*" required style="padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 1em; font-family: 'Roboto', sans-serif;">
-      <button type="submit" style="background: linear-gradient(90deg, #ffc107, #ffca28); color: #1a2b2e; border: none; padding: 10px 20px; border-radius: 25px; font-size: 1em; cursor: pointer; font-weight: 600; transition: transform 0.3s ease, box-shadow 0.3s ease; font-family: 'Roboto', sans-serif;">Submit Comment</button>
-    </form>
+  <!-- Top Categories Section -->
+  <section class="top-categories">
+    <h2>Top Categories</h2>
+    <div class="row top">
+      <div class="category">
+        <img src="https://i.im.ge/2025/05/29/vndsyJ.OIP.jpeg" alt="Rare Bird Feed">
+        <p>Rare Bird Feed</p>
+      </div>
+      <div class="category">
+        <img src="https://i.im.ge/2025/05/29/vndImz.Elite-Parrot-Food-12-75kg.png" alt="Rare Treats x1">
+        <p>Rare Treats x1</p>
+      </div>
+      <div class="category">
+        <img src="https://i.im.ge/2025/05/29/vndaHy.e4f36b246ccf4cd6a50e4118abba1744.jpeg" alt="Rare Treats x2">
+        <p>Rare Treats x2</p>
+      </div>
+    </div>
+    <div class="row bottom">
+      <div class="category">
+        <img src="https://i.im.ge/2025/05/29/vn2iV6.Blue-and-Gold-Elegant-Background-Zoom-Virtual-Background.jpeg" alt="Pet Toys & Feeders">
+        <p>Pet Toys & Feeders</p>
+      </div>
+      <div class="category">
+        <img src="https://i.im.ge/2025/05/29/vnqH8C.Screenshot-2025-05-29-062809.png" alt="Pet Accessories">
+        <p>Pet Accessories</p>
+      </div>
+    </div>
   </section>
-</section>
 
- <!-- THANKS SECTION -->
-<section class="thanks-section" style="padding: 40px; text-align: center; background: linear-gradient(135deg, #fff, #f0f0f0); max-width: 1200px; margin: 0 auto; border-radius: 15px; box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15); position: relative; overflow: hidden; font-family: 'Roboto', sans-serif;">
-  <h2 style="font-size: 2em; color: #1a2b2e; margin-bottom: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; font-family: 'Playfair Display', serif;">Thanks for Stopping By!</h2>
-  <p style="font-size: 1.2em; color: #1a2b2e; margin-bottom: 20px; font-weight: 500; font-family: 'Roboto', sans-serif;">Drop a review if you love our customer support! 💙</p>
-  <div style="width: 100px; height: 100px; background: linear-gradient(90deg, #26a69a, #4db6ac); border-radius: 50%; margin: 20px auto; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); transition: transform 0.3s ease;">
-    <img src="https://i.im.ge/2025/06/01/vBcRcJ.Pink-and-White-Aesthetic-Background-Flyer-3.jpeg" alt="Logo" style="width: 100px; height: 100px; border-radius: 50%; font-family: 'Roboto', sans-serif;">
-  </div>
-  <h3 style="font-size: 1.5em; color: #1a2b2e; margin-bottom: 10px; font-weight: 600; font-family: 'Playfair Display', serif;">Petco</h3>
-  <p style="font-size: 1em; color: #1a2b2e; margin-bottom: 20px; font-style: italic; font-family: 'Roboto', sans-serif;">petcoadopt.co online store & |  Support </p>
-  <button style="background: linear-gradient(90deg, #ffc107, #ffca28); color: #1a2b2e; border: none; padding: 12px 25px; border-radius: 25px; font-size: 1em; cursor: pointer; font-weight: 600; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); transition: transform 0.3s ease, background 0.3s ease; font-family: 'Roboto', sans-serif;">Get in Touch</button>
-  <!-- Background Accent -->
-  <div style="position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(38, 166, 154, 0.1) 0%, transparent 70%); animation: rotate 20s infinite linear; z-index: 0;"></div>
-</section>
-  
+  <!-- Comment Section -->
+  <section class="comment-section">
+    <div class="banner">
+      <p>Share Your Thoughts on Our Pets! 🐾</p>
+    </div>
+    <h1>Comments</h1>
+    <div class="comments" id="comments">
+    </div>
+    <div class="buttons">
+      <button onclick="showMore()">See More</button>
+      <button onclick="showLess()">See Less</button>
+    </div>
+    <section class="comment-form">
+      <h2>Add Your Comment</h2>
+      <form id="commentForm">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <textarea name="comment" placeholder="Write your comment..." rows="4" required></textarea>
+        <input type="file" name="photo" accept="image/*" required>
+        <button type="submit">Submit Comment</button>
+      </form>
+    </section>
+  </section>
+
+  <!-- Thanks Section -->
+  <section class="thanks-section">
+    <h2>Thanks for Stopping By!</h2>
+    <p>Drop a review if you love our customer support! 💙</p>
+    <div class="logo-container">
+      <img src="https://i.im.ge/2025/06/01/vBcRcJ.Pink-and-White-Aesthetic-Background-Flyer-3.jpeg" alt="Logo">
+    </div>
+    <h3>Petco</h3>
+    <p class="italic">petcoadopt.co online store & |  Support</p>
+    <button>Get in Touch</button>
+  </section>
+
   <!-- Modal for Adopt Form -->
   <div class="modal" id="adoptFormModal">
     <div class="modal-content">
@@ -1043,29 +1416,29 @@
   <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
   <script type="text/javascript">
     const images = [
-        "https://i.ibb.co/SDmTNQLP/a4q3gqehyekvi3qrrp2n.webp",
-        "https://i.im.ge/2025/05/28/vvOeUh.k1p19qwctpxczsoa1xim.webp",
-        "https://i.im.ge/2025/05/28/vv1MYM.d7rbznhaxhlmlwfk2ryh.webp",
-        "https://i.im.ge/2025/05/28/vvO4WX.uru4b0qqmudocyr1ye9t.jpeg",
-        "https://i.im.ge/2025/05/28/vv1Q4Y.ci6jyclzobeo4hhfbfln-1.webp"
+      "https://i.ibb.co/SDmTNQLP/a4q3gqehyekvi3qrrp2n.webp",
+      "https://i.im.ge/2025/05/28/vvOeUh.k1p19qwctpxczsoa1xim.webp",
+      "https://i.im.ge/2025/05/28/vv1MYM.d7rbznhaxhlmlwfk2ryh.webp",
+      "https://i.im.ge/2025/05/28/vvO4WX.uru4b0qqmudocyr1ye9t.jpeg",
+      "https://i.im.ge/2025/05/28/vv1Q4Y.ci6jyclzobeo4hhfbfln-1.webp"
     ];
     let currentIndex = 0;
 
     function changeImage(direction) {
-        currentIndex += direction;
-        if (currentIndex < 0) {
-            currentIndex = images.length - 1;
-        } else if (currentIndex >= images.length) {
-            currentIndex = 0;
-        }
-        document.getElementById("mainImg").src = images[currentIndex];
+      currentIndex += direction;
+      if (currentIndex < 0) {
+        currentIndex = images.length - 1;
+      } else if (currentIndex >= images.length) {
+        currentIndex = 0;
+      }
+      document.getElementById("mainImg").src = images[currentIndex];
     }
 
     function setMainImage(src) {
-        document.getElementById("mainImg").src = src;
-        currentIndex = images.indexOf(src);
+      document.getElementById("mainImg").src = src;
+      currentIndex = images.indexOf(src);
     }
- 
+
     // JavaScript for Comments
     let visibleCount = 3;
     const commentsContainer = document.getElementById('comments');
@@ -1213,7 +1586,7 @@
 
     // EmailJS and Modal Script
     (function() {
-      emailjs.init('C2XqQE31DQCkxLD4b'); // Replace with your EmailJS User ID
+      emailjs.init('C2XqQE31DQCkxLD4b');
     })();
 
     function showForm() {
@@ -1225,7 +1598,7 @@
     }
 
     function contactAdmin() {
-      window.location.href = 'https://wa.link/uwqki4'; // Replace with your admin contact page URL
+      window.location.href = 'https://wa.link/uwqki4';
     }
 
     const submitButton = document.querySelector('.submit-btn');
@@ -1240,19 +1613,17 @@
       emailjs.sendForm('service_o0uvqdi', 'template_9u0az1w', form)
         .then(function(response) {
           console.log('SUCCESS!', response.status, response.text);
-          // Show success message briefly on the button
           submitButton.classList.remove('loading');
           submitButton.classList.add('success');
           submitButton.querySelector('span').textContent = 'Success!';
           submitButton.disabled = false;
 
-          // Delay to show success message, then show the success modal
           setTimeout(() => {
             submitButton.classList.remove('success');
             submitButton.querySelector('span').textContent = 'Submit Application';
             document.getElementById('adoptFormModal').style.display = 'none';
             document.getElementById('successModal').style.display = 'flex';
-          }, 1500); // Show success for 1.5 seconds
+          }, 1500);
         }, function(error) {
           console.log('FAILED...', error);
           submitButton.classList.remove('loading');
@@ -1261,7 +1632,6 @@
         });
     });
 
-    // Close modal when clicking outside of it
     window.onclick = function(event) {
       const modal = document.getElementById('adoptFormModal');
       const successModal = document.getElementById('successModal');
