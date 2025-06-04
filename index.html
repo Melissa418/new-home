@@ -2,1124 +2,647 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Rumble</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pet Shop Home</title>
   <style>
-    body {
+    * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
       font-family: Arial, sans-serif;
-      background-color: #ffffff;
-      color: #333333;
-      overflow-x: hidden;
     }
+
+    body {
+      background-color: #f5f5f5;
+      color: #333;
+      line-height: 1.6;
+    }
+
     /* Header Styles */
     .header-top {
-      background-color: #f5f5f5;
-      padding: 5px 10px;
+      background-color: #fff;
+      padding: 0.5rem 1rem;
       text-align: right;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
+      border-bottom: 1px solid #ddd;
     }
+
     .header-top a {
       color: #27ae60;
-      margin: 0 10px;
       text-decoration: none;
+      font-size: clamp(0.8rem, 2vw, 0.9rem);
+      margin: 0 0.5rem;
     }
+
     .header-top a:hover {
       text-decoration: underline;
     }
+
     .header-main {
-      background-color: #ffffff;
-      padding: 10px;
-      box-shadow: 0 2px 5px #0000001a;
+      background-color: #fff;
+      padding: 1rem;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      position: relative;
       text-align: center;
-      position: sticky;
-      top: 30px;
-      z-index: 999;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
     }
+
     .header-main .logo {
-      font-size: 1.5em;
+      font-size: clamp(1.5rem, 4vw, 2rem);
       font-weight: bold;
       color: #27ae60;
-      margin-bottom: 10px;
+      margin-bottom: 0.5rem;
     }
+
     .header-main .nav {
       display: flex;
       justify-content: center;
-      gap: 20px;
-      margin-bottom: 10px;
+      gap: 1rem;
+      margin-bottom: 0.5rem;
     }
+
     .header-main .nav a {
-      color: #333333;
+      color: #333;
       text-decoration: none;
-      font-size: 0.9em;
+      font-size: clamp(0.8rem, 2vw, 0.9rem);
     }
+
     .header-main .nav a:hover {
       color: #27ae60;
     }
+
     .header-main .search-bar {
       margin: 0 auto;
-      width: 100%;
-      max-width: 300px;
+      width: min(100%, 400px);
       position: relative;
     }
+
     .header-main .search-bar input {
-      padding: 8px 12px;
-      border: 1px solid #dddddd;
-      border-radius: 5px;
       width: 100%;
-      font-size: 0.9em;
-      box-sizing: border-box;
+      padding: 0.5rem 2rem 0.5rem 0.5rem;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: clamp(0.8rem, 2vw, 0.9rem);
     }
+
     .header-main .search-bar button {
       position: absolute;
-      right: 5px;
+      right: 0.5rem;
       top: 50%;
       transform: translateY(-50%);
       background: none;
       border: none;
       cursor: pointer;
     }
+
     .header-main .search-bar button svg {
       width: 16px;
       height: 16px;
-      stroke: #666666;
+      stroke: #666;
     }
-    /* Image Slider Section */
-    .image-slider-container {
-      display: flex;
-      max-width: 1200px;
-      margin: 0 auto;
-      flex-wrap: wrap;
-      justify-content: center;
-      padding: 10px;
-      position: relative;
+
+    .hamburger {
+      display: none;
+      font-size: 1.5rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      position: absolute;
+      left: 1rem;
+      top: 1rem;
     }
-    .image-slider1 {
-      flex: 3;
+
+    /* Main Content */
+    .main-content {
       position: relative;
-      width: 100%;
-      max-width: 800px;
+      min-height: 50vh;
       overflow: hidden;
     }
-    .image-slider1 img {
+
+    .main-content .slideshow {
+      position: absolute;
+      top: 0;
+      left: 0;
       width: 100%;
-      height: auto;
-      max-height: 500px;
-      object-fit: cover;
-      display: block;
-      transition: opacity 0.5s ease-in-out;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      transition: opacity 0.5s ease;
     }
-    .thumbnails {
-      flex: 1;
+
+    .main-content .slideshow::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+    }
+
+    .main-content .overlay-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #fff;
+      text-align: center;
+      z-index: 1;
+    }
+
+    .main-content .overlay-text h1 {
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      font-weight: bold;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .main-content .overlay-text .tagline {
+      font-size: clamp(0.8rem, 2.5vw, 1rem);
+      background: linear-gradient(90deg, rgba(255, 193, 7, 0.2), rgba(206, 147, 216, 0.2));
+      padding: 0.5rem 1rem;
+      border: 2px solid #a3e635;
+      border-radius: 10px;
+      display: inline-block;
+      margin-top: 0.5rem;
+      transition: transform 0.3s ease;
+    }
+
+    .main-content .overlay-text .tagline:hover {
+      transform: scale(1.05);
+    }
+
+    /* Pet Shop Section */
+    .pet-shop {
+      padding: 2rem 1rem;
+      text-align: center;
+      background-color: #fff;
+      margin: 1rem auto;
+      max-width: 1200px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .pet-shop h1 {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      color: #333;
+      margin-bottom: 0.5rem;
+    }
+
+    .pet-shop p {
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      color: #666;
+      margin-bottom: 1rem;
+    }
+
+    .product-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+      padding: 0 1rem;
+    }
+
+    .product {
+      background-size: cover;
+      background-position: center;
+      aspect-ratio: 3/4;
       display: flex;
       flex-direction: column;
-      margin-left: 20px;
-      gap: 10px;
-      min-width: 100px;
+      justify-content: flex-end;
+      padding: 1rem;
+      color: white;
+      position: relative;
+      border-radius: 10px;
+      overflow: hidden;
+      transition: transform 0.3s ease;
     }
-    .thumbnail img {
-      width: 100%;
-      height: auto;
-      max-height: 90px;
-      object-fit: cover;
-      border: 3px solid #ffc107;
+
+    .product:hover {
+      transform: scale(1.05);
+    }
+
+    .product h2 {
+      font-size: clamp(1rem, 2.5vw, 1.3rem);
+      margin: 0;
+      z-index: 1;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .product p {
+      font-size: clamp(0.8rem, 2vw, 1rem);
+      margin: 0.3rem 0;
+      z-index: 1;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .product .shop-btn {
+      background-color: #fff;
+      color: #333;
+      border: none;
+      padding: 0.5rem 1rem;
+      font-weight: bold;
       border-radius: 5px;
       cursor: pointer;
+      z-index: 1;
+      opacity: 0;
+      transition: opacity 0.3s ease;
     }
-    .arrow {
+
+    .product:hover h2,
+    .product:hover p,
+    .product:hover .shop-btn {
+      opacity: 1;
+    }
+
+    .product .shop-btn:hover {
+      background-color: #f0f0f0;
+    }
+
+    .dog-product { background-image: url('https://i.im.ge/2025/05/31/vBayiW.2.jpeg'); }
+    .cat-product { background-image: url('https://i.im.ge/2025/05/31/vBIx74.Pink-and-White-Aesthetic-Background-Flyer-2.jpeg'); }
+    .tiger-product { background-image: url('https://i.im.ge/2025/05/31/vBIhcS.3.jpeg'); }
+    .fish-product { background-image: url('https://i.im.ge/2025/05/31/vBI576.4.jpeg'); }
+
+    /* Meet the Pack */
+    .meet-the-pack {
+      max-width: 1200px;
+      margin: 1rem auto;
+      padding: 2rem;
+      background-color: #1a2b2e;
+      color: #fff;
+      border-radius: 10px;
+      display: flex;
+      gap: 1rem;
+    }
+
+    .meet-the-pack div {
+      flex: 1;
+    }
+
+    .meet-the-pack h2 {
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      color: #a3e635;
+      margin-bottom: 0.5rem;
+    }
+
+    .meet-the-pack p {
+      font-size: clamp(0.9rem, 2vw, 1.1rem);
+      margin-bottom: 1rem;
+    }
+
+    .meet-the-pack button {
+      background-color: #a3e635;
+      color: #1a2b2e;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: clamp(0.8rem, 2vw, 1rem);
+      cursor: pointer;
+    }
+
+    .meet-the-pack img {
+      max-width: 100%;
+      border-radius: 10px;
+    }
+
+    /* Best Selling Products */
+    .best-selling-products {
+      max-width: 1200px;
+      margin: 1rem auto;
+      padding: 2rem;
+      background-color: #1a2b2e;
+      color: #fff;
+      border-radius: 10px;
+    }
+
+    .best-selling-products .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .best-selling-products h2 {
+      font-size: clamp(1.5rem, 4vw, 2rem);
+    }
+
+    .best-selling-products .arrows button {
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: clamp(1rem, 2vw, 1.5rem);
+      cursor: pointer;
+    }
+
+    .product-carousel {
+      overflow: hidden;
+    }
+
+    .product-list {
+      display: flex;
+      transition: transform 0.5s ease;
+    }
+
+    .product-item {
+      min-width: 200px;
+      flex: 0 0 25%;
+      background-color: #fff;
+      color: #333;
+      padding: 1rem;
+      border-radius: 10px;
+      text-align: center;
+      margin-right: 1rem;
+    }
+
+    .product-item img {
+      max-width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 5px;
+    }
+
+    .product-item h3 {
+      font-size: clamp(0.9rem, 2vw, 1.2rem);
+      margin: 0.5rem 0;
+    }
+
+    .product-item p {
+      font-size: clamp(0.8rem, 2vw, 0.9rem);
+      color: #666;
+    }
+
+    /* Customer Reviews */
+    .customer-reviews {
+      max-width: 1200px;
+      margin: 1rem auto;
+      padding: 2rem;
+      background-color: #fff;
+      border-radius: 10px;
+      display: flex;
+      gap: 1rem;
+    }
+
+    .customer-reviews div {
+      flex: 1;
+    }
+
+    .customer-reviews h2 {
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      margin-bottom: 0.5rem;
+    }
+
+    .customer-reviews p {
+      font-size: clamp(0.9rem, 2vw, 1.1rem);
+      color: #666;
+    }
+
+    .customer-reviews img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      margin-right: 0.5rem;
+    }
+
+    .review-carousel {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .review-list {
+      display: flex;
+      transition: transform 0.5s ease;
+    }
+
+    .review-item {
+      min-width: 100%;
+      background-color: #f5f5f5;
+      padding: 1rem;
+      border-radius: 10px;
+    }
+
+    .review-item img {
+      width: 50px;
+      height: 50px;
+    }
+
+    .review-item p {
+      font-size: clamp(0.8rem, 2vw, 1rem);
+    }
+
+    .review-carousel button {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      font-size: 2em;
+      background: #a3e635;
       color: #fff;
-      background-color: rgba(0, 0, 0, 0.5);
-      padding: 5px 10px;
+      border: none;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
       cursor: pointer;
-      user-select: none;
     }
-    .left-arrow {
+
+    .review-carousel button:first-child {
       left: 10px;
     }
-    .right-arrow {
+
+    .review-carousel button:last-child {
       right: 10px;
     }
-    /* Rumble Profile Section */
-    .rumble-profile {
-      max-width: 900px;
-      margin: 20px auto;
-      background: linear-gradient(135deg, #ab47bc, #f48fb1);
-      padding: 20px;
-      border-radius: 15px;
-      color: #fff;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.4);
-      position: relative;
-    }
-    .rumble-profile h1 {
-      font-size: 2.5em;
-      margin: 0 0 10px 0;
-      color: #fff;
-      text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
-      animation: pulse 2s infinite;
-    }
-    .rumble-profile p {
-      font-size: 1em;
-      margin: 0 0 20px 0;
-      color: #fff;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-      animation: fadeIn 2s;
-    }
-    .rumble-profile .details-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-    }
-    .rumble-profile .details {
-      flex: 2;
-      min-width: 200px;
-    }
-    .rumble-profile .details ul {
-      list-style: none;
-      padding: 15px;
-      margin: 0;
-      background: rgba(255,255,255,0.15);
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    }
-    .rumble-profile .details li {
-      display: flex;
-      justify-content: space-between;
-      padding: 5px 0;
-      border-bottom: 1px dashed #fff;
-      color: #fff;
-      transition: transform 0.3s;
-    }
-    .rumble-profile .details li:hover {
-      transform: scale(1.02);
-    }
-    .rumble-profile .adopt-section {
-      flex: 1;
-      background: linear-gradient(135deg, #8e24aa, #ec407a);
-      padding: 20px;
-      border-radius: 10px;
-      text-align: center;
-      box-shadow: 0 6px 12px rgba(0,0,0,0.3);
-      min-width: 200px;
-    }
-    .rumble-profile .adopt-section h3 {
-      font-size: 1.2em;
-      margin: 0 0 20px 0;
-      color: #fff;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
-    }
-    .adopt-button {
-      background: linear-gradient(90deg, #ce93d8, #f06292);
-      border: none;
-      padding: 12px;
-      color: #fff;
-      font-size: 1em;
-      border-radius: 5px;
-      cursor: pointer;
-      width: 100%;
-      max-width: 300px;
-      margin-bottom: 15px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-      transition: all 0.3s ease;
-      font-weight: 600;
-      position: relative;
-      overflow: hidden;
-    }
-    .adopt-button:hover {
-      transform: scale(1.05);
-      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
-    }
-    .adopt-button:active {
-      transform: scale(0.95);
-    }
-    .rumble-profile .adopt-section button {
-      background: rgba(255,255,255,0.2);
-      border: none;
-      padding: 10px;
-      color: #fff;
-      font-size: 0.9em;
-      border-radius: 20px;
-      cursor: pointer;
-      width: 100%;
-      margin-bottom: 20px;
-      transition: background 0.3s;
-    }
-    .rumble-profile .adopt-section button:hover {
-      background: rgba(255,255,255,0.4);
-    }
-    .rumble-profile .adopt-section p {
-      font-size: 0.9em;
-      margin: 0 0 15px 0;
-      color: #fff;
-      font-weight: bold;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
-    }
-    .rumble-profile .adopt-section .social {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-    }
-    .rumble-profile .adopt-section .social a {
-      display: inline-block;
-      width: 24px;
-      height: 24px;
-      color: #fff;
-      transition: all 0.3s;
-    }
-    .rumble-profile .adopt-section .social a:hover {
-      transform: rotate(360deg) scale(1.2);
-      color: #ffeb3b;
-    }
-    .rumble-profile .about-rumble {
-      margin-top: 30px;
-    }
-    .rumble-profile .about-rumble h2 {
-      font-size: 1.5em;
-      margin: 0 0 10px 0;
-      color: #fff;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-      transition: transform 0.3s;
-    }
-    .rumble-profile .about-rumble h2:hover {
-      transform: scale(1.02);
-    }
-    .rumble-profile .about-rumble p {
-      font-size: 1em;
-      margin: 0 0 20px 0;
-      color: #fff;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-      animation: fadeIn 2s;
-    }
-    /* Adoption Process Section */
-    .adoption-process {
-      max-width: 900px;
-      margin: 20px auto;
-      padding: 0 20px;
-      color: #333;
+
+    /* Product Strip */
+    .product-strip-container {
+      max-width: 1200px;
+      margin: 1rem auto;
+      padding: 2rem 1rem;
       background-color: #fff;
-      position: relative;
+      border-radius: 10px;
     }
-    .adoption-process h1 {
-      font-size: 1.8em;
-      margin: 0 0 20px 0;
-      color: #000;
-      font-weight: bold;
-      text-align: center;
-    }
-    .adoption-process .timeline {
-      position: relative;
-      padding-left: 40px;
-    }
-    .adoption-process .timeline::before {
-      content: '';
-      width: 2px;
-      background-color: #ffc107;
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 10px;
-    }
-    .adoption-process .step {
-      display: flex;
-      align-items: flex-start;
-      margin-bottom: 20px;
-      position: relative;
-    }
-    .adoption-process .step .number {
-      width: 24px;
-      height: 24px;
-      background-color: #ffc107;
-      border-radius: 50%;
-      color: #fff;
-      text-align: center;
-      line-height: 24px;
-      font-weight: bold;
-      margin-right: 15px;
-      position: absolute;
-      left: -32px;
-    }
-    .adoption-process .step .content h3 {
-      font-size: 1.1em;
-      margin: 0 0 5px 0;
-      color: #000;
-      font-weight: bold;
-    }
-    .adoption-process .step .content p {
-      margin: 0 0 5px 0;
-      color: #757575;
-      font-size: 0.9em;
-    }
-    .adoption-process .step .content a {
-      color: #ffc107;
-      text-decoration: none;
-      font-size: 0.8em;
-    }
-    .adoption-process .step .content a:hover {
-      text-decoration: underline;
-    }
-    .adoption-process .step .details {
-      display: none;
-      margin-top: 10px;
-      padding: 10px;
-      background-color: #f5f5f5;
-      border-radius: 4px;
-      color: #333;
-      font-size: 0.8em;
-    }
-    /* Best Selling Products Section */
-    .best-selling {
-      margin-bottom: 40px;
-      position: relative;
-      z-index: 1;
-    }
-    .best-selling h2 {
-      font-size: 1.2em;
+
+    .product-strip-container h2 {
+      font-size: clamp(1.2rem, 3vw, 1.5rem);
       color: #fff;
       background: linear-gradient(90deg, #ffc107, #ffca28);
-      padding: 15px 30px;
+      padding: 0.75rem 1.5rem;
+      border-radius: 10px;
       display: inline-flex;
       align-items: center;
-      border-radius: 10px;
-      margin: 0 auto 30px;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      font-weight: 700;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-      border: 2px solid #fff;
+      margin-bottom: 1rem;
     }
-    .best-selling h2 span:last-child {
-      margin-left: 20px;
-      font-size: 1em;
-      animation: bounce 1.5s infinite ease-in-out;
-    }
+
     .product-strip {
       display: flex;
-      gap: 20px;
+      gap: 1rem;
       overflow-x: auto;
-      padding: 10px 20px;
       scrollbar-width: thin;
-      scrollbar-color: #ccc #f5f5f5;
-      -webkit-overflow-scrolling: touch;
-      flex-wrap: nowrap;
-      white-space: nowrap;
     }
-    .product-strip::-webkit-scrollbar {
-      height: 8px;
-    }
-    .product-strip::-webkit-scrollbar-track {
-      background: #f5f5f5;
-      border-radius: 4px;
-    }
-    .product-strip::-webkit-scrollbar-thumb {
-      background: #ccc;
-      border-radius: 4px;
-    }
-    .product-strip::-webkit-scrollbar-thumb:hover {
-      background: #aaa;
-    }
-    .product-item {
+
+    .product-strip .product-item {
       min-width: 150px;
-      background-color: white;
-      padding: 10px;
+      padding: 0.5rem;
       border: 1px solid #ddd;
       border-radius: 5px;
       text-align: center;
-      flex-shrink: 0;
-      display: inline-block;
     }
-    .product-item img {
+
+    .product-strip img {
       width: 100%;
-      max-width: 150px;
-      height: auto;
-      max-height: 150px;
+      height: 120px;
       object-fit: cover;
     }
-    .product-item h3 {
-      font-size: 1em;
-      margin: 5px 0;
-      color: #333;
-    }
-    .product-item p {
-      font-size: 0.9em;
-      color: #ff4d4d;
-      margin: 5px 0;
-    }
-    .product-item p.reviews {
-      font-size: 0.8em;
-      color: #666;
-    }
-    .product-item p.discount {
-      font-size: 0.7em;
-      color: #800000;
-    }
-    /* Top Categories Section */
+
+    /* Top Categories */
     .top-categories {
-      padding: 20px;
       max-width: 1200px;
-      margin: 0 auto;
-      background: #f5f5f5;
-      position: relative;
+      margin: 1rem auto;
+      padding: 2rem 1rem;
+      background-color: #fff;
+      border-radius: 10px;
     }
+
     .top-categories h2 {
-      font-size: 1.5em;
-      color: #333;
-      margin-bottom: 20px;
+      font-size: clamp(1.5rem, 4vw, 2rem);
       text-align: center;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      font-weight: 700;
+      margin-bottom: 1rem;
     }
-    .top-categories .row {
+
+    .top-categories > div {
       display: grid;
-      gap: 10px;
-      margin-bottom: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
     }
-    .top-categories .row.top {
-      grid-template-columns: repeat(3, 1fr);
-    }
-    .top-categories .row.bottom {
-      grid-template-columns: repeat(2, 1fr);
-    }
-    .top-categories .category {
-      background: #fff;
+
+    .top-categories div {
+      background: #f5f5f5;
       border-radius: 5px;
       overflow: hidden;
-      text-align: center;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .top-categories .category:hover {
-      transform: scale(1.05);
-      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-    }
-    .top-categories .category img {
-      width: 100%;
-      height: auto;
-      aspect-ratio: 3 / 2;
-      object-fit: cover;
-    }
-    .top-categories .category p {
-      font-size: 1.1em;
-      color: #333;
-      padding: 10px;
-      margin: 0;
-      font-weight: bold;
-    }
-    /* Comment Section */
-    section.comment-section {
-      width: 100%;
-      max-width: 900px;
-      margin: 0 auto 40px;
-      background: linear-gradient(135deg, #e0f7f9, #b2dfdb);
-      border-radius: 15px;
-      padding: 20px;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-      position: relative;
-      overflow: hidden;
-      font-family: 'Roboto', sans-serif;
-    }
-    .comment-section .banner {
-      background: linear-gradient(90deg, #26a69a, #4db6ac);
-      padding: 15px;
-      text-align: center;
-      border-radius: 10px 10px 0 0;
-      position: relative;
-      z-index: 1;
-      animation: pulse 4s infinite;
-    }
-    .comment-section .banner p {
-      font-size: 1.2em;
-      color: #fff;
-      margin: 0;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      font-family: 'Playfair Display', serif;
-    }
-    .comment-section .banner::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(255, 202, 40, 0.2) 0%, transparent 70%);
-      animation: rotate 15s infinite linear;
-      z-index: 0;
-    }
-    .comment-section h1 {
-      font-size: 1.5em;
-      color: #1a2b2e;
-      text-align: center;
-      margin: 20px 0;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      font-weight: 700;
-      background: linear-gradient(90deg, #ffc107, #ffca28);
-      padding: 10px 20px;
-      border-radius: 10px;
-      display: inline-block;
-      font-family: 'Playfair Display', serif;
-    }
-    .comments {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      margin-bottom: 20px;
-    }
-    article.comment {
-      display: flex;
-      align-items: flex-start;
-      background: #fff;
-      padding: 15px;
-      width: 100%;
-      max-width: 60%;
-      border-radius: 12px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      border: 2px solid transparent;
-      background: linear-gradient(to right, #fff, #fff) padding-box,
-                  linear-gradient(to right, #ffc107, #ffecb3) border-box;
-    }
-    article.comment.left {
-      align-self: flex-start;
-    }
-    article.comment.right {
-      align-self: flex-end;
-    }
-    article.comment:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 10px 25px rgba(255, 193, 7, 0.3);
-    }
-    article.comment .avatar {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      margin-right: 15px;
-      flex-shrink: 0;
-      overflow: hidden;
-      border: 3px solid #ffc107;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    }
-    article.comment.right .avatar {
-      margin-right: 0;
-      margin-left: 15px;
-      order: 1;
-    }
-    article.comment .content {
-      flex: 1;
-    }
-    article.comment.right .content {
-      text-align: right;
-    }
-    article.comment .author {
-      color: #ffc107;
-      font-weight: 600;
-      margin: 0;
-      font-size: 1em;
-    }
-    article.comment p {
-      margin: 8px 0 0;
-      color: #555;
-      line-height: 1.5;
-    }
-    article.comment .time {
-      color: #888;
-      font-size: 0.8em;
-      margin-top: 8px;
-    }
-    .hidden {
-      display: none;
-    }
-    .comment-form {
-      background: #fff;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      border: 2px solid #26a69a;
-      margin-top: 20px;
-    }
-    .comment-form h2 {
-      font-size: 1.5em;
-      color: #1a2b2e;
-      text-align: center;
-      margin-bottom: 20px;
-      font-weight: 600;
-      font-family: 'Playfair Display', serif;
-    }
-    .comment-form form {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
-    .comment-form input[type="text"],
-    .comment-form textarea {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      font-size: 1em;
-      outline: none;
-      transition: border-color 0.3s ease;
-      font-family: 'Roboto', sans-serif;
-    }
-    .comment-form input[type="text"]:focus,
-    .comment-form textarea:focus {
-      border-color: #ffc107;
-    }
-    .comment-form input[type="file"] {
-      padding: 10px;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      font-size: 1em;
-      font-family: 'Roboto', sans-serif;
-    }
-    .comment-form button {
-      background: linear-gradient(90deg, #ffc107, #ffca28);
-      color: #1a2b2e;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 25px;
-      font-size: 1em;
-      cursor: pointer;
-      font-weight: 600;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      font-family: 'Roboto', sans-serif;
-    }
-    .comment-form button:hover {
-      transform: scale(1.05);
-      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-    }
-    .buttons {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-    .buttons button {
-      background: linear-gradient(90deg, #26a69a, #4db6ac);
-      color: #fff;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 25px;
-      font-size: 1em;
-      cursor: pointer;
-      margin: 0 10px;
-      font-weight: 500;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      font-family: 'Roboto', sans-serif;
-    }
-    .buttons button:hover {
-      transform: scale(1.05);
-      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-    }
-    .buttons button[onclick="showLess()"] {
-      background: linear-gradient(90deg, #ff4d4d, #ff6b6b);
-    }
-    /* Thanks Section */
-    .thanks-section {
-      padding: 20px;
-      text-align: center;
-      background: linear-gradient(135deg, #fff, #f0f0f0);
-      max-width: 1200px;
-      margin: 0 auto;
-      border-radius: 15px;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-      position: relative;
-      overflow: hidden;
-      font-family: 'Roboto', sans-serif;
-    }
-    .thanks-section h2 {
-      font-size: 1.5em;
-      color: #1a2b2e;
-      margin-bottom: 10px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      font-family: 'Playfair Display', serif;
-    }
-    .thanks-section p {
-      font-size: 1em;
-      color: #1a2b2e;
-      margin-bottom: 20px;
-      font-weight: 500;
-      font-family: 'Roboto', sans-serif;
-    }
-    .thanks-section .logo-container {
-      width: 80px;
-      height: 80px;
-      background: linear-gradient(90deg, #26a69a, #4db6ac);
-      border-radius: 50%;
-      margin: 20px auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
       transition: transform 0.3s ease;
     }
-    .thanks-section .logo-container img {
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-    }
-    .thanks-section h3 {
-      font-size: 1.2em;
-      color: #1a2b2e;
-      margin-bottom: 10px;
-      font-weight: 600;
-      font-family: 'Playfair Display', serif;
-    }
-    .thanks-section p.italic {
-      font-size: 0.9em;
-      color: #1a2b2e;
-      margin-bottom: 20px;
-      font-style: italic;
-      font-family: 'Roboto', sans-serif;
-    }
-    .thanks-section button {
-      background: linear-gradient(90deg,#ffc107, #ffca28);
-      color: #1a2b2e;
-      border: none;
-      padding:12px 25px;
-      border-radius: 25px;
-      font-size: 1em;
-      cursor: pointer;
-      font-weight: 600;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-      transition: all 0.3s ease;
-      font-family: 'Roboto', sans-serif;    }
-    .thanks-section button:hover {
+
+    .top-categories div:hover {
       transform: scale(1.05);
-      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
     }
-    .thanks-section::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(38,166,154,0.1) 0%, transparent 70%);
-      animation: rotate 20s infinite linear;
-      z-index: 0;
-    }
-    /* Modal Styles */
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
+
+    .top-categories img {
       width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.5);
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-      animation: fadeIn 0.3s ease;
+      height: 150px;
+      object-fit: cover;
     }
-    .modal-content {
-      background: #fff;
-      padding: 20px;
-      border-radius: 15px;
-      width: 90%;
-      max-width: 600px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-      border: 3px solid transparent;
-      background: linear-gradient(to right, #fff, #fff) padding-box,
-                  linear-gradient(90deg, #ce93d8, #f06292);
-      position: relative;
-      z-index: 1001;
+
+    .top-categories p {
+      font-size: clamp(0.9rem, 2vw, 1.1rem);
+      padding: 0.5rem;
     }
-    .modal-content::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(206,147,216,0.2), transparent 70%);
-      animation: rotate 10s linear infinite;
-      z-index: -1;
-      pointer-events: none;
-    }
-    .modal-content h2 {
-      color: #f06292;
-      margin-top: 0;
-      font-size: 1.5em;
+
+    /* Thanks Section */
+    .thanks-section {
+      max-width: 1200px;
+      margin: 1rem auto;
+      padding: 2rem;
       text-align: center;
-      font-weight: 700;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
-      z-index: 1002;
-    }
-    .modal-content input,
-    .modal-content textarea {
-      width: 100%;
-      padding: 10px;
-      margin: 10px 0;
-      border: 2px solid #e0e0e0;
-      border-radius: 8px;
-      font-size: 1em;
-      box-sizing: border-box;
-      transition: border-color 0.3s ease, box-shadow 0.3s ease;
-      z-index: 1002;
-    }
-    .modal-content input:focus,
-    .modal-content textarea:focus {
-      border-color: #ce93d8;
-      box-shadow: 0 0 10px rgba(206,147,216,0.3);
-      outline: none;
-    }
-    .modal-content .button-group {
-      display: flex;
-      justify-content: center;
-      margin-top: 20px;
-      z-index: 1002;
-    }
-    .modal-content button {
-      padding: 12px 25px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 1em;
-      font-weight: 600;
-      transition: all 0.3s ease;
-      min-width: 150px;
-      z-index: 1002;
-      position: relative;
-      overflow: hidden;
-    }
-    .modal-content .submit-btn {
-      background: linear-gradient(90deg, #ce93d8, #f06292);
-      color: #fff;
-    }
-    .modal-content .submit-btn .spinner {
-      display: none;
-      width: 20px;
-      height: 20px;
-      border: 3px solid #fff;
-      border-top: 3px solid transparent;
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-    }
-    .modal-content .submit-btn.loading .spinner {
-      display: inline-block;
-    }
-    .modal-content .submit-btn.loading span {
-      visibility: hidden;
-    }
-    .modal-content .submit-btn.success span {
-      content: "Success!";
-      visibility: visible;
-    }
-    .modal-content .submit-btn:hover {
-      transform: scale(1.05);
-      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
-    }
-    .modal-content .close {
-      position: absolute;
-      top: 10px;
-      right: 15px;
-      font-size: 1.5em;
-      cursor: pointer;
-      color: #f06292;
-      transition: color 0.3s ease;
-      z-index: 1002;
-    }
-    .modal-content .close:hover {
-      color: #ce93d8;
-    }
-    .success-modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.5);
-      justify-content: center;
-      align-items: center;
-      z-index: 2000;
-      animation: fadeIn 0.3s ease;
-    }
-    .success-content {
       background: #fff;
-      padding: 20px;
       border-radius: 10px;
-      text-align: center;
-      width: 90%;
-      max-width: 500px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-      border: 3px solid transparent;
-      background: linear-gradient(to right, #fff, #fff) padding-box,
-                  linear-gradient(90deg, #ce93d8, #f06292);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     }
-    .success-content p {
-      color: #f06292;
-      font-size: 1.1em;
-      margin: 0 0 20px;
-      font-weight: 600;
+
+    .thanks-section h2 {
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      color: #1a2b2e;
+      margin-bottom: 0.5rem;
     }
-    .success-content button {
-      background: linear-gradient(90deg, #ce93d8, #f06292);
-      color: #fff;
+
+    .thanks-section p {
+      font-size: clamp(0.9rem, 2vw, 1.2rem);
+      color: #1a2b2e;
+    }
+
+    .thanks-section img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      margin: 1rem auto;
+    }
+
+    .thanks-section button {
+      background: linear-gradient(90deg, #ffc107, #ffca28);
+      color: #1a2b2e;
       border: none;
-      padding: 12px 25px;
-      border-radius: 8px;
+      padding: 0.75rem 1.5rem;
+      border-radius: 20px;
+      font-size: clamp(0.8rem, 2vw, 1rem);
       cursor: pointer;
-      font-size: 1em;
-      font-weight: 600;
-      transition: all 0.3s ease;
     }
-    .success-content button:hover {
-      transform: scale(1.05);
-      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+
+    /* Footer */
+    .footer {
+      padding: 1rem;
+      background-color: #1a2b2e;
+      color: #fff;
+      text-align: center;
     }
-    /* Animations */
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-      100% { transform: scale(1); }
+
+    .footer p {
+      font-size: clamp(0.8rem, 2vw, 0.9rem);
     }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-15px); }
-    }
-    @keyframes rotate {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-    @keyframes slideIn {
-      from { transform: translateY(20px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
-    }
-    @keyframes spin {
-      0% { transform: translate(-50%, -50%) rotate(0deg); }
-      100% { transform: translate(-50%, -50%) rotate(360deg); }
-    }
-    article.comment.show {
-      animation: slideIn 0.5s ease-out;
-    }
-    /* Responsive Design */
+
+    /* Media Queries */
     @media (max-width: 768px) {
-      .header-main .logo {
-        font-size: 1.2em;
-      }
       .header-main .nav {
-        flex-wrap: wrap;
-        gap: 10px;
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: #fff;
+        padding: 1rem;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
       }
-      .header-main .nav a {
-        margin: 5px;
+
+      .header-main .nav.active {
+        display: flex;
       }
-      .image-slider-container {
+
+      .hamburger {
+        display: block;
+      }
+
+      .main-content {
+        min-height: 40vh;
+      }
+
+      .main-content .overlay-text h1 {
+        font-size: clamp(1.5rem, 4vw, 2rem);
+      }
+
+      .main-content .overlay-text .tagline {
+        font-size: clamp(0.7rem, 2vw, 0.9rem);
+      }
+
+      .meet-the-pack,
+      .customer-reviews {
         flex-direction: column;
       }
-      .thumbnails {
-        flex-direction: row;
-        margin-left: 0;
-        margin-top: 10px;
-        overflow-x: auto;
-      }
-      .thumbnail img {
-        max-width: 80px;
-        max-height: 80px;
-      }
-      .rumble-profile h1 {
-        font-size: 2em;
-      }
-      .rumble-profile .details-container {
-        flex-direction: column;
-      }
-      .adoption-process h1 {
-        font-size: 1.5em;
-      }
-      .top-categories .row.top {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .top-categories .row.bottom {
-        grid-template-columns: 1fr;
-      }
-      article.comment {
-        max-width: 80%;
-      }
-      .comment-section h1 {
-        font-size: 1.2em;
-      }
-      .comment-form h2 {
-        font-size: 1.2em;
-      }
-      .thanks-section h2 {
-        font-size: 1.2em;
-      }
-    }
-    @media (max-width: 480px) {
-      .header-top {
-        padding: 5px;
-        text-align: center;
-      }
-      .header-top a {
-        margin: 5px;
-      }
-      .header-main .search-bar {
-        max-width: 100%;
-      }
-      .header-main .nav {
-        flex-direction: column;
-        align-items: center;
-        gap: 5px;
-      }
-      .arrow {
-        font-size: 1.5em;
-        padding: 5px;
-      }
-      .rumble-profile {
-        padding: 15px;
-      }
-      .rumble-profile h1 {
-        font-size: 1.5em;
-      }
-      .rumble-profile .about-rumble h2 {
-        font-size: 1.2em;
-      }
-      .adoption-process .timeline {
-        padding-left: 30px;
-      }
-      .adoption-process .step .number {
-        left: -25px;
-      }
+
       .product-item {
+        flex: 0 0 50%;
+      }
+
+      .product-strip .product-item {
         min-width: 120px;
       }
-      .top-categories .row.top {
+    }
+
+    @media (max-width: 480px) {
+      .product-container {
         grid-template-columns: 1fr;
       }
-      article.comment {
-        max-width: 100%;
+
+      .product-item {
+        flex: 0 0 100%;
       }
-      .comment-section .banner p {
-        font-size: 1em;
-      }
-      .modal-content {
-        padding: 15px;
-      }
-      .modal-content h2 {
-        font-size: 1.2em;
-      }
-      .success-content {
-        padding: 15px;
+
+      .top-categories > div {
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -1129,18 +652,19 @@
     <a href="#">Donate</a>
   </div>
   <div class="header-main">
-    <div class="logo">Pet Shop</div>
+    <button class="hamburger">☰</button>
+    <div class="logo">Petco</div>
     <div class="nav">
-      <a href="https://vetlane.com/">Pets & People</a>
-      <a href="https://vetlane.com/">Pets for Adoption</a>
-      <a href="https://vetlane.com/">Rescue Groups & Shelters</a>
-      <a href="https://vetlane.com/">PetRescue Partners</a>
-      <a href="https://vetlane.com/">Good Reads</a>
-      <a href="#">About Petco</a>
+      <a href="#">Home</a>
+      <a href="#">Pets for Adoption</a>
+      <a href="#">Rescue Groups & Shelters</a>
+      <a href="#">PetRescue Partners</a>
+      <a href="https://weselldogs.blogspot.com/p/contact-us.html">Contact Us</a>
+      <a href="https://weselldogs.blogspot.com/p/about-us.html">About</a>
     </div>
     <div class="search-bar">
       <input type="text" placeholder="Search PetRescue">
-      <button type="submit">
+      <button>
         <svg viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
         </svg>
@@ -1148,530 +672,256 @@
     </div>
   </div>
 
-  <!-- Main Image and Alternative Images -->
-  <div class="image-slider-container">
-    <div class="image-slider1">
-      <img id="mainImg" src="https://i.ibb.co/SDmTNQLP/a4q3gqehyekvi3qrrp2n.webp" alt="Main Dog Image">
-      <div class="arrow left-arrow" onclick="changeImage(-1)">◄</div>
-      <div class="arrow right-arrow" onclick="changeImage(1)">►</div>
-    </div>
-    <div class="thumbs">
-      <div class="thumbnail">
-        <img src="https://i.im.ge/2025/06/01/vBcpV9.k1p19qwctpxczsoa1xim.webp" alt="Dog 1" onclick="setMainImage(this.src)">
-      </div>
-      <div class="thumbnail">
-        <img src="https://i.im.ge/2025/06/01/vBcH6K.a4q3gqehyekvi3qrrp2n.webp" alt="Dog 2" onclick="setMainImage(this.src)">
-      </div>
-      <div class="thumbnail">
-        <img src="https://i.im.ge/2025/06/01/vBcH6K.a4q3gqehyekvi3qrrp2n.webp" alt="Dog 3" onclick="setMainImage(this.src)">
-      </div>
-      <div class="thumbnail">
-        <img src="https://i.im.ge/2025/06/01/vBcJrX.d7rbznhaxhlmlwfk2ryh.webp" alt="Dog 4" onclick="setMainImage(this.src)">
-      </div>
+  <div class="main-content">
+    <div class="slideshow" id="slideshow"></div>
+    <div class="overlay-text">
+      <h1>PETCO</h1>
+      <span class="tagline">Your trusted destination for premium pet care and dog essentials.</span>
     </div>
   </div>
 
-  <!-- Rumble Profile Section -->
-  <div class="rumble-profile">
-    <h1>RUMBLE</h1>
-    <p>Hey, I'm Rumble, I am looking for my forever home. Could you be my perfect match?</p>
-    <div class="details-container">
-      <div class="details">
-        <ul>
-          <li><span>Breed</span> <span>Stumpy Tail Cattle Dog</span></li>
-          <li><span>Age</span> <span>10-11 Weeks</span></li>
-          <li><span>Sex</span> <span>Male</span></li>
-          <li><span>Location</span> <span>Doreen, VIC</span></li>
-          <li><span>May live with</span> <span>Family and friends.</span></li>
-          <li><span>Size</span> <span>Puppy</span></li>
-          <li><span>Reference ID</span> <span>1120517</span></li>
-          <li><span>Price</span> <span>$900.00</span></li>
-        </ul>
-      </div>
-      <div class="adopt-section">
-        <h3>Fill in adoption form to proceed</h3>
-        <button class="adopt-button" onclick="showForm()">Adopt Rumble</button>
-        <button>
-          <span style="display: inline-block; width: 16px; height: 16px; margin-right: 5px;">❤️</span> Add Rumble to your favourites
-        </button>
-        <p>HELP ME FIND A HOME</p>
-        <div class="social">
-          <a href="#">🌟</a>
-          <a href="#">📢</a>
-          <a href="#">💌</a>
+  <section class="pet-shop">
+    <h1>Animals for Adoption</h1>
+    <p>All your favorite pets available for adoption, pick up, or delivery.</p>
+    <div class="product-container">
+      <a href="https://example.com/dogs" onclick="alert('Exploring Dogs category!'); return false;">
+        <div class="product dog-product">
+          <h2>Dogs</h2>
+          <p>Find your loyal companion</p>
+          <button class="shop-btn">Shop Now</button>
         </div>
-      </div>
+      </a>
+      <a href="https://example.com/cats" onclick="alert('Exploring Cats category!'); return false;">
+        <div class="product cat-product">
+          <h2>Cats</h2>
+          <p>Adopt a feline friend</p>
+          <button class="shop-btn">Shop Now</button>
+        </div>
+      </a>
+      <a href="https://example.com/tigers" onclick="alert('Exploring Tigers category!'); return false;">
+        <div class="product tiger-product">
+          <h2>Tigers</h2>
+          <p>Exotic and majestic</p>
+          <button class="shop-btn">Shop Now</button>
+        </div>
+      </a>
+      <a href="https://example.com/fish" onclick="alert('Exploring Fish category!'); return false;">
+        <div class="product fish-product">
+          <h2>Fish</h2>
+          <p>Aquatic beauty</p>
+          <button class="shop-btn">Shop Now</button>
+        </div>
+      </a>
     </div>
-    <div class="about-rumble">
-      <h2>Are you right for Rumble?</h2>
-      <p>Rumble is an 11-week-old playful pup who is looking to find his forever home with a patient and loving family who can provide gentle guidance as he grows. As a very young dog, he is just beginning his training and is not yet house-trained, requiring time and care to develop these skills. Rumble is full of love and curiosity and would thrive with access to a safe, enclosed space where he can explore and play.</p>
-      <h2>Is Rumble right for you?</h2>
-      <p>Rumble could potentially live with another dog(s) or older children with supervision, given his young age. He has no recall training yet, so he should be kept on a leash until this is established. Rumble should not be left alone for long periods as he adjusts, but with gradual introduction, short absences may be manageable. He enjoys soft treats and would love a family dedicated to his early development! Animal Welfare licence details are all available.</p>
-    </div>
-  </div>
+  </section>
 
-  <!-- Adoption Process Section -->
-  <div class="adoption-process">
-    <h1>Our Adopting Process</h1>
-    <div class="timeline">
-      <div class="step">
-        <div class="number">1</div>
-        <div class="content">
-          <h3>Choose the pet you want</h3>
-          <p>Browse our available pets, like Rumble, and select the one that captures your heart.</p>
-          <a href="#" onclick="this.nextElementSibling.style.display = (this.nextElementSibling.style.display === 'block' ? 'none' : 'block'); return false;">Show details ▼</a>
-          <div class="details">
-            <p>View pet profiles to learn about their age, breed, and needs. Add your favorite to your list.</p>
-          </div>
-        </div>
+  <section class="meet-the-pack">
+    <div>
+      <h2>Meet the Pack</h2>
+      <p>At Petco, we're dedicated advocates for dogs, rare breeds, cats, exotic animals, and wild cubs! Our team ensures every creature thrives through ethical rescue and conservation partnerships.</p>
+      <p>With years of experience, we aim to be your premier resource for diverse pet and wildlife care needs. Let us be your trusted partner in finding a new furry friend!</p>
+      <button>Learn More</button>
+    </div>
+    <div>
+      <img src="https://i.im.ge/2025/06/01/vBbvbr.Screenshot-2025-05-31-202918.png" alt="Person with dog">
+    </div>
+  </section>
+
+  <section class="best-selling-products">
+    <div class="header">
+      <h2>Our Best Selling Products</h2>
+      <div class="arrows">
+        <button onclick="moveCarousel('left')">←</button>
+        <button onclick="moveCarousel('right')">→</button>
       </div>
-      <div class="step">
-        <div class="number">2</div>
-        <div class="content">
-          <h3>Fill in your adoption information</h3>
-          <p>Provide your name, address, and other details to start the adoption process.</p>
-          <a href="#" onclick="this.nextElementSibling.style.display = (this.nextElementSibling.style.display === 'block' ? 'none' : 'block'); return false;">Show details ▼</a>
-          <div class="details">
-            <p>Include contact info and home details to help us verify your suitability.</p>
-          </div>
+    </div>
+    <div class="product-carousel">
+      <div class="product-list" id="productList">
+        <div class="product-item" onclick="redirectToProductPage('Nylon Chew')">
+          <img src="https://i.im.ge/2025/06/01/vBbkZ1.520b1bb4-db4f-4a86-b7c5-23b5e333db37.png" alt="Nylon Chew">
+          <h3>Lamb & Rice</h3>
+          <p>Dog Food</p>
+          <p class="price">$12.00 <span style="color: #FFD700;">★ 4.9 (1,117 Reviews)</span></p>
         </div>
-      </div>
-      <div class="step">
-        <div class="number">3</div>
-        <div class="content">
-          <h3>Submit and contact Admin for adoption</h3>
-          <p>Submit your application and click "Contact Admin" to proceed with adoption.</p>
-          <a href="#" onclick="this.nextElementSibling.style.display = (this.nextElementSibling.style.display === 'block' ? 'none' : 'block'); return false;">Show details ▼</a>
-          <div class="details">
-            <p>An admin will review your application by June 5, 2025, and reach out.</p>
-          </div>
+        <div class="product-item" onclick="redirectToProductPage('Nylon Rubber')">
+          <img src="https://i.im.ge/2025/06/01/vBbZHq.General-Offers-B-1000x1000-2.jpeg" alt="Nylon Rubber">
+          <h3>Rare Birds</h3>
+          <p>Ads</p>
+          <p class="price">$200.00 <span style="color: #FFD700;">★ 5.0 (75 Reviews)</span></p>
         </div>
-      </div>
-      <div class="step">
-        <div class="number">4</div>
-        <div class="content">
-          <h3>Make payment for the pet and items</h3>
-          <p>Pay for your pet and any additional items you’ve added to your cart.</p>
-          <a href="#" onclick="this.nextElementSibling.style.display = (this.nextElementSibling.style.display === 'block' ? 'none' : 'block'); return false;">Show details ▼</a>
-          <div class="details">
-            <p>Payment covers adoption fees and optional items like pet supplies.</p>
-          </div>
+        <div class="product-item" onclick="redirectToProductPage('Ballistic Chew')">
+          <img src="https://i.im.ge/2025/06/01/vBbHof.lillebro-wbf-mealworms-0-5kg-1000x1000-8.jpeg" alt="Ballistic Chew">
+          <h3>Lillebro</h3>
+          <p>Wild Bird Food</p>
+          <p class="price">$11.99 <span style="color: #FFD700;">★ 4.9 (93 Reviews)</span></p>
         </div>
-      </div>
-      <div class="step">
-        <div class="number">5</div>
-        <div class="content">
-          <h3>Wait for delivery of your new pet and items.</h3>
-          <p>Your order will be added to the delivery queue as you await your pet and other items.</p>
-          <a href="#" onclick="this.nextElementSibling.style.display = (this.nextElementSibling.style.display === 'block' ? 'none' : 'block'); return false;">Show details ▼</a>
-          <div class="details">
-            <p>Delivery may take a few days; we’ll confirm the schedule after payment.</p>
-          </div>
+        <div class="product-item" onclick="redirectToProductPage('Custom Treats')">
+          <img src="https://i.im.ge/2025/06/01/vBbphm.NewProducts-B-1000x1000-INT-3.jpeg" alt="Custom Treats">
+          <h3>Bird Treats</h3>
+          <p>Toys</p>
+          <p class="price">$8.99 <span style="color: #FFD700;">★ 4.5 (89 Reviews)</span></p>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <!-- Best Selling Products Section -->
-  <div class="best-selling">
-    <h2>
-      <span>Best Selling Products</span>
-      <span>🐶</span>
-    </h2>
+  <section class="customer-reviews">
+    <div>
+      <h2>2500 Testimonials<br>with 5 Star Reviews</h2>
+      <p>Our customers love us! Read their stories and see why Petco is the trusted choice for pet care.</p>
+      <div style="display: flex; align-items: center;">
+        <img src="https://i.im.ge/2025/05/29/vJB0d1.images-11.jpeg" alt="Customer 1">
+        <img src="https://i.im.ge/2025/05/29/vJBTrS.download-9.jpeg" alt="Customer 2">
+        <img src="https://i.im.ge/2025/05/29/vJB2S8.images-1.jpeg" alt="Customer 3">
+        <p style="color: #FFD700;">★ 4.9 (2500 Reviews)</p>
+      </div>
+    </div>
+    <div class="review-carousel">
+      <div class="review-list" id="reviewList">
+        <div class="review-item">
+          <img src="https://i.im.ge/2025/05/29/vJBrMF.download-12.jpeg" alt="Profile">
+          <p>"The process was so smooth! Detailed health records and a video call with the breeder made me confident. My Labrador, Max, is the best addition to our family."</p>
+          <p>Sarah M. - Purchased a Cambodian K9</p>
+          <p style="color: #FFD700;">★★★★★</p>
+        </div>
+        <div class="review-item">
+          <img src="https://i.im.ge/2025/05/29/vJ4JDL.download-4.jpeg" alt="Profile">
+          <p>"Finding my dream dog was easy. The team answered all my questions, and my German Dog, Bella, is so loving and well-socialized."</p>
+          <p>Jemimah Jerry - Purchased an American German Shepherd</p>
+          <p style="color: #FFD700;">★★★★★</p>
+        </div>
+      </div>
+      <button onclick="moveReviewCarousel('left')">←</button>
+      <button onclick="moveReviewCarousel('right')">→</button>
+    </div>
+  </section>
+
+  <div class="product-strip-container">
+    <h2><span>Best Selling Products</span> <span style="margin-left: 1rem; animation: bounce 1.5s infinite ease-in-out;">🐶</span></h2>
     <div class="product-strip">
       <div class="product-item">
         <img src="https://i.im.ge/2025/05/29/vJGQqP.attachment-113748359.jpeg" alt="Dog Food">
         <h3>Dog Food</h3>
         <p>$11.00-$160.00</p>
-        <p class="reviews">4.3 ★★★★★ (219 Reviews)</p>
-        <p class="discount">New Buyers Gets 10% off all purchases</p>
+        <p>4.3 ★★★★★ (219 Reviews)</p>
       </div>
       <div class="product-item">
         <img src="https://i.im.ge/2025/05/29/vnQChS.Screenshot-2025-05-29-005240.png" alt="Cat Food">
         <h3>Cat Food</h3>
         <p>$9.99-$59.00</p>
-        <p class="reviews">4.4 ★★★★★ (302 Reviews)</p>
-        <p class="discount">New Buyers Gets 10% off all purchases</p>
+        <p>4.4 ★★★★★ (302 Reviews)</p>
       </div>
       <div class="product-item">
         <img src="https://i.im.ge/2025/05/29/vnTrpL.download-15.jpeg" alt="Cat Litter">
         <h3>Cat Litter</h3>
-        <p>$9.99 - $31.99</p>
-        <p class="reviews">4.2 ★★★★★ (690 Reviews)</p>
-        <p class="discount">New Buyers Gets 10% off all purchases</p>
-      </div>
-      <div class="product-item">
-        <img src="https://i.im.ge/2025/06/01/vBg8kq.Screenshot-2025-06-01-074024.png" alt="Pet Toys">
-        <h3>Pet Toys</h3>
-        <p>$16.00 - $25.00</p>
-        <p class="reviews">4.7 ★★★★★ (2,789 Reviews)</p>
-        <p class="discount">New Buyers Gets 10% off all purchases</p>
-      </div>
-      <div class="product-item">
-        <img src="https://i.im.ge/2025/05/29/vnTlAc.1237380.webp" alt="Dog Flea & Tick">
-        <h3>Dog Flea & Tick</h3>
-        <p>$69.99 - $224.00</p>
-        <p class="reviews">4.7 ★★★★★ (1,198 Reviews)</p>
-        <p class="discount">New Buyers Gets 10% off all purchases</p>
-      </div>
-      <div class="product-item">
-        <img src="https://i.im.ge/2025/06/01/vBggPC.Screenshot-2025-06-01-074046.png" alt="Playpaw Touch Chew Ring">
-        <h3>Playpaw Touch Chew Ring</h3>
-        <p>$7.99 - $15.00</p>
-        <p class="reviews">4.7 ★★★★★ (98 Reviews)</p>
-        <p class="discount">New Buyers Gets 10% off all purchases</p>
-      </div>
-      <div class="product-item">
-        <img src="https://i.im.ge/2025/06/01/vBgcd4.Screenshot-2025-06-01-074058.png" alt="Smart Dog Toy Ball">
-        <h3>Smart Dog Toy Ball</h3>
-        <p>$36.99 - $79.00</p>
-        <p class="reviews">4.7 ★★★★★ (103 Reviews)</p>
-        <p class="discount">New Buyers Gets 10% off all purchases</p>
-      </div>
-      <div class="product-item">
-        <img src="https://i.im.ge/2025/06/01/vBbfmP.attachment-153827741.jpeg" alt="Pork Crackle">
-        <h3>Pork Crackle</h3>
-        <p>$69.99 - $224.00</p>
-        <p class="reviews">4.7 ★★★★★ (1,121 Reviews)</p>
-        <p class="discount">New Buyers Gets 10% off all purchases</p>
-      </div>
-      <div class="product-item">
-        <img src="https://i.im.ge/2025/06/01/vBbZHq.General-Offers-B-1000x1000-2.jpeg" alt="Rare Birds">
-        <h3>Rare Birds</h3>
-        <p>$189 - $599.99</p>
-        <p class="reviews">4.7 ★★★★★ (221 Reviews)</p>
-        <p class="discount">New Buyers Gets 10% off all purchases</p>
+        <p>$9.99-$31.99</p>
+        <p>4.2 ★★★★★ (690 Reviews)</p>
       </div>
     </div>
   </div>
 
-  <!-- Top Categories Section -->
   <section class="top-categories">
     <h2>Top Categories</h2>
-    <div class="row top">
-      <div class="category">
-        <img src="https://i.im.ge/2025/05/29/vndsyJ.OIP.jpeg" alt="Rare Bird Feed">
-        <p>Rare Bird Feed</p>
+    <div>
+      <div>
+        <img src="https://i.im.ge/2025/06/01/vBc80a.Screenshot-2025-05-31-201727.png" alt="Dog Food">
+        <p>Rare Dog Feed</p>
       </div>
-      <div class="category">
-        <img src="https://i.im.ge/2025/05/29/vndImz.Elite-Parrot-Food-12-75kg.png" alt="Rare Treats x1">
+      <div>
+        <img src="https://i.im.ge/2025/05/29/vndImz.Elite-Parrot-Food-12-75kg.png" alt="Dog Treats">
         <p>Rare Treats x1</p>
       </div>
-      <div class="category">
-        <img src="https://i.im.ge/2025/05/29/vndaHy.e4f36b246ccf4cd6a50e4118abba1744.jpeg" alt="Rare Treats x2">
-        <p>Rare Treats x2</p>
-      </div>
-    </div>
-    <div class="row bottom">
-      <div class="category">
-        <img src="https://i.im.ge/2025/05/29/vn2iV6.Blue-and-Gold-Elegant-Background-Zoom-Virtual-Background.jpeg" alt="Pet Toys & Feeders">
+      <div>
+        <img src="https://i.im.ge/2025/05/29/vn2iV6.Blue-and-Gold-Elegant-Background-Zoom-Virtual-Background.jpeg" alt="Dog Bowls & Feeders">
         <p>Pet Toys & Feeders</p>
       </div>
-      <div class="category">
-        <img src="https://i.im.ge/2025/05/29/vnqH8C.Screenshot-2025-05-29-062809.png" alt="Pet Accessories">
-        <p>Pet Accessories</p>
-      </div>
     </div>
   </section>
 
-  <!-- Comment Section -->
-  <section class="comment-section">
-    <div class="banner">
-      <p>Share Your Thoughts on Our Pets! 🐾</p>
-    </div>
-    <h1>Comments</h1>
-    <div class="comments" id="comments">
-    </div>
-    <div class="buttons">
-      <button onclick="showMore()">See More</button>
-      <button onclick="showLess()">Hide Comments</button>
-    </div>
-    <section class="comment-form">
-      <h2>Add Your Comment</h2>
-      <form id="commentForm">
-        <input type="text" name="name" placeholder="Your Name" required>
-        <textarea name="comment" placeholder="Write your comment..." rows="4" required></textarea>
-        <input type="file" name="photo" accept="image/*" required>
-        <button type="submit">Submit Comment</button>
-      </form>
-    </section>
-  </section>
-
-  <!-- Thanks Section -->
   <section class="thanks-section">
     <h2>Thanks for Stopping By!</h2>
-    <p>Drop a review if you love our customer support! 💖</p>
-    <div class="logo-container">
-      <img src="https://i.im.ge/2025/06/01/vBcRcJ.Pink-and-White-Aesthetic-Background-Fly.jpg" alt="Petco Logo">
-    </div>
+    <p>Drop a review if you love our customer support! 💙</p>
+    <img src="https://i.im.ge/2025/06/01/vBcRcJ.Pink-and-White-Aesthetic-Background-Flyer-3.jpeg" alt="Logo">
     <h3>Petco</h3>
-    <p class="italic">petcoadopt.co online store & | Support</p>
-    <button onclick="contactUs()">Get in Touch</button>
+    <p>petcoadopt.co online store & Support</p>
+    <button>Get in Touch</button>
   </section>
 
-  <!-- Modal for Adoption Form -->
-  <div class="modal" id="adoptFormModal">
-    <div class="modal-content">
-      <span class="close" onclick="closeForm()">×</span>
-      <h2>Adopt Rumble</h2>
-      <form id="adoptForm">
-        <input type="text" name="name" placeholder="Your Full Name" required>
-        <input type="email" name="email" placeholder="Your Email" required>
-        <input type="tel" name="phone" placeholder="Your Phone Number" required>
-        <input type="text" name="country" placeholder="Your Country" required>
-        <input type="text" name="address" placeholder="Your Residential Address" required>
-        <textarea name="message" placeholder="Why do you want to adopt Rumble?" rows="4" required></textarea>
-        <input type="hidden" name="pet_name" value="Rumble">
-        <div class="button-group">
-          <button type="submit" class="submit-btn">
-            <span>Submit Application</span>
-            <div class="spinner"></div>
-          </button>
-        </div>
-      </form>
-    </div>
+  <div class="footer">
+    <p>© 2025 Petco. All rights reserved.</p>
   </div>
 
-  <!-- Success Modal -->
-  <div class="success-modal" id="successModal">
-    <div class="success-content">
-      <p>Your adoption information has been received by Petco, proceed to contact admin</p>
-      <button onclick="contactAdmin()">Contact Admin</button>
-    </div>
-  </div>
+  <script>
+    // Hamburger Menu
+    const hamburger = document.querySelector('.hamburger');
+    const nav = document.querySelector('.header-main .nav');
+    hamburger.addEventListener('click', () => {
+      nav.classList.toggle('active');
+    });
 
-  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-  <script type="text/javascript">
-    const images = [
-      "https://i.ibb.co/SDmTNQLP/a4q3gqehyekvi3qrrp2n.webp",
-      "https://i.im.ge/2025/05/28/vvOeUh.k1p19qwctpxczsoa1xim.webp",
-      "https://i.im.ge/2025/05/28/vv1MYM.d7rbznhaxhlmlwfk2ryh.webp",
-      "https://i.im.ge/2025/05/28/vvO4WX.uru4b0qqmudocyr1ye9t.jpeg",
-      "https://i.im.ge/2025/05/28/vv1Q4Y.ci6jyclzobeo4hhfbfln-1.webp"
-    ];
+    // Review Carousel
+    let reviewIndex = 0;
+    const reviewItems = document.querySelectorAll('.review-item').length;
+    const reviewList = document.getElementById('reviewList');
+
+    function moveReviewCarousel(direction) {
+      if (direction === 'right' && reviewIndex < reviewItems - 1) {
+        reviewIndex++;
+      } else if (direction === 'left' && reviewIndex > 0) {
+        reviewIndex--;
+      }
+      reviewList.style.transform = `translateX(-${reviewIndex * 100}%)`;
+    }
+
+    // Product Carousel
     let currentIndex = 0;
+    const itemsToShow = 4;
+    const totalItems = document.querySelectorAll('.product-item').length;
+    const productList = document.getElementById('productList');
 
-    function changeImage(direction) {
-      currentIndex += direction;
-      if (currentIndex < 0) {
-        currentIndex = images.length - 1;
-      } else if (currentIndex >= images.length) {
-        currentIndex = 0;
+    function moveCarousel(direction) {
+      if (direction === 'right' && currentIndex < totalItems - itemsToShow) {
+        currentIndex++;
+      } else if (direction === 'left' && currentIndex > 0) {
+        currentIndex--;
       }
-      document.getElementById("mainImg").src = images[currentIndex];
+      productList.style.transform = `translateX(-${currentIndex * (100 / itemsToShow)}%)`;
     }
 
-    function setMainImage(src) {
-      document.getElementById("mainImg").src = src;
-      currentIndex = images.indexOf(src);
-    }
-
-    // JavaScript for Comments
-    let visibleCount = 3;
-    const commentsContainer = document.getElementById('comments');
-    const seeMoreBtn = document.querySelector('button[onclick="showMore()"]');
-    const seeLessBtn = document.querySelector('button[onclick="showLess()"]');
-    let commentCount = 0;
-
-    // Initial comments with image placeholders
-    const initialComments = [
-      {
-        name: "Sarah J.",
-        text: "Rumble is such a sweet dog! Can't wait to meet him!",
-        time: "09:43 PM WAT, May 27, 2025",
-        photo: "https://i.im.ge/2025/05/29/vJ4HgT.download-5.jpeg",
-        timestamp: new Date("2025-05-27T21:43:00").getTime()
-      },
-      {
-        name: "John Pets Lover.",
-        text: "Loved the profile! Hope I can give Max a good home.",
-        time: "09:40 PM WAT, May 27, 2025",
-        photo: "https://i.im.ge/2025/05/29/vJ4JDL.download-4.jpeg",
-        timestamp: new Date("2025-05-27T21:40:00").getTime()
-      },
-      {
-        name: "Emma Daniel.",
-        text: "His playful energy is really adorable!, goodluck with adopting your pets from petco!",
-        time: "09:38 PM WAT, May 27, 2025",
-        photo: "https://i.im.ge/2025/05/29/vJ4pec.download-3.jpeg",
-        timestamp: new Date("2025-05-27T21:38:00").getTime()
-      },
-      {
-        name: "Mike Damian.",
-        text: "Its my second time getting a dog from petco, and its been seamless!",
-        time: "09:35 PM WAT, May 27, 2025",
-        photo: "https://i.im.ge/2025/05/29/vJ4nCG.download-2.jpeg",
-        timestamp: new Date("2025-05-27T21:35:00").getTime()
-      },
-      {
-        name: "Lisa Kurty.",
-        text: "Looking forward to buying a pet wolf!",
-        time: "09:32 PM WAT, May 27, 2025",
-        photo: "https://i.im.ge/2025/05/29/vJ44vx.download-1.jpeg",
-        timestamp: new Date("2025-05-27T21:32:00").getTime()
-      }
+    // Slideshow
+    const images = [
+      'https://i.im.ge/2025/05/31/vBI66X.3.png',
+      'https://i.im.ge/2025/05/31/vBI8V1.Blue-and-Gold-Elegant-Background-Zoom-Virtual-Background.png',
+      'https://i.im.ge/2025/05/31/vBIw29.2.png'
     ];
+    let currentImageIndex = 0;
+    const slideshow = document.getElementById('slideshow');
 
-    // Load comments from localStorage or use initial comments
-    let storedComments = JSON.parse(localStorage.getItem('comments')) || [];
-    const now = new Date().getTime();
-    const thirtyMinutes = 30 * 60 * 1000;
-
-    // Filter out comments older than 30 minutes
-    storedComments = storedComments.filter(comment => now - comment.timestamp < thirtyMinutes);
-
-    // Combine initial comments with stored comments
-    const allComments = [...initialComments, ...storedComments];
-
-    // Render comments
-    function renderComments(commentsToShow) {
-      commentsContainer.innerHTML = '';
-      commentCount = commentsToShow.length;
-      commentsToShow.forEach((comment, index) => {
-        const isLeft = index % 2 === 0;
-        const newComment = document.createElement('article');
-        newComment.className = `comment ${isLeft ? 'left' : 'right'} ${index < visibleCount ? 'show' : 'hidden'}`;
-        newComment.innerHTML = `
-          <div class="avatar"><img src="${comment.photo}" alt="${comment.name}"></div>
-          <div class="content">
-            <p class="author">${comment.name}</p>
-            <p>${comment.text}</p>
-            <p class="time">${comment.time}</p>
-          </div>
-          ${!isLeft ? `<div class="avatar"><img src="${comment.photo}" alt="${comment.name}"></div>` : ''}
-        `;
-        commentsContainer.appendChild(newComment);
-      });
-      updateButtons();
+    function changeImage() {
+      slideshow.style.backgroundImage = `url(${images[currentImageIndex]})`;
+      currentImageIndex = (currentImageIndex + 1) % images.length;
     }
 
-    // Initial render
-    renderComments(allComments);
+    setInterval(changeImage, 2000);
+    changeImage();
 
-    function showMore() {
-      const comments = document.querySelectorAll('.comment');
-      for (let i = visibleCount; i < Math.min(visibleCount + 2, comments.length); i++) {
-        comments[i].classList.remove('hidden');
-        comments[i].classList.add('show');
-      }
-      visibleCount += 2;
-      updateButtons();
-    }
-
-    function showLess() {
-      const comments = document.querySelectorAll('.comment');
-      for (let i = 3; i < comments.length; i++) {
-        comments[i].classList.add('hidden');
-        comments[i].classList.remove('show');
-      }
-      visibleCount = 3;
-      updateButtons();
-    }
-
-    function updateButtons() {
-      const comments = document.querySelectorAll('.comment');
-      seeMoreBtn.style.display = visibleCount < comments.length ? 'inline-block' : 'none';
-      seeLessBtn.style.display = visibleCount > 3 ? 'inline-block' : 'none';
-    }
-
-    // Handle comment form submission
-    document.getElementById('commentForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const name = e.target.name.value;
-      const commentText = e.target.comment.value;
-      const photoInput = e.target.photo.files[0];
-
-      if (name && commentText && photoInput) {
-        const now = new Date();
-        const newComment = {
-          name: name,
-          text: commentText,
-          time: now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true }) + ' WAT, May 27, 2025',
-          photo: URL.createObjectURL(photoInput),
-          timestamp: now.getTime()
-        };
-
-        // Add to stored comments
-        storedComments.push(newComment);
-        localStorage.setItem('comments', JSON.stringify(storedComments));
-
-        // Re-render comments
-        renderComments([...initialComments, ...storedComments]);
-        e.target.reset();
-      } else {
-        alert('Please fill all fields and upload a photo.');
-      }
-    });
-
-    // Clean up old comments every minute
-    setInterval(() => {
-      const now = new Date().getTime();
-      storedComments = storedComments.filter(comment => now - comment.timestamp < thirtyMinutes);
-      localStorage.setItem('comments', JSON.stringify(storedComments));
-      renderComments([...initialComments, ...storedComments]);
-    }, 60 * 1000);
-
-    // EmailJS and Modal Script
-    (function() {
-      emailjs.init('C2XqQE31DQCkxLD4b');
-    })();
-
-    function showForm() {
-      document.getElementById('adoptFormModal').style.display = 'flex';
-    }
-
-    function closeForm() {
-      document.getElementById('adoptFormModal').style.display = 'none';
-    }
-
-    function contactAdmin() {
-      window.location.href = 'https://wa.link/uwqki4';
-    }
-
-    function contactUs() {
-      window.location.href = 'mailto:support@petcoadopt.co';
-    }
-
-    const submitButton = document.querySelector('.submit-btn');
-    document.getElementById('adoptForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const form = this;
-
-      // Show spinner
-      submitButton.classList.add('loading');
-      submitButton.disabled = true;
-
-      emailjs.sendForm('service_o0uvqdi', 'template_9u0az1w', form)
-        .then(function(response) {
-          console.log('SUCCESS!', response.status, response.text);
-          submitButton.classList.remove('loading');
-          submitButton.classList.add('success');
-          submitButton.querySelector('span').textContent = 'Success!';
-          submitButton.disabled = false;
-
-          setTimeout(() => {
-            submitButton.classList.remove('success');
-            submitButton.querySelector('span').textContent = 'Submit Application';
-            document.getElementById('adoptFormModal').style.display = 'none';
-            document.getElementById('successModal').style.display = 'flex';
-          }, 1500);
-        }, function(error) {
-          console.log('FAILED...', error);
-          submitButton.classList.remove('loading');
-          submitButton.disabled = false;
-          alert('Failed to send adoption information. Please try again.');
-        });
-    });
-
-    window.onclick = function(event) {
-      const modal = document.getElementById('adoptFormModal');
-      const successModal = document.getElementById('successModal');
-      if (event.target === modal) {
-        closeForm();
-      } else if (event.target === successModal) {
-        document.getElementById('successModal').style.display = 'none';
+    // Search Bar
+    const searchInput = document.querySelector('.search-bar input');
+    const searchButton = document.querySelector('.search-bar button');
+    searchButton.onclick = () => {
+      const query = searchInput.value.trim();
+      if (query) alert(`Searching for: ${query}`);
+    };
+    searchInput.onkeypress = (e) => {
+      if (e.key === 'Enter') {
+        const query = searchInput.value.trim();
+        if (query) alert(`Searching for: ${query}`);
       }
     };
+
+    function redirectToProductPage(productName) {
+      alert(`Redirecting to ${productName} page!`);
+    }
   </script>
 </body>
 </html>
