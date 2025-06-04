@@ -1,1109 +1,687 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Pet Shop Home</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500;600&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rumble</title>
   <style>
-    * {
-      box-sizing: border-box;
+    body {
       margin: 0;
       padding: 0;
       font-family: Arial, sans-serif;
+      background-color: #ffffff;
+      color: #333333;
     }
+   
+    
+    
+    
+    
+    
+    /* Image Slider Section */
+.image-slider-container {
+  display: flex;
+  max-width: 1200px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  justify-content: center;
+}
 
-    body {
-      background-color: #f5f5f5;
-      color: #333;
-      line-height: 1.6;
-      -webkit-text-size-adjust: 100%;
-      -webkit-tap-highlight-color: transparent;
-    }
+.image-slider1 {
+  flex: 3;
+  position: relative;
+  max-width: 100%;
+  overflow: hidden;
+}
 
-    /* Header Styles */
+.image-slider1 img {
+  width: 100%;
+  height: auto;
+  max-height: 500px;
+  object-fit: cover;
+  display: block;
+  transition: opacity 0.5s ease-in-out;
+}
+    
+    
+    
+    
+    /* Add these styles to your existing CSS */
+
+/* Make the header responsive */
+.header-top {
+  text-align: center;
+  padding: 10px;
+}
+
+.header-main {
+  padding: 10px;
+  text-align: center;
+}
+
+.header-main .nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.header-main .nav a {
+  margin: 10px;
+}
+
+/* Make the main image and thumbnails responsive */
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+
+/* Make the product strip responsive */
+.product-strip {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.product-item {
+  margin: 10px;
+  flex: 1 1 200px;
+}
+
+    
+    /* Top Categories Section */
+.top-categories {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  background: #f5f5f5;
+}
+    
+/* Make the top categories responsive */
+.top-categories {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.top-categories div {
+  display: grid; 
+  gap: 10px; 
+  margin-bottom: 10px}
+    
+    .top-categories-image {
+  width: 100%;
+  aspect-ratio: 3 / 2; /* Maintains proportional scaling */
+  object-fit: cover;
+  display: block;
+}
+
+
+    
+    
+    /* Responsive adjustments for top categories */
+@media (max-width: 768px) {
+  .top-categories div:first-child {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .top-categories div:last-child {
+    grid-template-columns: 1fr;
+  }
+  .category-image {
+    aspect-ratio: 3 / 2; /* Maintain proportion on smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .top-categories div:first-child,
+  .top-categories div:last-child {
+    grid-template-columns: 1fr;
+  }
+  .category-image {
+    aspect-ratio: 3 / 2; /* Maintain proportion on very small screens */
+  }
+}
+    
+    
+    
+  
+  .top-categories div {
+    flex: 1 1 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-top {
+    padding: 5px;
+  }
+  
+  .header-main {
+    padding: 5px;
+  }
+  
+  .header-main .nav a {
+    margin: 5px;
+  }
+  
+  .main-image img {
+    height: auto;
+  }
+  
+  .thumbnail img {
+    width: 50px;
+    height: 50px;
+  }
+}
+    
+    
+    
+    
+    
+  
     .header-top {
-      background-color: #fff;
-      padding: clamp(0.5rem, 2vw, 0.75rem) clamp(1rem, 3vw, 1.5rem);
+      background-color: #f5f5f5;
+      padding: 5px 20px;
       text-align: right;
-      border-bottom: 1px solid #ddd;
     }
-
     .header-top a {
       color: #27ae60;
+      margin: 0 10px;
       text-decoration: none;
-      font-size: clamp(0.8rem, 2vw, 0.9rem);
-      margin: 0 clamp(0.5rem, 1.5vw, 0.75rem);
-      padding: 0.5rem;
-      display: inline-block;
     }
-
     .header-top a:hover {
       text-decoration: underline;
     }
-
     .header-main {
-      background-color: #fff;
-      padding: clamp(1rem, 3vw, 1.5rem);
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      position: relative;
+      background-color: #ffffff;
+      padding: 10px 20px;
+      box-shadow: 0 2px 5px #0000001a;
       text-align: center;
     }
-
     .header-main .logo {
-      font-size: clamp(1.5rem, 4vw, 2rem);
+      font-size: 1.5em;
       font-weight: bold;
       color: #27ae60;
-      margin-bottom: 0.5rem;
+      margin-bottom: 10px;
     }
-
     .header-main .nav {
-      display: flex;
-      justify-content: center;
-      gap: clamp(0.5rem, 2vw, 1rem);
-      margin-bottom: 0.5rem;
-      flex-wrap: wrap;
+      margin-bottom: 10px;
     }
-
     .header-main .nav a {
-      color: #333;
+      color: #333333;
+      margin: 0 10px;
       text-decoration: none;
-      font-size: clamp(0.8rem, 2vw, 0.9rem);
-      padding: 0.5rem;
-      display: inline-block;
+      font-size: 0.9em;
     }
-
     .header-main .nav a:hover {
       color: #27ae60;
     }
-
     .header-main .search-bar {
       margin: 0 auto;
-      width: min(100%, 400px);
+      width: 200px;
       position: relative;
     }
-
     .header-main .search-bar input {
-      width: 100%;
-      padding: clamp(0.5rem, 2.5vw, 0.75rem) clamp(2rem, 5vw, 2.5rem) clamp(0.5rem, 2.5vw, 0.75rem) clamp(0.5rem, 2.5vw, 0.75rem);
-      border: 1px solid #ddd;
+      padding: 5px 10px;
+      border: 1px solid #dddddd;
       border-radius: 5px;
-      font-size: clamp(0.9rem, 2.5vw, 1rem);
+      width: 100%;
+      font-size: 0.9em;
     }
-
     .header-main .search-bar button {
       position: absolute;
-      right: clamp(0.5rem, 2vw, 0.75rem);
+      right: 5px;
       top: 50%;
       transform: translateY(-50%);
       background: none;
       border: none;
       cursor: pointer;
-      width: 44px;
-      height: 44px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
     }
-
     .header-main .search-bar button svg {
       width: 16px;
       height: 16px;
-      stroke: #666;
+      stroke: #666666;
     }
-
-    .hamburger {
-      display: none;
-      font-size: clamp(1.2rem, 3vw, 1.5rem);
-      background: none;
-      border: none;
-      cursor: pointer;
-      position: absolute;
-      left: clamp(1rem, 3vw, 1.5rem);
-      top: clamp(1rem, 3vw, 1.5rem);
-      width: 44px;
-      height: 44px;
+    .container {
       display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    /* Main Content */
-    .main-content {
-      position: relative;
-      min-height: 50vh;
-      overflow: hidden;
-    }
-
-    .main-content .slideshow {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-size: cover;
-      background-position: center;
-      animation: slideFade 6s infinite;
-    }
-
-    .main-content .slideshow::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.4);
-    }
-
-    .main-content .overlay-text {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      color: #fff;
-      text-align: center;
-      z-index: 1;
-      padding: 1rem;
-    }
-
-    .main-content .overlay-text h1 {
-      font-size: clamp(1.8rem, 5vw, 3rem);
-      font-weight: bold;
-      background: linear-gradient(45deg, #ffffff, #a3e635, #27ae60);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
-      animation: pulse 2s infinite ease-in-out;
-    }
-
-    .main-content .overlay-text .tagline {
-      font-size: clamp(0.8rem, 2.5vw, 1rem);
-      background: linear-gradient(90deg, rgba(255, 193, 7, 0.2), rgba(206, 147, 216, 0.2));
-      padding: clamp(0.5rem, 1.5vw, 0.75rem) clamp(1rem, 3vw, 1.5rem);
-      border: 2px solid #a3e635;
-      border-radius: 10px;
-      display: inline-block;
-      margin-top: 0.5rem;
-      transition: transform 0.3s ease;
-    }
-
-    .main-content .overlay-text .tagline:hover {
-      transform: scale(1.05);
-    }
-
-    /* Pet Shop Section */
-    .pet-shop {
-      padding: clamp(1.5rem, 4vw, 2rem) clamp(1rem, 3vw, 1.5rem);
-      text-align: center;
-      background-color: #fff;
-      margin: clamp(1rem, 2vw, 1.5rem) auto;
       max-width: 1200px;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      margin: 0 auto;
     }
-
-    .pet-shop h1 {
-      font-size: clamp(1.5rem, 4vw, 2.5rem);
-      color: #333;
-      margin-bottom: 0.5rem;
+    .main-image {
+      flex: 3;
+      position: relative;
     }
-
-    .pet-shop p {
-      font-size: clamp(0.9rem, 2.5vw, 1.2rem);
-      color: #666;
-      margin-bottom: 1rem;
-    }
-
-    .product-container {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: clamp(0.5rem, 2vw, 1rem);
-      padding: 0 clamp(0.5rem, 2vw, 1rem);
-    }
-
-    .product {
-      background-size: cover;
-      background-position: center;
-      aspect-ratio: 3/4;
+    
+    .thumbnails {
+      flex: 1;
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
-      padding: clamp(0.5rem, 2vw, 1rem);
-      color: white;
-      position: relative;
-      border-radius: 10px;
-      overflow: hidden;
-      transition: transform 0.3s ease;
+      margin-left: 20px;
     }
-
-    .product:hover {
-      transform: scale(1.05);
+    .thumbnail {
+      margin-bottom: 10px;
     }
-
-    .product h2 {
-      font-size: clamp(1rem, 2.5vw, 1.3rem);
-      margin: 0;
-      z-index: 1;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-
-    .product p {
-      font-size: clamp(0.8rem, 2vw, 1rem);
-      margin: clamp(0.2rem, 0.5vw, 0.3rem) 0;
-      z-index: 1;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-
-    .product .shop-btn {
-      background-color: #fff;
-      color: #333;
-      border: none;
-      padding: clamp(0.5rem, 2vw, 0.75rem) clamp(1rem, 3vw, 1.5rem);
-      font-weight: bold;
-      border-radius: 5px;
-      cursor: pointer;
-      z-index: 1;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-      min-height: 48px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .product:hover h2,
-    .product:hover p,
-    .product:hover .shop-btn {
-      opacity: 1;
-    }
-
-    .product .shop-btn:hover {
-      background-color: #f0f0f0;
-    }
-
-    .dog-product { background-image: url('https://i.im.ge/2025/05/31/vBayiW.2.jpeg'); }
-    .cat-product { background-image: url('https://i.im.ge/2025/05/31/vBIx74.Pink-and-White-Aesthetic-Background-Flyer-2.jpeg'); }
-    .tiger-product { background-image: url('https://i.im.ge/2025/05/31/vBIhcS.3.jpeg'); }
-    .fish-product { background-image: url('https://i.im.ge/2025/05/31/vBI576.4.jpeg'); }
-
-    /* Meet the Pack */
-    .meet-the-pack {
-      max-width: 1200px;
-      margin: clamp(1rem, 2vw, 1.5rem) auto;
-      padding: clamp(1.5rem, 4vw, 2rem);
-      background-color: #1a2b2e;
-      color: #fff;
-      border-radius: 10px;
-      display: flex;
-      gap: clamp(0.5rem, 2vw, 1rem);
-    }
-
-    .meet-the-pack div {
-      flex: 1;
-    }
-
-    .meet-the-pack h2 {
-      font-size: clamp(1.5rem, 4vw, 2rem);
-      color: #a3e635;
-      margin-bottom: 0.5rem;
-    }
-
-    .meet-the-pack p {
-      font-size: clamp(0.9rem, 2vw, 1.1rem);
-      margin-bottom: 1rem;
-    }
-
-    .meet-the-pack button {
-      background-color: #a3e635;
-      color: #1a2b2e;
-      border: none;
-      padding: clamp(0.5rem, 2vw, 0.75rem) clamp(1rem, 3vw, 1.5rem);
-      border-radius: 20px;
-      font-size: clamp(0.8rem, 2vw, 1rem);
-      cursor: pointer;
-      min-height: 48px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .meet-the-pack img {
-      max-width: 100%;
-      border-radius: 10px;
-    }
-
-    /* Best Selling Products */
-    .best-selling-products {
-      max-width: 1200px;
-      margin: clamp(1rem, 2vw, 1.5rem) auto;
-      padding: clamp(1.5rem, 4vw, 2rem);
-      background-color: #1a2b2e;
-      color: #fff;
-      border-radius: 10px;
-    }
-
-    .best-selling-products .header {
-      margin-bottom: 1rem;
-    }
-
-    .best-selling-products h2 {
-      font-size: clamp(1.5rem, 4vw, 2rem);
-    }
-
-    .product-carousel {
-      overflow: hidden;
-      position: relative;
-    }
-
-    .product-list {
-      display: flex;
-      gap: clamp(0.5rem, 2vw, 1rem);
-      overflow-x: auto;
-      scrollbar-width: thin;
-      -webkit-overflow-scrolling: touch;
-    }
-
-    .product-list::-webkit-scrollbar {
-      height: 6px;
-    }
-
-    .product-list::-webkit-scrollbar-thumb {
-      background-color: #ccc;
-      border-radius: 3px;
-    }
-
-    .product-item {
-      min-width: clamp(150px, 25vw, 200px);
-      flex: 0 0 clamp(150px, 25vw, 200px);
-      background-color: #fff;
-      color: #333;
-      padding: clamp(0.5rem, 2vw, 1rem);
-      border-radius: 10px;
-      text-align: center;
-    }
-
-    .product-item img {
-      max-width: 100%;
-      height: clamp(120px, 20vw, 150px);
+    .thumbnail img {
+      width: 100%;
+      height: 90px;
       object-fit: cover;
+      border: 3px solid #ffc107;
       border-radius: 5px;
-    }
-
-    .product-item h3 {
-      font-size: clamp(0.9rem, 2vw, 1.2rem);
-      margin: clamp(0.3rem, 1vw, 0.5rem) 0;
-    }
-
-    .product-item p {
-      font-size: clamp(0.8rem, 2vw, 0.9rem);
-      color: #666;
-    }
-
-    .product-item:hover {
       cursor: pointer;
     }
-
-    /* Customer Reviews */
-    .customer-reviews {
-      max-width: 1200px;
-      margin: clamp(1rem, 2vw, 1.5rem) auto;
-      padding: clamp(1.5rem, 4vw, 2rem);
-      background-color: #fff;
-      border-radius: 10px;
-      display: flex;
-      gap: clamp(0.5rem, 2vw, 1rem);
-    }
-
-    .customer-reviews div {
-      flex: 1;
-    }
-
-    .customer-reviews h2 {
-      font-size: clamp(1.5rem, 4vw, 2rem);
-      margin-bottom: 0.5rem;
-    }
-
-    .customer-reviews p {
-      font-size: clamp(0.9rem, 2vw, 1.1rem);
-      color: #666;
-    }
-
-    .customer-reviews img {
-      width: clamp(30px, 8vw, 40px);
-      height: clamp(30px, 8vw, 40px);
-      border-radius: 50%;
-      margin-right: clamp(0.3rem, 1vw, 0.5rem);
-    }
-
-    .review-carousel {
-      position: relative;
-      overflow: hidden;
-    }
-
-    .review-list {
-      display: flex;
-      transition: transform 0.5s ease;
-    }
-
-    .review-item {
-      min-width: 100%;
-      background-color: #f5f5f5;
-      padding: clamp(0.5rem, 2vw, 1rem);
-      border-radius: 10px;
-    }
-
-    .review-item img {
-      width: clamp(40px, 10vw, 50px);
-      height: clamp(40px, 10vw, 50px);
-    }
-
-    .review-item p {
-      font-size: clamp(0.8rem, 2vw, 1rem);
-    }
-
-    .review-carousel button {
+    .arrow {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      background: #a3e635;
+      font-size: 40px;
+      color: #fff;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 10px;
+      cursor: pointer;
+      user-select: none;
+    }
+    .left-arrow {
+      left: 10px;
+    }
+    .right-arrow {
+      right: 10px;
+    }
+    section.comment-section {
+      width: 100%;
+      max-width: 1200px;
+      background: #ffffff;
+      border-radius: 15px;
+      padding: 40px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+      background: linear-gradient(45deg, #fff8e1, #fff);
+    }
+    h1 {
+      color: #FFC107;
+      font-size: 2.5em;
+      margin-bottom: 40px;
+      font-weight: 700;
+      text-align: center;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    div.comments {
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+    article.comment {
+      display: flex;
+      align-items: flex-start;
+      background: #fff;
+      padding: 20px;
+      width: 60%;
+      border-radius: 12px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 2px solid transparent;
+      background: linear-gradient(to right, #fff, #fff) padding-box,
+                  linear-gradient(to right, #FFC107, #ffecb3) border-box;
+    }
+    article.comment.left {
+      align-self: flex-start;
+    }
+    article.comment.right {
+      align-self: flex-end;
+    }
+    article.comment:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 25px rgba(255, 193, 7, 0.3);
+    }
+    article.comment .avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      margin-right: 20px;
+      flex-shrink: 0;
+      overflow: hidden;
+      border: 3px solid #FFC107;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    article.comment.right .avatar {
+      margin-right: 0;
+      margin-left: 20px;
+      order: 2;
+    }
+    article.comment .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    article.comment .content {
+      flex: 1;
+    }
+    article.comment.right .content {
+      text-align: right;
+    }
+    article.comment .author {
+      color: #FFC107;
+      font-weight: 600;
+      margin: 0;
+      font-size: 1.1em;
+    }
+    article.comment p {
+      margin: 8px 0 0;
+      color: #555;
+      line-height: 1.5;
+    }
+    article.comment .time {
+      color: #888;
+      font-size: 0.8em;
+      margin-top: 8px;
+    }
+    .hidden {
+      display: none;
+    }
+    section.comment-form {
+      margin-top: 40px;
+      padding: 25px;
+      background: #fff;
+      border-radius: 12px;
+      border: 2px solid transparent;
+      background: linear-gradient(to right, #fff, #fff) padding-box,
+                  linear-gradient(to right, #FFC107, #ffecb3) border-box;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+    section.comment-form h2 {
+      color: #FFC107;
+      font-size: 1.8em;
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+    section.comment-form input[type="text"],
+    section.comment-form textarea {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 20px;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      font-size: 1em;
+      transition: border-color 0.3s ease;
+    }
+    section.comment-form input[type="text"]:focus,
+    section.comment-form textarea:focus {
+      border-color: #FFC107;
+      outline: none;
+    }
+    section.comment-form input[type="file"] {
+      margin-bottom: 20px;
+    }
+    section.comment-form button {
+      background: #FFC107;
       color: #fff;
       border: none;
-      width: clamp(30px, 8vw, 40px);
-      height: clamp(30px, 8vw, 40px);
-      border-radius: 50%;
+      padding: 12px 30px;
+      border-radius: 25px;
       cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      font-weight: 600;
+      transition: background 0.3s ease, transform 0.2s ease;
     }
-
-    .review-carousel button:first-child {
-      left: clamp(5px, 2vw, 10px);
+    section.comment-form button:hover {
+      background: #ffca28;
+      transform: scale(1.05);
     }
-
-    .review-carousel button:last-child {
-      right: clamp(5px, 2vw, 10px);
+    section.comment-form button:active {
+      transform: scale(0.95);
     }
-
-    /* Product Strip */
-    .product-strip-container {
-      max-width: 1200px;
-      margin: clamp(1rem, 2vw, 1.5rem) auto;
-      padding: clamp(1.5rem, 4vw, 2rem) clamp(0.5rem, 2vw, 1rem);
-      background-color: #fff;
-      border-radius: 10px;
+    div.buttons {
+      margin-top: 30px;
+      text-align: center;
     }
-
-    .product-strip-container h2 {
-      font-size: clamp(1.2rem, 3vw, 1.5rem);
+    div.buttons button {
+      background: #FFC107;
       color: #fff;
-      background: linear-gradient(90deg, #ffc107, #ffca28);
-      padding: clamp(0.5rem, 2vw, 0.75rem) clamp(1rem, 3vw, 1.5rem);
-      border-radius: 10px;
-      display: inline-flex;
-      align-items: center;
-      margin-bottom: 1rem;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 25px;
+      cursor: pointer;
+      margin: 0 15px;
+      font-weight: 600;
+      transition: background 0.3s ease, transform 0.2s ease;
     }
-
-    .product-strip {
-      display: flex;
-      gap: clamp(0.5rem, 2vw, 1rem);
-      overflow-x: auto;
-      scrollbar-width: thin;
-      -webkit-overflow-scrolling: touch;
+    div.buttons button:hover {
+      background: #ffca28;
+      transform: scale(1.05);
     }
-
-    .product-strip::-webkit-scrollbar {
-      height: 6px;
+    div.buttons button:active {
+      transform: scale(0.95);
     }
-
-    .product-strip::-webkit-scrollbar-thumb {
-      background-color: #ccc;
-      border-radius: 3px;
+    @keyframes slideIn {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
     }
-
-    .product-strip .product-item {
-      min-width: clamp(120px, 30vw, 150px);
-      padding: clamp(0.3rem, 1vw, 0.5rem);
-      border: 1px solid #ddd;
+    article.comment.show {
+      animation: slideIn 0.5s ease-out;
+    }
+    .adopt-button {
+      background: linear-gradient(90deg, #ce93d8, #f06292);
+      border: none;
+      padding: 12px;
+      color: #fff;
+      font-size: 16px;
       border-radius: 5px;
-      text-align: center;
-    }
-
-    .product-strip img {
+      cursor: pointer;
       width: 100%;
-      height: clamp(100px, 25vw, 120px);
-      object-fit: cover;
-    }
-
-    /* Top Categories */
-    .top-categories {
-      max-width: 1200px;
-      margin: clamp(1rem, 2vw, 1.5rem) auto;
-      padding: clamp(1.5rem, 4vw, 2rem) clamp(0.5rem, 2vw, 1rem);
-      background-color: #fff;
-      border-radius: 10px;
-    }
-
-    .top-categories h2 {
-      font-size: clamp(1.5rem, 4vw, 2rem);
-      text-align: center;
-      margin-bottom: 1rem;
-    }
-
-    .top-categories > div {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(clamp(180px, 45vw, 200px), 1fr));
-      gap: clamp(0.5rem, 2vw, 1rem);
-    }
-
-    .top-categories div {
-      background: #f5f5f5;
-      border-radius: 5px;
+      max-width: 300px;
+      margin-bottom: 15px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+      font-weight: 600;
+      position: relative;
       overflow: hidden;
-      transition: transform 0.3s ease;
     }
-
-    .top-categories div:hover {
+    .adopt-button:hover {
       transform: scale(1.05);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
     }
-
-    .top-categories img {
+    .adopt-button:active {
+      transform: scale(0.95);
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
       width: 100%;
-      height: clamp(120px, 30vw, 150px);
-      object-fit: cover;
-    }
-
-    .top-categories p {
-      font-size: clamp(0.9rem, 2vw, 1.1rem);
-      padding: clamp(0.3rem, 1vw, 0.5rem);
-    }
-
-    /* Our Pet Adopting Process */
-    .pet-adopting-process {
-      padding: clamp(1.5rem, 4vw, 2rem);
-      max-width: 1200px;
-      margin: 0 auto;
-      background: #f5f5f5;
-      border-radius: 10px;
-    }
-
-    .pet-adopting-process h2 {
-      font-size: clamp(1.5rem, 4vw, 2rem);
-      color: #333;
-      text-align: center;
-      margin-bottom: clamp(1rem, 3vw, 1.5rem);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      font-weight: 700;
-      font-family: 'Playfair Display', serif;
-    }
-
-    .pet-adopting-process .process-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(clamp(200px, 45vw, 250px), 1fr));
-      gap: clamp(0.5rem, 2vw, 1rem);
-    }
-
-    .pet-adopting-process .process-item {
-      background: #fff;
-      padding: clamp(1rem, 3vw, 1.5rem);
-      border-radius: 10px;
-      text-align: center;
-      transition: transform 0.3s ease;
-    }
-
-    .pet-adopting-process .process-item:hover {
-      transform: scale(1.05);
-    }
-
-    .pet-adopting-process .process-item .icon {
-      font-size: clamp(2rem, 5vw, 2.5rem);
-      margin-bottom: 0.5rem;
-    }
-
-    .pet-adopting-process .process-item h3 {
-      font-size: clamp(1rem, 2.5vw, 1.2rem);
-      color: #333;
-      margin-bottom: 0.5rem;
-      font-weight: 600;
-    }
-
-    .pet-adopting-process .process-item p {
-      font-size: clamp(0.9rem, 2vw, 1rem);
-      color: #666;
-    }
-
-    /* Testimonials */
-    .testimonials-section {
-      padding: clamp(1.5rem, 4vw, 2rem);
-      background: #1a1a1a;
-      max-width: 1200px;
-      margin: 0 auto;
-      border-radius: 10px;
-    }
-
-    .testimonials-section h2 {
-      font-size: clamp(1.5rem, 4vw, 2rem);
-      color: #fff;
-      text-align: center;
-      margin-bottom: clamp(1rem, 3vw, 1.5rem);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      font-weight: 700;
-      font-family: 'Playfair Display', serif;
-    }
-
-    .testimonials-section .testimonials-grid {
-      display: flex;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
       justify-content: center;
-      gap: clamp(0.5rem, 2vw, 1rem);
-      flex-wrap: wrap;
-    }
-
-    .testimonials-section .testimonial-card {
-      background: #fff;
-      padding: clamp(1rem, 3vw, 1.5rem);
-      border-radius: 10px;
-      max-width: clamp(300px, 45vw, 400px);
-      text-align: center;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
-
-    .testimonials-section .testimonial-card p {
-      font-size: clamp(0.9rem, 2vw, 1rem);
-      color: #333;
-      line-height: 1.6;
-      margin-bottom: 0.5rem;
-      font-style: italic;
-    }
-
-    .testimonials-section .testimonial-card .author {
-      display: flex;
       align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
+      z-index: 1000;
+      animation: fadeIn 0.3s ease;
     }
-
-    .testimonials-section .testimonial-card .author img {
-      width: clamp(40px, 10vw, 50px);
-      height: clamp(40px, 10vw, 50px);
-      border-radius: 50%;
-      object-fit: cover;
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
-
-    .testimonials-section .testimonial-card .author p {
-      font-size: clamp(0.9rem, 2vw, 1rem);
-      color: #333;
-      font-weight: 600;
-      margin: 0;
-      font-style: normal;
-    }
-
-    .testimonials-section .nav-dots {
-      text-align: center;
-      margin-top: clamp(0.5rem, 2vw, 1rem);
-    }
-
-    .testimonials-section .nav-dots span {
-      display: inline-block;
-      width: 10px;
-      height: 10px;
+    .modal-content {
       background: #fff;
-      border-radius: 50%;
-      margin: 0 5px;
-      opacity: 0.5;
-    }
-
-    .testimonials-section .nav-dots span.active {
-      opacity: 1;
-    }
-
-    /* Contact Us */
-    .contact-us-section {
-      padding: clamp(1.5rem, 4vw, 2rem);
-      max-width: 1200px;
-      margin: 0 auto;
-      background: #1a1a1a;
+      padding: 30px;
       border-radius: 15px;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-      margin-bottom: clamp(1rem, 2vw, 1.5rem);
+      width: 90%;
+      max-width: 600px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      border: 3px solid transparent;
+      background: linear-gradient(to right, #fff, #fff) padding-box,
+                  linear-gradient(90deg, #ce93d8, #f06292) border-box;
       position: relative;
-      overflow: hidden;
-      font-family: 'Roboto', sans-serif;
+      z-index: 1001;
     }
-
-    .contact-us-section .banner {
-      background: linear-gradient(90deg, #26a69a, #4db6ac);
-      padding: clamp(1rem, 3vw, 1.5rem);
-      text-align: center;
-      border-radius: 10px 10px 0 0;
-      position: relative;
-      z-index: 1;
-      animation: pulse 4s infinite;
-    }
-
-    .contact-us-section .banner p {
-      font-size: clamp(1rem, 2.5vw, 1.5rem);
-      color: #fff;
-      margin: 0;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      font-family: 'Playfair Display', serif;
-    }
-
-    .contact-us-section .banner .bg-effect {
+    .modal-content::before {
+      content: '';
       position: absolute;
       top: -50%;
       left: -50%;
       width: 200%;
       height: 200%;
-      background: radial-gradient(circle, rgba(255, 202, 40, 0.2) 0%, transparent 70%);
-      animation: rotate 15s infinite linear;
-      z-index: 0;
+      background: radial-gradient(circle, rgba(206, 147, 216, 0.2), transparent 70%);
+      animation: rotate 10s linear infinite;
+      z-index: -1;
+      pointer-events: none;
     }
-
-    .contact-us-section h2 {
-      font-size: clamp(1.5rem, 4vw, 2rem);
-      color: #fff;
-      text-align: center;
-      margin: clamp(1rem, 3vw, 1.5rem) 0;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      font-weight: 700;
-      font-family: 'Playfair Display', serif;
-    }
-
-    .contact-us-section form {
-      background: #fff;
-      padding: clamp(1rem, 3vw, 1.5rem);
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      border: 2px solid #26a69a;
-      display: flex;
-      flex-direction: column;
-      gap: clamp(0.5rem, 2vw, 1rem);
-      max-width: 100%;
-      margin: 0 auto;
-    }
-
-    .contact-us-section input,
-    .contact-us-section textarea {
-      padding: clamp(0.5rem, 2.5vw, 0.75rem);
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      font-size: clamp(0.9rem, 2vw, 1rem);
-      outline: none;
-      transition: border-color 0.3s ease;
-      font-family: 'Roboto', sans-serif;
-      width: 100%;
-      box-sizing: border-box;
-      min-height: 48px;
-    }
-
-    .contact-us-section textarea {
-      resize: none;
-      min-height: clamp(100px, 20vw, 120px);
-    }
-
-    .contact-us-section button {
-      background: linear-gradient(90deg, #ffc107, #ffca28);
-      color: #1a2b2e;
-      border: none;
-      padding: clamp(0.5rem, 2vw, 0.75rem) clamp(1rem, 3vw, 1.5rem);
-      border-radius: 25px;
-      font-size: clamp(0.9rem, 2vw, 1rem);
-      cursor: pointer;
-      font-weight: 600;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      min-height: 48px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .contact-us-section input:focus,
-    .contact-us-section textarea:focus {
-      border-color: #26a69a;
-      box-shadow: 0 0 5px rgba(38, 166, 154, 0.3);
-    }
-
-    .contact-us-section button:hover {
-      transform: scale(1.05);
-      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-    }
-
-    /* Thanks Section */
-    .thanks-section {
-      max-width: 1200px;
-      margin: clamp(1rem, 2vw, 1.5rem) auto;
-      padding: clamp(1.5rem, 4vw, 2rem);
-      text-align: center;
-      background: #fff;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    }
-
-    .thanks-section h2 {
-      font-size: clamp(1.5rem, 4vw, 2rem);
-      color: #1a2b2e;
-      margin-bottom: 0.5rem;
-    }
-
-    .thanks-section p {
-      font-size: clamp(0.9rem, 2vw, 1.2rem);
-      color: #1a2b2e;
-    }
-
-    .thanks-section img {
-      width: clamp(60px, 15vw, 80px);
-      height: clamp(60px, 15vw, 80px);
-      border-radius: 50%;
-      margin: clamp(0.5rem, 2vw, 1rem) auto;
-    }
-
-    .thanks-section button {
-      background: linear-gradient(90deg, #ffc107, #ffca28);
-      color: #1a2b2e;
-      border: none;
-      padding: clamp(0.5rem, 2vw, 0.75rem) clamp(1rem, 3vw, 1.5rem);
-      border-radius: 20px;
-      font-size: clamp(0.8rem, 2vw, 1rem);
-      cursor: pointer;
-      min-height: 48px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    /* Footer */
-    .footer-section {
-      padding: clamp(1.5rem, 4vw, 2rem);
-      background: #1a1a1a;
-      color: #fff;
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      font-family: 'Roboto', sans-serif;
-      font-size: clamp(0.9rem, 2vw, 1rem);
-      border-radius: 10px;
-    }
-
-    .footer-section .links {
-      margin-right: clamp(1rem, 3vw, 1.5rem);
-    }
-
-    .footer-section h3 {
-      font-size: clamp(1rem, 2.5vw, 1.2rem);
-      color: #ff6200;
-      margin-bottom: 0.5rem;
-      font-weight: 600;
-    }
-
-    .footer-section ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    .footer-section ul li {
-      margin-bottom: 0.5rem;
-    }
-
-    .footer-section ul li a {
-      color: #ff6200;
-      text-decoration: none;
-      transition: color 0.3s ease;
-      padding: 0.5rem;
-      display: inline-block;
-    }
-
-    .footer-section ul li a:hover {
-      color: #ff8c00;
-    }
-
-    .footer-section .about-us {
-      flex: 2;
-      margin-right: clamp(1rem, 3vw, 1.5rem);
-    }
-
-    .footer-section .about-us p {
-      color: #ccc;
-      line-height: 1.6;
-      margin-bottom: 0.5rem;
-    }
-
-    .footer-section .connect {
-      text-align: center;
-    }
-
-    .footer-section .connect p {
-      color: #ccc;
-      margin-bottom: 0.5rem;
-    }
-
-    .footer-section .connect a {
-      color: #ff6200;
-      text-decoration: none;
-    }
-
-    .footer-section .connect a:hover {
-      color: #ff8c00;
-    }
-
-    .footer-section .social-icons {
-      display: flex;
-      gap: clamp(0.5rem, 2vw, 1rem);
-      justify-content: center;
-    }
-
-    .footer-section .social-icons a {
-      color: #fff;
-      font-size: clamp(1.2rem, 3vw, 1.5rem);
-      transition: transform 0.3s ease;
-    }
-
-    .footer-section .social-icons a span {
-      display: inline-block;
-      width: clamp(25px, 6vw, 30px);
-      height: clamp(25px, 6vw, 30px);
-      background: #fff;
-      border-radius: 50%;
-      text-align: center;
-      line-height: clamp(25px, 6vw, 30px);
-    }
-
-    .footer-section .social-icons a:hover {
-      transform: scale(1.2);
-    }
-
-    /* Media Queries */
-    @media (max-width: 768px) {
-      .header-main .nav {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background-color: #fff;
-        padding: clamp(0.5rem, 2vw, 1rem);
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      }
-
-      .header-main .nav.active {
-        display: flex;
-      }
-
-      .header-main .nav a {
-        padding: 0.75rem;
-      }
-
-      .hamburger {
-        display: flex;
-      }
-
-      .main-content {
-        min-height: 40vh;
-      }
-
-      .main-content .overlay-text h1 {
-        font-size: clamp(1.5rem, 4vw, 2rem);
-      }
-
-      .main-content .overlay-text .tagline {
-        font-size: clamp(0.7rem, 2vw, 0.9rem);
-      }
-
-      .meet-the-pack,
-      .customer-reviews {
-        flex-direction: column;
-      }
-
-      .product-item {
-        flex: 0 0 clamp(150px, 40vw, 200px);
-      }
-
-      .product-strip .product-item {
-        min-width: clamp(100px, 30vw, 120px);
-      }
-
-      .testimonials-section .testimonials-grid {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .footer-section {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      .footer-section .links,
-      .footer-section .about-us {
-        margin-right: 0;
-        margin-bottom: clamp(1rem, 3vw, 1.5rem);
-      }
-
-      .product-container {
-        grid-template-columns: 1fr;
-        grid-template-rows: auto;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .product-container {
-        grid-template-columns: 1fr;
-      }
-
-      .product-item {
-        flex: 0 0 clamp(150px, 80vw, 200px);
-      }
-
-      .top-categories > div {
-        grid-template-columns: 1fr;
-      }
-
-      .meet-the-pack button,
-      .thanks-section button,
-      .contact-us-section button {
-        width: 100%;
-        max-width: 300px;
-        margin: 0 auto;
-      }
-
-      .contact-us-section form {
-        padding: clamp(0.5rem, 2vw, 1rem);
-      }
-    }
-
-    /* Animation Keyframes */
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-5px); }
-    }
-
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.02); }
-    }
-
     @keyframes rotate {
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
     }
-
-    @keyframes slideFade {
-      0% { opacity: 0; transform: translateX(100%); }
-      20% { opacity: 1; transform: translateX(0); }
-      80% { opacity: 1; transform: translateX(0); }
-      100% { opacity: 0; transform: translateX(-100%); }
+    .modal-content h2 {
+      color: #f06292;
+      margin-top: 0;
+      font-size: 2em;
+      text-align: center;
+      font-weight: 700;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+      z-index: 1002;
+    }
+    .modal-content input,
+    .modal-content textarea {
+      width: 100%;
+      padding: 12px;
+      margin: 15px 0;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 1em;
+      box-sizing: border-box;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      z-index: 1002;
+    }
+    .modal-content input:focus,
+    .modal-content textarea:focus {
+      border-color: #ce93d8;
+      box-shadow: 0 0 10px rgba(206, 147, 216, 0.3);
+      outline: none;
+    }
+    .modal-content .button-group {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+      z-index: 1002;
+    }
+    .modal-content button {
+      padding: 12px 25px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1em;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      min-width: 150px;
+      z-index: 1002;
+      position: relative;
+      overflow: hidden;
+    }
+    .modal-content .submit-btn {
+      background: linear-gradient(90deg, #ce93d8, #f06292);
+      color: #fff;
+    }
+    .modal-content .submit-btn .spinner {
+      display: none;
+      width: 20px;
+      height: 20px;
+      border: 3px solid #fff;
+      border-top: 3px solid transparent;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .modal-content .submit-btn.loading .spinner {
+      display: inline-block;
+    }
+    .modal-content .submit-btn.loading span {
+      visibility: hidden;
+    }
+    .modal-content .submit-btn.success span {
+      content: "Success!";
+      visibility: visible;
+    }
+    @keyframes spin {
+      0% { transform: translate(-50%, -50%) rotate(0deg); }
+      100% { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+    .modal-content .submit-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    }
+    .modal-content .submit-btn:active {
+      transform: scale(0.95);
+    }
+    .modal-content .close {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 1.5em;
+      cursor: pointer;
+      color: #f06292;
+      transition: color 0.3s ease;
+      z-index: 1002;
+    }
+    .modal-content .close:hover {
+      color: #ce93d8;
+    }
+    .success-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+      animation: fadeIn 0.3s ease;
+    }
+    .success-content {
+      background: #fff;
+      padding: 30px;
+      border-radius: 15px;
+      text-align: center;
+      width: 90%;
+      max-width: 500px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      border: 3px solid transparent;
+      background: linear-gradient(to right, #fff, #fff) padding-box,
+                  linear-gradient(90deg, #ce93d8, #f06292) border-box;
+    }
+    .success-content p {
+      color: #f06292;
+      font-size: 1.2em;
+      margin: 0 0 20px;
+      font-weight: 600;
+    }
+    .success-content button {
+      background: linear-gradient(90deg, #ce93d8, #f06292);
+      color: #fff;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1em;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    .success-content button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    }
+    .success-content button:active {
+      transform: scale(0.95);
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
   </style>
 </head>
@@ -1112,18 +690,17 @@
     <a href="#">Donate</a>
   </div>
   <div class="header-main">
-    <button class="hamburger">☰</button>
     <div class="logo">Petco</div>
     <div class="nav">
       <a href="#">Home</a>
       <a href="#">Pets for Adoption</a>
-      <a href="#">Terms</a>
-      <a href="#">Privacy Policy</a>
+      <a href="#">Rescue Groups & Shelters</a>
+      <a href="#">PetRescue Partners</a>
       <a href="https://weselldogs.blogspot.com/p/contact-us.html">Contact Us</a>
       <a href="https://weselldogs.blogspot.com/p/about-us.html">About</a>
     </div>
     <div class="search-bar">
-      <input type="text" placeholder="Search Petco">
+      <input type="text" placeholder="Search PetRescue">
       <button>
         <svg viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
@@ -1131,155 +708,173 @@
       </button>
     </div>
   </div>
+  
+  <!-- Main Image and Alternative Images -->
+  <div class="image-slider-container">
+  <div class="image-slider1">
+    <img id="mainImg" src="https://i.ibb.co/SDmTNQLP/a4q3gqehyekvi3qrrp2n.webp" alt="Main Dog Image">
+    <div class="arrow left-arrow" onclick="changeImage(-1)">◀</div>
+    <div class="arrow right-arrow" onclick="changeImage(1)">▶</div>
+  </div>
+  <div class="thumbnails">
+    <div class="thumbnail">
+      <img src="https://i.im.ge/2025/06/01/vBcpV9.k1p19qwctpxczsoa1xim.webp" alt="Dog 1" onclick="setMainImage(this.src)">
+    </div>
+    <div class="thumbnail">
+      <img src="https://i.im.ge/2025/06/01/vBcH6K.a4q3gqehyekvi3qrrp2n.webp" alt="Dog 2" onclick="setMainImage(this.src)">
+    </div>
+    <div class="thumbnail">
+      <img src="https://i.im.ge/2025/06/01/vBcH6K.a4q3gqehyekvi3qrrp2n.webp" alt="Dog 3" onclick="setMainImage(this.src)">
+    </div>
+    <div class="thumbnail">
+      <img src="https://i.im.ge/2025/06/01/vBcJrX.d7rbznhaxhlmlwfk2ryh.webp" alt="Dog 4" onclick="setMainImage(this.src)">
+    </div>
+  </div>
+</div>
 
-  <div class="main-content">
-    <div class="slideshow" id="slideshow"></div>
-    <div class="overlay-text">
-      <h1>PETCO</h1>
-      <span class="tagline">Your trusted destination for premium pet care and dog essentials.</span>
+  <div style="max-width: 900px; margin: 20px auto; background: linear-gradient(135deg, #ab47bc, #f48fb1); padding: 30px; border-radius: 15px; font-family: Arial, sans-serif; color: #fff; box-shadow: 0 10px 20px rgba(0,0,0,0.4);">
+    <h1 style="font-size: 48px; margin: 0 0 10px 0; color: #fff; text-shadow: 3px 3px 6px rgba(0,0,0,0.3); animation: pulse 2s infinite;">RUMBLE</h1>
+    <p style="font-size: 16px; margin: 0 0 20px 0; color: #fff; text-shadow: 1px 1px 3px rgba(0,0,0,0.2); animation: fadeIn 2s;">Hey, i'm Rumble i am looking for my forever home. Could you be my perfect match?</p>
+    <div style="display: flex; gap: 20px;">
+      <div style="flex: 2;">
+        <ul style="list-style: none; padding: 0; margin: 0; background: rgba(255,255,255,0.15); border-radius: 10px; padding: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+          <li style="display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px dashed #fff; color: #fff; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.02)';" onmouseout="this.style.transform='scale(1)';"><span>Breed</span> <span>Stumpy Tail Cattle Dog</span></li>
+          <li style="display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px dashed #fff; color: #fff; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.02)';" onmouseout="this.style.transform='scale(1)';"><span>Age</span> <span>10-11 Weeks</span></li>
+          <li style="display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px dashed #fff; color: #fff; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.02)';" onmouseout="this.style.transform='scale(1)';"><span>Sex</span> <span>Male</span></li>
+          <li style="display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px dashed #fff; color: #fff; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.02)';" onmouseout="this.style.transform='scale(1)';"><span>Location</span> <span>Doreen, VIC</span></li>
+          <li style="display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px dashed #fff; color: #fff; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.02)';" onmouseout="this.style.transform='scale(1)';"><span>May live with</span> <span>Family and friends.</span></li>
+          <li style="display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px dashed #fff; color: #fff; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.02)';" onmouseout="this.style.transform='scale(1)';"><span>Size</span> <span>Puppy</span></li>
+          <li style="display: flex; justify-content: space-between; padding: 5px 0; color: #fff; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.02)';" onmouseout="this.style.transform='scale(1)';"><span>Reference ID</span> <span>1120517</span></li>
+          <li style="display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px dashed #fff; color: #fff; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.02)';" onmouseout="this.style.transform='scale(1)';"><span>Price</span> <span>$900.00</span></li>
+        </ul>
+      </div>
+      <div style="flex: 1; background: linear-gradient(135deg, #8e24aa, #ec407a); padding: 20px; border-radius: 10px; text-align: center; box-shadow: 0 6px 12px rgba(0,0,0,0.3);">
+        <h3 style="font-size: 18px; margin: 0 0 20px 0; color: #fff; text-shadow: 1px 1px 2px rgba(0,0,0,0.2);">Fill in adoption form to proceed</h3>
+        <button class="adopt-button" onclick="showForm()">Adopt Rumble</button>
+        <button style="background: rgba(255,255,255,0.2); border: none; padding: 10px; color: #fff; font-size: 14px; border-radius: 20px; cursor: pointer; width: 100%; margin-bottom: 20px; transition: background 0.3s;" onmouseover="this.style.background='rgba(255,255,255,0.4)';" onmouseout="this.style.background='rgba(255,255,255,0.2)';">
+          <span style="display: inline-block; width: 16px; height: 16px; margin-right: 5px;">❤️</span> Add Rumble to your favourites
+        </button>
+        <p style="font-size: 14px; margin: 0 0 15px 0; color: #fff; font-weight: bold; text-shadow: 1px 1px 2px rgba(0,0,0,0.2);">HELP ME FIND A HOME</p>
+        <div style="display: flex; justify-content: center; gap: 15px;">
+          <a href="#" style="display: inline-block; width: 24px; height: 24px; color: #fff; transition: all 0.3s;" onmouseover="this.style.transform='rotate(360deg) scale(1.2)'; this.style.color='#ffeb3b';" onmouseout="this.style.transform='rotate(0deg) scale(1)'; this.style.color='#fff';">🌟</a>
+          <a href="#" style="display: inline-block; width: 24px; height: 24px; color: #fff; transition: all 0.3s;" onmouseover="this.style.transform='rotate(360deg) scale(1.2)'; this.style.color='#ffeb3b';" onmouseout="this.style.transform='rotate(0deg) scale(1)'; this.style.color='#fff';">📢</a>
+          <a href="#" style="display: inline-block; width: 24px; height: 24px; color: #fff; transition: all 0.3s;" onmouseover="this.style.transform='rotate(360deg) scale(1.2)'; this.style.color='#ffeb3b';" onmouseout="this.style.transform='rotate(0deg) scale(1)'; this.style.color='#fff';">💌</a>
+        </div>
+      </div>
+    </div>
+    
+  
+    <!--ARE YOU RIGHT FOR RUMBLE SECTION-->
+    <div style="margin-top: 30px;">
+      <h2 style="font-size: 24px; margin: 0 0 10px 0; color: #fff; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.02)';" onmouseout="this.style.transform='scale(1)';">Are you right for Rumble?</h2>
+      <p style="font-size: 16px; margin: 0 0 20px 0; color: #fff; text-shadow: 1px 1px 2px rgba(0,0,0,0.1); animation: fadeIn 2s;">Rumble is an 11-week-old playful pup who is looking to find his forever home with a patient and loving family who can provide gentle guidance as he grows. As a very young dog, he is just beginning his training and is not yet house-trained, requiring time and care to develop these skills. Rumble is full of love and curiosity and would thrive with access to a safe, enclosed space where he can explore and play.
+</p>
+      <h2 style="font-size: 24px; margin: 0 0 10px 0; color: #fff; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.02)';" onmouseout="this.style.transform='scale(1)';">Is Rumble right for you?</h2>
+      <p style="font-size: 16px; margin: 0 0 20px 0; color: #fff; text-shadow: 1px 1px 2px rgba(0,0,0,0.1); animation: fadeIn 2s;">Rumble could potentially live with another dog(s) or older children with supervision, given his young age. He has no recall training yet, so he should be kept on a leash until this is established. Rumble should not be left alone for long periods as he adjusts, but with gradual introduction, short absences may be manageable. He enjoys soft treats and would love a family dedicated to his early development! Animal Welfare licence details are all available.</p>
     </div>
   </div>
 
-  <section class="pet-shop">
-    <h1>Animals for Adoption</h1>
-    <p>All your favorite pets available for adoption, pick up, or delivery.</p>
-    <div class="product-container">
-      <a href="https://example.com/dogs" onclick="alert('Exploring Dogs category!'); return false;">
-        <div class="product dog-product">
-          <h2>Dogs</h2>
-          <p>Find your loyal companion</p>
-          <button class="shop-btn">Shop Now</button>
-        </div>
-      </a>
-      <a href="https://example.com/cats" onclick="alert('Exploring Cats category!'); return false;">
-        <div class="product cat-product">
-          <h2>Cats</h2>
-          <p>Adopt a feline friend</p>
-          <button class="shop-btn">Shop Now</button>
-        </div>
-      </a>
-      <a href="https://example.com/tigers" onclick="alert('Exploring Tigers category!'); return false;">
-        <div class="product tiger-product">
-          <h2>Tigers</h2>
-          <p>Exotic and majestic</p>
-          <button class="shop-btn">Shop Now</button>
-        </div>
-      </a>
-      <a href="https://example.com/fish" onclick="alert('Exploring Fish category!'); return false;">
-        <div class="product fish-product">
-          <h2>Fish</h2>
-          <p>Aquatic beauty</p>
-          <button class="shop-btn">Shop Now</button>
-        </div>
-      </a>
-    </div>
-  </section>
-
-  <section class="meet-the-pack">
-    <div>
-      <h2>Meet the Pack</h2>
-      <p>At Petco, we're dedicated advocates for dogs, rare breeds, cats, exotic animals, and wild cubs! Our team ensures every creature thrives through ethical rescue and conservation partnerships.</p>
-      <p>With years of experience, we aim to be your premier resource for diverse pet and wildlife care needs. Let us be your trusted partner in finding a new furry friend!</p>
-      <button>Learn More</button>
-    </div>
-    <div>
-      <img src="https://i.im.ge/2025/06/01/vBbvbr.Screenshot-2025-05-31-202918.png" alt="Person with dog">
-    </div>
-  </section>
-
-  <section class="best-selling-products">
-    <div class="header">
-      <h2>Our Best Selling Products</h2>
-    </div>
-    <div class="product-carousel">
-      <div class="product-list" id="productList">
-        <div class="product-item" onclick="redirectToProductPage('Nylon Chew')">
-          <img src="https://i.im.ge/2025/06/01/vBbkZ1.520b1bb4-db4f-4a86-b7c5-23b5e333db37.png" alt="Nylon Chew">
-          <h3>Lamb & Rice</h3>
-          <p>Dog Food</p>
-          <p class="price">$12.00 <span style="color: #FFD700;">★ 4.9 (1,117 Reviews)</span></p>
-        </div>
-        <div class="product-item" onclick="redirectToProductPage('Nylon Rubber')">
-          <img src="https://i.im.ge/2025/06/01/vBbZHq.General-Offers-B-1000x1000-2.jpeg" alt="Nylon Rubber">
-          <h3>Rare Birds</h3>
-          <p>Ads</p>
-          <p class="price">$200.00 <span style="color: #FFD700;">★ 5.0 (75 Reviews)</span></p>
-        </div>
-        <div class="product-item" onclick="redirectToProductPage('Ballistic Chew')">
-          <img src="https://i.im.ge/2025/06/01/vBbHof.lillebro-wbf-mealworms-0-5kg-1000x1000-8.jpeg" alt="Ballistic Chew">
-          <h3>Lillebro</h3>
-          <p>Wild Bird Food</p>
-          <p class="price">$11.99 <span style="color: #FFD700;">★ 4.9 (93 Reviews)</span></p>
-        </div>
-        <div class="product-item" onclick="redirectToProductPage('Custom Treats')">
-          <img src="https://i.im.ge/2025/06/01/vBbphm.NewProducts-B-1000x1000-INT-3.jpeg" alt="Custom Treats">
-          <h3>Bird Treats</h3>
-          <p>Toys</p>
-          <p class="price">$8.99 <span style="color: #FFD700;">★ 4.5 (89 Reviews)</span></p>
-        </div>
-               <div class="product-item" onclick="redirectToProductPage('Extra Chew')" style="background-color: white; color: black; border-radius: 10px; padding: 20px; text-align: center; flex: 0 0 25%; margin-right: 20px; cursor: pointer;">
-            <img src="https://i.im.ge/2025/06/01/vBbVOp.Cat-Seasonal-1000x1000-2.jpeg" alt="Extra Chew" style="max-width: 100%; height: auto;">
-            <h3 style="font-size: 1.2em; margin: 10px 0;">Meow Zone</h3>
-            <p style="font-size: 0.9em; color: #666;">Ads</p>
-            <p class="price" style="font-size: 1em; margin: 5px 0;">$20.00 <span style="color: #FFD700;">★ 4.7 (15 Reviews)</span></p>
+  <div style="max-width: 600px; margin: 20px auto; padding: 0 20px; font-family: Arial, sans-serif; color: #333; background-color: #fff;">
+    <h1 style="font-size: 28px; margin: 0 0 20px 0; color: #000; font-weight: bold;">Our Adopting Process</h1>
+    <div style="position: relative; padding-left: 30px;">
+      <div style="width: 2px; background-color: #ffc107; position: absolute; top: 0; bottom: 0; left: 10px;"></div>
+      <div>
+        <div style="display: flex; align-items: flex-start; margin-bottom: 30px;">
+          <div style="width: 24px; height: 24px; background-color: #ffc107; border-radius: 50%; color: #fff; text-align: center; line-height: 24px; font-weight: bold; margin-right: 15px; position: absolute; left: -32px;">1</div>
+          <div>
+            <h3 style="font-size: 16px; margin: 0 0 5px 0; color: #000; font-weight: bold;">Choose the pet you want</h3>
+            <p style="margin: 0 0 5px 0; color: #757575; font-size: 14px;">Browse our available pets, like Rumble, and select the one that captures your heart.</p>
+            <a href="#" style="color: #ffc107; text-decoration: none; font-size: 12px;" onclick="this.nextElementSibling.style.display = (this.nextElementSibling.style.display === 'block' ? 'none' : 'block'); return false;">Show details ▼</a>
+            <div style="display: none; margin-top: 10px; padding: 10px; background-color: #f5f5f5; border-radius: 4px; color: #333; font-size: 12px;">
+              <p>View pet profiles to learn about their age, breed, and needs. Add your favorite to your list.</p>
+            </div>
           </div>
-          <div class="product-item" onclick="redirectToProductPage('Super Toy')" style="background-color: white; color: black; border-radius: 10px; padding: 20px; text-align: center; flex: 0 0 25%; margin-right: 20px; cursor: pointer;">
-            <img src="https://i.im.ge/2025/06/01/vBbfmP.attachment-153827741.jpeg" alt="Super Toy" style="max-width: 100%; height: auto;">
-            <h3 style="font-size: 1.2em; margin: 10px 0;">Pork Crackle</h3>
-            <p style="font-size: 0.9em; color: #666;">Rare Feed</p>
-            <p class="price" style="font-size: 1em; margin: 5px 0;">$11.99 <span style="color: #FFD700;">★ 4.8 (25 Reviews)</span></p>
+        </div>
+        <div style="display: flex; align-items: flex-start; margin-bottom: 30px;">
+          <div style="width: 24px; height: 24px; background-color: #ffc107; border-radius: 50%; color: #fff; text-align: center; line-height: 24px; font-weight: bold; margin-right: 15px; position: absolute; left: -32px;">2</div>
+          <div>
+            <h3 style="font-size: 16px; margin: 0 0 5px 0; color: #000; font-weight: bold;">Fill in your adoption information</h3>
+            <p style="margin: 0 0 5px 0; color: #757575; font-size: 14px;">Provide your name, address, and other details to start the adoption process.</p>
+            <a href="#" style="color: #ffc107; text-decoration: none; font-size: 12px;" onclick="this.nextElementSibling.style.display = (this.nextElementSibling.style.display === 'block' ? 'none' : 'block'); return false;">Show details ▼</a>
+            <div style="display: none; margin-top: 10px; padding: 10px; background-color: #f5f5f5; border-radius: 4px; color: #333; font-size: 12px;">
+              <p>Include contact info and home details to help us verify your suitability.</p>
+            </div>
           </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="customer-reviews">
-    <div>
-      <h2>2500 Testimonials<br>with 5 Star Reviews</h2>
-      <p>Our customers love us! Read their stories and see why Petco is the trusted choice for pet care.</p>
-      <div style="display: flex; align-items: center;">
-        <img src="https://i.im.ge/2025/05/29/vJB0d1.images-11.jpeg" alt="Customer 1">
-        <img src="https://i.im.ge/2025/05/29/vJBTrS.download-9.jpeg" alt="Customer 2">
-        <img src="https://i.im.ge/2025/05/29/vJB2S8.images-1.jpeg" alt="Customer 3">
-        <p style="color: #FFD700;">★ 4.9 (2500 Reviews)</p>
-      </div>
-    </div>
-    <div class="review-carousel">
-      <div class="review-list" id="reviewList">
-        <div class="review-item">
-          <img src="https://i.im.ge/2025/05/29/vJBrMF.download-12.jpeg" alt="Profile">
-          <p>"The process was so smooth! Detailed health records and a video call with the breeder made me confident. My Labrador, Max, is the best addition to our family."</p>
-          <p>Sarah M. - Purchased a Cambodian K9</p>
-          <p style="color: #FFD700;">★★★★★</p>
         </div>
-        <div class="review-item">
-          <img src="https://i.im.ge/2025/05/29/vJ4JDL.download-4.jpeg" alt="Profile">
-          <p>"Finding my dream dog was easy. The team answered all my questions, and my German Dog, Bella, is so loving and well-socialized."</p>
-          <p>Jemimah Jerry - Purchased an American German Shepherd</p>
-          <p style="color: #FFD700;">★★★★★</p>
+        <div style="display: flex; align-items: flex-start; margin-bottom: 30px;">
+          <div style="width: 24px; height: 24px; background-color: #ffc107; border-radius: 50%; color: #fff; text-align: center; line-height: 24px; font-weight: bold; margin-right: 15px; position: absolute; left: -32px;">3</div>
+          <div>
+            <h3 style="font-size: 16px; margin: 0 0 5px 0; color: #000; font-weight: bold;">Submit and contact Admin for adoption</h3>
+            <p style="margin: 0 0 5px 0; color: #757575; font-size: 14px;">Submit your application and click "Contact Admin" to proceed with adoption.</p>
+            <a href="#" style="color: #ffc107; text-decoration: none; font-size: 12px;" onclick="this.nextElementSibling.style.display = (this.nextElementSibling.style.display === 'block' ? 'none' : 'block'); return false;">Show details ▼</a>
+            <div style="display: none; margin-top: 10px; padding: 10px; background-color: #f5f5f5; border-radius: 4px; color: #333; font-size: 12px;">
+              <p>An admin will review your application by June 5, 2025, and reach out.</p>
+            </div>
+          </div>
+        </div>
+        <div style="display: flex; align-items: flex-start; margin-bottom: 30px;">
+          <div style="width: 24px; height: 24px; background-color: #ffc107; border-radius: 50%; color: #fff; text-align: center; line-height: 24px; font-weight: bold; margin-right: 15px; position: absolute; left: -32px;">4</div>
+          <div>
+            <h3 style="font-size: 16px; margin: 0 0 5px 0; color: #000; font-weight: bold;">Make payment for the pet and items</h3>
+            <p style="margin: 0 0 5px 0; color: #757575; font-size: 14px;">Pay for your pet and any additional items you’ve added to your cart.</p>
+            <a href="#" style="color: #ffc107; text-decoration: none; font-size: 12px;" onclick="this.nextElementSibling.style.display = (this.nextElementSibling.style.display === 'block' ? 'none' : 'block'); return false;">Show details ▼</a>
+            <div style="display: none; margin-top: 10px; padding: 10px; background-color: #f5f5f5; border-radius: 4px; color: #333; font-size: 12px;">
+              <p>Payment covers adoption fees and optional items like pet supplies.</p>
+            </div>
+          </div>
+        </div>
+        <div style="display: flex; align-items: flex-start;">
+          <div style="width: 24px; height: 24px; background-color: #ffc107; border-radius: 50%; color: #fff; text-align: center; line-height: 24px; font-weight: bold; margin-right: 15px; position: absolute; left: -32px;">5</div>
+          <div>
+            <h3 style="font-size: 16px; margin: 0 0 5px 0; color: #000; font-weight: bold;">Wait for delivery of your new pet and items.</h3>
+            <p style="margin: 0 0 5px 0; color: #757575; font-size: 14px;">Your order will be added to the delivery queue as you await your pet and other items.</p>
+            <a href="#" style="color: #ffc107; text-decoration: none; font-size: 12px;" onclick="this.nextElementSibling.style.display = (this.nextElementSibling.style.display === 'block' ? 'none' : 'block'); return false;">Show details ▼</a>
+            <div style="display: none; margin-top: 10px; padding: 10px; background-color: #f5f5f5; border-radius: 4px; color: #333; font-size: 12px;">
+              <p>Delivery may take a few days; we’ll confirm the schedule after payment.</p>
+            </div>
+          </div>
         </div>
       </div>
-      <button onclick="moveReviewCarousel('left')">←</button>
-      <button onclick="moveReviewCarousel('right')">→</button>
     </div>
-  </section>
+  </div>
 
-  <div class="product-strip-container">
-    <h2><span>Best Selling Products</span> <span style="margin-left: 1rem; animation: bounce 1.5s infinite ease-in-out;">🐶</span></h2>
-    <div class="product-strip">
-      <div class="product-item">
-        <img src="https://i.im.ge/2025/05/29/vJGQqP.attachment-113748359.jpeg" alt="Dog Food">
-        <h3>Dog Food</h3>
-        <p>$11.00-$160.00</p>
-        <p>4.3 ★★★★★ (219 Reviews)</p>
+  
+  <!-- BEST SELLING PRODUCTS SECTION-->
+<div style="margin-bottom: 40px; transition: transform 0.3s ease; position: relative; z-index: 1;">
+    <h2 style="font-size: 1.2em; color: #fff; background: linear-gradient(90deg, #ffc107, #ffca28); padding: 15px 30px; display: inline-flex; align-items: center; border-radius: 10px; margin-bottom: 30px; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); border: 2px solid #fff;">
+  <span>Best Selling Products</span>
+  <span style="margin-left: 20px; font-size: 1em; animation: bounce 1.5s infinite ease-in-out;">🐶</span>
+</h2>
+<!-- Animation Style -->
+<style>
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+  }
+</style>
+  <div class="product-strip" style="display: flex; gap: 20px; overflow-x: auto; padding-bottom: 10px; scrollbar-width: thin; scrollbar-color: #ccc #f5f5f5;">
+      <div class="product-item" style="min-width: 50px; background-color: white; padding: 10px; border: 1px solid #ddd; border-radius: 5px; text-align: center; flex-shrink: 0;">
+        <P><IMG SRC="https://i.im.ge/2025/05/29/vJGQqP.attachment-113748359.jpeg" ALT="French Bulldog Lagos" WIDTH="150" HEIGHT="150"><BR>
+        <h3 style="font-size: 1em; margin: 5px 0; color: #333;">Dog Food</h3>
+        <p style="font-size: 0.9em; color: #ff4d4d; margin: 5px 0;">$11.00-$160.00</p>
+        <p style="font-size: 0.8em; color: #666;">4.3 ★★★★★ (219 Reviews)</p>
+        <p style="font-size: 0.7em; color: #800000;">New Buyers Gets 10% off all purchases</p>
       </div>
-      <div class="product-item">
-        <img src="https://i.im.ge/2025/05/29/vnQChS.Screenshot-2025-05-29-005240.png" alt="Cat Food">
-        <h3>Cat Food</h3>
-        <p>$9.99-$59.00</p>
-        <p>4.4 ★★★★★ (302 Reviews)</p>
+      <div class="product-item" style="min-width: 50px; background-color: white; padding: 10px; border: 1px solid #ddd; border-radius: 5px; text-align: center; flex-shrink: 0;">
+        <P><IMG SRC="https://i.im.ge/2025/05/29/vnQChS.Screenshot-2025-05-29-005240.png" ALT="French Bulldog Lagos" WIDTH="150" HEIGHT="150"><BR>
+        <h3 style="font-size: 1em; margin: 5px 0; color: #333;">Cat Food</h3>
+        <p style="font-size: 0.9em; color: #ff4d4d; margin: 5px 0;">$9.99-$59.00</p>
+        <p style="font-size: 0.8em; color: #666;">4.4 ★★★★★ (302 Reviews)</p>
+        <p style="font-size: 0.7em; color: #800000;">New Buyers Gets 10% off all purchases</p>
       </div>
-    <div class="product-item" style="min-width: 200px; background-color: white; padding: 10px; border: 1px solid #ddd; border-radius: 5px; text-align: center; flex-shrink: 0;">
+      <div class="product-item" style="min-width: 50px; background-color: white; padding: 10px; border: 1px solid #ddd; border-radius: 5px; text-align: center; flex-shrink: 0;">
+        <P><IMG SRC="https://i.im.ge/2025/05/29/vnTrpL.download-15.jpeg" ALT="French Bulldog Lagos" WIDTH="150" HEIGHT="150"><BR>
+        <h3 style="font-size: 1em; margin: 5px 0; color: #333;">Cat Litter</h3>
+        <p style="font-size: 0.9em; color: #ff4d4d; margin: 5px 0;">$9.99 - $31.99</p>
+        <p style="font-size: 0.8em; color: #666;">4.2 ★★★★★ (690 Reviews)</p>
+        <p style="font-size: 0.7em; color: #800000;">New Buyers Gets 10% off all purchases</p>
+      </div>
+      <div class="product-item" style="min-width: 200px; background-color: white; padding: 10px; border: 1px solid #ddd; border-radius: 5px; text-align: center; flex-shrink: 0;">
         <P><IMG SRC="https://i.im.ge/2025/06/01/vBg8kq.Screenshot-2025-06-01-074024.png" ALT="French Bulldog Lagos" WIDTH="150" HEIGHT="150"><BR>
         <h3 style="font-size: 1em; margin: 5px 0; color: #333;">Pet Toys</h3>
         <p style="font-size: 0.9em; color: #ff4d4d; margin: 5px 0;">$16.00 - $25.00</p>
@@ -1320,192 +915,362 @@
         <p style="font-size: 0.9em; color: #ff4d4d; margin: 5px 0;">$189 - $599.99</p>
         <p style="font-size: 0.8em; color: #666;">4.7 ★★★★★ (221 Reviews)</p>
         <p style="font-size: 0.7em; color: #800000;">New Buyers Gets 10% off all purchases</p>
-      </div>
+      </div>    
     </div>
   </div>
+    
+    <!--TOP CATHEGORIES SECTION-->
+     <section class="top-categories" style="padding: 40px; max-width: 1200px; margin: 0 auto; background: #f5f5f5;">
+  <h2 style="font-size: 2em; color: #333; margin-bottom: 30px; text-align: center; text-transform: uppercase; letter-spacing: 1px; font-weight: 700;">Top Categories</h2>
+  <!-- Top Row: 3 Smaller Images -->
+  <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 20px;">
+    <div style="background: #fff; border-radius: 5px; overflow: hidden; text-align: center; transition: transform 0.3s ease, box-shadow 0.3s ease;">
+      <img src="https://i.im.ge/2025/05/29/vndsyJ.OIP.jpeg" alt="Dog Food" style="width: 300%; height: 200px; object-fit: cover;">
+      <p style="font-size: 1.1em; color: #333; padding: 10px; margin: 0; font-weight: 600;">Rare Bird Feed</p>
+    </div>
+    <div style="background: #fff; border-radius: 5px; overflow: hidden; text-align: center; transition: transform 0.3s ease, box-shadow 0.3s ease;">
+      <img src="https://i.im.ge/2025/05/29/vndImz.Elite-Parrot-Food-12-75kg.png" alt="Dog Treats" style="width: 100%; height: 200px; object-fit: cover;">
+      <p style="font-size: 1.1em; color: #333; padding: 10px; margin: 0; font-weight: 600;">Rare Treats x1</p>
+    </div>
+    <div style="background: #fff; border-radius: 5px; overflow: hidden; text-align: center; transition: transform 0.3s ease, box-shadow 0.3s ease;">
+      <img src="https://i.im.ge/2025/05/29/vndaHy.e4f36b246ccf4cd6a50e4118abba1744.jpeg" alt="Dog Toys" style="width: 100%; height: 200px; object-fit: cover;">
+      <p style="font-size: 1.1em; color: #333; padding: 10px; margin: 0; font-weight: 600;">Rare Treats x2</p>
+    </div>
   </div>
+  <!-- Bottom Row: 2 Larger Images -->
+  <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;">
+    <div style="background: #fff; border-radius: 5px; overflow: hidden; text-align: center; transition: transform 0.3s ease, box-shadow 0.3s ease;">
+      <img src="https://i.im.ge/2025/05/29/vn2iV6.Blue-and-Gold-Elegant-Background-Zoom-Virtual-Background.jpeg" alt="Dog Bowls & Feeders" style="width: 100%; height: 200px; object-fit: cover;">
+      <p style="font-size: 1.1em; color: #333; padding: 10px; margin: 0; font-weight: 600;">Pet Toys & Feeders</p>
+    </div>
+    <div style="background: #fff; border-radius: 5px; overflow: hidden; text-align: center; transition: transform 0.3s ease, box-shadow 0.3s ease;">
+      <img src="https://i.im.ge/2025/05/29/vnqH8C.Screenshot-2025-05-29-062809.png" style="width: 100%; height: 200px; object-fit: cover;">
+      <p style="font-size: 1.1em; color: #333; padding: 10px; margin: 0; font-weight: 600;">Pet Accessories</p>
+    </div>
   </div>
+  <style>
+    .top-categories div:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    }
+    
+    
+    @media (max-width: 480px) {
+  .top-categories div:first-child,
+  .top-categories div:last-child {
+    grid-template-columns: 1fr;
+  }
+  .category-image {
+    aspect-ratio: 3 / 2; /* Maintain proportion on very small screens */
+  }
+}  
+    </style>
+</section>
+  
 
-  <section class="top-categories">
-    <h2>Top Categories</h2>
-    <div>
-      <div>
-        <img src="https://i.im.ge/2025/06/01/vBc80a.Screenshot-2025-05-31-201727.png" alt="Dog Food">
-        <p>Rare Dog Feed</p>
-      </div>
-      <div>
-        <img src="https://i.im.ge/2025/05/29/vndImz.Elite-Parrot-Food-12-75kg.png" alt="Dog Treats">
-        <p>Rare Treats x1</p>
-      </div>
-      <div>
-        <img src="https://i.im.ge/2025/05/29/vn2iV6.Blue-and-Gold-Elegant-Background-Zoom-Virtual-Background.jpeg" alt="Dog Bowls & Feeders">
-        <p>Pet Toys & Feeders</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="pet-adopting-process">
-    <h2>Our Pet Adopting Process</h2>
-    <div class="process-grid">
-      <div class="process-item">
-        <div class="icon">🐾</div>
-        <h3>Find a Pet</h3>
-        <p>Browse our selection of adorable pets and find the one that steals your heart.</p>
-      </div>
-      <div class="process-item">
-        <div class="icon">📝</div>
-        <h3>Fill Out Application</h3>
-        <p>Complete a quick application to help us ensure a great match for you and your pet.</p>
-      </div>
-      <div class="process-item">
-        <div class="icon">🤝</div>
-        <h3>Meet Your New Best Friend</h3>
-        <p>Schedule a meet-and-greet to bond with your potential new companion.</p>
-      </div>
-      <div class="process-item">
-        <div class="icon">🏡</div>
-        <h3>Take Your Pet Home</h3>
-        <p>Finalize the adoption and bring your new family member home to start your journey together.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="testimonials-section">
-    <h2>Testimonials</h2>
-    <div class="testimonials-grid">
-      <div class="testimonial-card">
-        <p>"Adopting Rumble was the best decision we ever made! The process was smooth, and the team was incredibly supportive."</p>
-        <div class="author">
-          <img src="https://i.im.ge/2025/05/29/vJ4HgT.download-5.jpeg" alt="Sarah J.">
-          <p>Sarah J.</p>
-        </div>
-      </div>
-      <div class="testimonial-card">
-        <p>"The Vetlane team made adopting Max so easy. He’s brought so much joy to our home!"</p>
-        <div class="author">
-          <img src="https://i.im.ge/2025/05/29/vJ4JDL.download-4.jpeg" alt="John Pets Lover">
-          <p>John Pets Lover</p>
-        </div>
-      </div>
-    </div>
-    <div class="nav-dots">
-      <span class="active"></span>
-      <span></span>
-      <span></span>
-    </div>
-  </section>
-
-  <section class="contact-us-section">
-    <div class="banner">
-      <p>Get in Touch with Us! 🐾</p>
-      <div class="bg-effect"></div>
-    </div>
-    <h2>Contact us</h2>
-    <form id="contactForm">
-      <input type="text" name="name" placeholder="Your Name" required>
-      <input type="email" name="email" placeholder="Your Email" required>
-      <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
-      <button type="submit">Send Message</button>
+  
+  <!-- COMMENT SECTION -->
+<section class="comment-section" style="padding: 40px; max-width: 1200px; margin: 0 auto; background: linear-gradient(135deg, #e0f7f9, #b2dfdb); border-radius: 15px; box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15); margin-bottom: 40px; position: relative; overflow: hidden; font-family: 'Roboto', sans-serif;">
+  <!-- Top Part: Decorative Banner -->
+  <div style="background: linear-gradient(90deg, #26a69a, #4db6ac); padding: 20px; text-align: center; border-radius: 10px 10px 0 0; position: relative; z-index: 1; animation: pulse 4s infinite;">
+    <p style="font-size: 1.5em; color: #fff; margin: 0; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-family: 'Playfair Display', serif;">Share Your Thoughts on Our Pets! 🐾</p>
+    <div style="position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(255, 202, 40, 0.2) 0%, transparent 70%); animation: rotate 15s infinite linear; z-index: 0;"></div>
+  </div>
+  <h1 style="font-size: 2em; color: #1a2b2e; text-align: center; margin: 30px 0; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; background: linear-gradient(90deg, #ffc107, #ffca28); padding: 10px 20px; border-radius: 10px; display: inline-block; font-family: 'Playfair Display', serif;">Comments</h1>
+  <div class="comments" id="comments" style="margin-bottom: 20px;">
+    <!-- Initial comments will be populated by JavaScript -->
+  </div>
+  <div class="buttons" style="text-align: center; margin-bottom: 30px;">
+    <button onclick="showMore()" style="background: linear-gradient(90deg, #26a69a, #4db6ac); color: #fff; border: none; padding: 10px 20px; border-radius: 25px; font-size: 1em; cursor: pointer; margin-right: 10px; transition: transform 0.3s ease, box-shadow 0.3s ease; font-family: 'Roboto', sans-serif; font-weight: 500;">See More</button>
+    <button onclick="showLess()" style="display: none; background: linear-gradient(90deg, #ff4d4d, #ff6b6b); color: #fff; border: none; padding: 10px 20px; border-radius: 25px; font-size: 1em; cursor: pointer; transition: transform 0.3s ease, box-shadow 0.3s ease; font-family: 'Roboto', sans-serif; font-weight: 500;">See Less</button>
+  </div>
+  <section class="comment-form" style="background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); border: 2px solid #26a69a;">
+    <h2 style="font-size: 1.8em; color: #1a2b2e; text-align: center; margin-bottom: 20px; font-weight: 600; font-family: 'Playfair Display', serif;">Add Your Comment</h2>
+    <form id="commentForm" style="display: flex; flex-direction: column; gap: 15px;">
+      <input type="text" name="name" placeholder="Your Name" required style="padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 1em; outline: none; transition: border-color 0.3s ease; font-family: 'Roboto', sans-serif;">
+      <textarea name="comment" placeholder="Write your comment..." rows="4" required style="padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 1em; resize: none; outline: none; transition: border-color 0.3s ease; font-family: 'Roboto', sans-serif;"></textarea>
+      <input type="file" name="photo" accept="image/*" required style="padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 1em; font-family: 'Roboto', sans-serif;">
+      <button type="submit" style="background: linear-gradient(90deg, #ffc107, #ffca28); color: #1a2b2e; border: none; padding: 10px 20px; border-radius: 25px; font-size: 1em; cursor: pointer; font-weight: 600; transition: transform 0.3s ease, box-shadow 0.3s ease; font-family: 'Roboto', sans-serif;">Submit Comment</button>
     </form>
   </section>
+</section>
 
-  <section class="thanks-section">
-    <h2>Thanks for Stopping By!</h2>
-    <p>Drop a review if you love our customer support! 💙</p>
-    <img src="https://i.im.ge/2025/06/01/vBcRcJ.Pink-and-White-Aesthetic-Background-Flyer-3.jpeg" alt="Logo">
-    <h3>Petco</h3>
-    <p>petcoadopt.co online store & Support</p>
-    <button>Get in Touch</button>
-  </section>
+ <!-- THANKS SECTION -->
+<section class="thanks-section" style="padding: 40px; text-align: center; background: linear-gradient(135deg, #fff, #f0f0f0); max-width: 1200px; margin: 0 auto; border-radius: 15px; box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15); position: relative; overflow: hidden; font-family: 'Roboto', sans-serif;">
+  <h2 style="font-size: 2em; color: #1a2b2e; margin-bottom: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; font-family: 'Playfair Display', serif;">Thanks for Stopping By!</h2>
+  <p style="font-size: 1.2em; color: #1a2b2e; margin-bottom: 20px; font-weight: 500; font-family: 'Roboto', sans-serif;">Drop a review if you love our customer support! 💙</p>
+  <div style="width: 100px; height: 100px; background: linear-gradient(90deg, #26a69a, #4db6ac); border-radius: 50%; margin: 20px auto; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); transition: transform 0.3s ease;">
+    <img src="https://i.im.ge/2025/06/01/vBcRcJ.Pink-and-White-Aesthetic-Background-Flyer-3.jpeg" alt="Logo" style="width: 100px; height: 100px; border-radius: 50%; font-family: 'Roboto', sans-serif;">
+  </div>
+  <h3 style="font-size: 1.5em; color: #1a2b2e; margin-bottom: 10px; font-weight: 600; font-family: 'Playfair Display', serif;">Petco</h3>
+  <p style="font-size: 1em; color: #1a2b2e; margin-bottom: 20px; font-style: italic; font-family: 'Roboto', sans-serif;">petcoadopt.co online store & |  Support </p>
+  <button style="background: linear-gradient(90deg, #ffc107, #ffca28); color: #1a2b2e; border: none; padding: 12px 25px; border-radius: 25px; font-size: 1em; cursor: pointer; font-weight: 600; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); transition: transform 0.3s ease, background 0.3s ease; font-family: 'Roboto', sans-serif;">Get in Touch</button>
+  <!-- Background Accent -->
+  <div style="position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(38, 166, 154, 0.1) 0%, transparent 70%); animation: rotate 20s infinite linear; z-index: 0;"></div>
+</section>
+  
+  <!-- Modal for Adopt Form -->
+  <div class="modal" id="adoptFormModal">
+    <div class="modal-content">
+      <span class="close" onclick="closeForm()">×</span>
+      <h2>Adopt Rumble</h2>
+      <form id="adoptForm">
+        <input type="text" name="name" placeholder="Your Full Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <input type="tel" name="phone" placeholder="Your Phone Number" required>
+        <input type="text" name="country" placeholder="Your Country" required>
+        <input type="text" name="address" placeholder="Your Residential Address" required>
+        <textarea name="message" placeholder="Why do you want to adopt Rumble?" rows="4" required></textarea>
+        <input type="hidden" name="pet_name" value="Rumble">
+        <div class="button-group">
+          <button type="submit" class="submit-btn">
+            <span>Submit Application</span>
+            <div class="spinner"></div>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
 
-  <footer class="footer-section">
-    <div class="links">
-      <h3>Useful Links</h3>
-      <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">About us</a></li>
-        <li><a href="#">Products</a></li>
-        <li><a href="#">Services</a></li>
-        <li><a href="#">Legal</a></li>
-        <li><a href="#">Privacy Policy</a></li>
-        <li><a href="#">Contact us</a></li>
-      </ul>
+  <!-- Success Modal -->
+  <div class="success-modal" id="successModal">
+    <div class="success-content">
+      <p>Your adoption information has been received by Petco, proceed to contact admin</p>
+      <button onclick="contactAdmin()">Contact Admin</button>
     </div>
-    <div class="about-us">
-      <h3>About us</h3>
-      <p>We are a team of passionate pet care providers committed to delivering super-standard pets, pet products and healthcare services while enriching the bond between our clients and their pet companions.</p>
-      <p>Our vision is to become a leading brand name in pet supply and in the Veterinary field, effortlessly promoting responsible pet ownership and commitment to improving the quality of life for all humans and their pets.</p>
-      <p>PETCO Online Store delivers to all U.S. States and more countries - Alabama | Alaska | Arizona | Arkansas | California | Colorado | Connecticut | Delaware | Florida | Georgia | Hawaii | Idaho | Illinois | Indiana | Iowa | Kansas | Kentucky | Louisiana | Maine | Maryland | Massachusetts | Michigan | Minnesota | Mississippi | Missouri | Montana | Nebraska | Nevada | New Hampshire | New Jersey | New Mexico | New York | North Carolina | North Dakota | Ohio | Oklahoma | Oregon | Pennsylvania | Rhode Island | South Carolina | South Dakota | Tennessee | Texas | Utah | Vermont | Virginia | Washington | West Virginia | Wisconsin | Wyoming</p>
-    </div>
-    <div class="connect">
-      <h3>Connect with us</h3>
-      <p><a href="petcoonlinepetstore.com">petcoadopt.co</a></p>
-      <p>+1 (939) 203-3919</p>
-      <div class="Petco">
-        <a href="#"><span>🐦</span></a>
-        <a href="#"><span>🐷</span></a>
-        <a href="#"><span>🐮</span></a>
-        <a href="#"><span>🐴</span></a>
-      </div>
-    </div>
-  </footer>
+  </div>
 
-  <script>
-    // Hamburger Menu
-    const hamburger = document.querySelector('.hamburger');
-    const nav = document.querySelector('.header-main .nav');
-    hamburger.addEventListener('click', () => {
-      nav.classList.toggle('active');
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <script type="text/javascript">
+    const images = [
+        "https://i.ibb.co/SDmTNQLP/a4q3gqehyekvi3qrrp2n.webp",
+        "https://i.im.ge/2025/05/28/vvOeUh.k1p19qwctpxczsoa1xim.webp",
+        "https://i.im.ge/2025/05/28/vv1MYM.d7rbznhaxhlmlwfk2ryh.webp",
+        "https://i.im.ge/2025/05/28/vvO4WX.uru4b0qqmudocyr1ye9t.jpeg",
+        "https://i.im.ge/2025/05/28/vv1Q4Y.ci6jyclzobeo4hhfbfln-1.webp"
+    ];
+    let currentIndex = 0;
+
+    function changeImage(direction) {
+        currentIndex += direction;
+        if (currentIndex < 0) {
+            currentIndex = images.length - 1;
+        } else if (currentIndex >= images.length) {
+            currentIndex = 0;
+        }
+        document.getElementById("mainImg").src = images[currentIndex];
+    }
+
+    function setMainImage(src) {
+        document.getElementById("mainImg").src = src;
+        currentIndex = images.indexOf(src);
+    }
+ 
+    // JavaScript for Comments
+    let visibleCount = 3;
+    const commentsContainer = document.getElementById('comments');
+    const seeMoreBtn = document.querySelector('button[onclick="showMore()"]');
+    const seeLessBtn = document.querySelector('button[onclick="showLess()"]');
+    let commentCount = 0;
+
+    // Initial comments with image placeholders
+    const initialComments = [
+      {
+        name: "Sarah J.",
+        text: "Rumble is such a sweet dog! Can't wait to meet him!",
+        time: "09:43 PM WAT, May 27, 2025",
+        photo: "https://i.im.ge/2025/05/29/vJ4HgT.download-5.jpeg",
+        timestamp: new Date("2025-05-27T21:43:00").getTime()
+      },
+      {
+        name: "John Pets Lover.",
+        text: "Loved the profile! Hope I can give Max a good home.",
+        time: "09:40 PM WAT, May 27, 2025",
+        photo: "https://i.im.ge/2025/05/29/vJ4JDL.download-4.jpeg",
+        timestamp: new Date("2025-05-27T21:40:00").getTime()
+      },
+      {
+        name: "Emma Daniel.",
+        text: "His playful energy is really adorable!, goodluck with adopting your pets from petco!",
+        time: "09:38 PM WAT, May 27, 2025",
+        photo: "https://i.im.ge/2025/05/29/vJ4pec.download-3.jpeg",
+        timestamp: new Date("2025-05-27T21:38:00").getTime()
+      },
+      {
+        name: "Mike Damian.",
+        text: "Its my second time getting a dog from petco, and its been seamless!",
+        time: "09:35 PM WAT, May 27, 2025",
+        photo: "https://i.im.ge/2025/05/29/vJ4nCG.download-2.jpeg",
+        timestamp: new Date("2025-05-27T21:35:00").getTime()
+      },
+      {
+        name: "Lisa Kurty.",
+        text: "Looking forward to buying a pet wolf!",
+        time: "09:32 PM WAT, May 27, 2025",
+        photo: "https://i.im.ge/2025/05/29/vJ44vx.download-1.jpeg",
+        timestamp: new Date("2025-05-27T21:32:00").getTime()
+      }
+    ];
+
+    // Load comments from localStorage or use initial comments
+    let storedComments = JSON.parse(localStorage.getItem('comments')) || [];
+    const now = new Date().getTime();
+    const thirtyMinutes = 30 * 60 * 1000;
+
+    // Filter out comments older than 30 minutes
+    storedComments = storedComments.filter(comment => now - comment.timestamp < thirtyMinutes);
+
+    // Combine initial comments with stored comments
+    const allComments = [...initialComments, ...storedComments];
+
+    // Render comments
+    function renderComments(commentsToShow) {
+      commentsContainer.innerHTML = '';
+      commentCount = commentsToShow.length;
+      commentsToShow.forEach((comment, index) => {
+        const isLeft = index % 2 === 0;
+        const newComment = document.createElement('article');
+        newComment.className = `comment ${isLeft ? 'left' : 'right'} ${index < visibleCount ? 'show' : 'hidden'}`;
+        newComment.innerHTML = `
+          <div class="avatar"><img src="${comment.photo}" alt="${comment.name}"></div>
+          <div class="content">
+            <p class="author">${comment.name}</p>
+            <p>${comment.text}</p>
+            <p class="time">${comment.time}</p>
+          </div>
+          ${!isLeft ? `<div class="avatar"><img src="${comment.photo}" alt="${comment.name}"></div>` : ''}
+        `;
+        commentsContainer.appendChild(newComment);
+      });
+      updateButtons();
+    }
+
+    // Initial render
+    renderComments(allComments);
+
+    function showMore() {
+      const comments = document.querySelectorAll('.comment');
+      for (let i = visibleCount; i < Math.min(visibleCount + 2, comments.length); i++) {
+        comments[i].classList.remove('hidden');
+        comments[i].classList.add('show');
+      }
+      visibleCount += 2;
+      updateButtons();
+    }
+
+    function showLess() {
+      const comments = document.querySelectorAll('.comment');
+      for (let i = 3; i < comments.length; i++) {
+        comments[i].classList.add('hidden');
+        comments[i].classList.remove('show');
+      }
+      visibleCount = 3;
+      updateButtons();
+    }
+
+    function updateButtons() {
+      const comments = document.querySelectorAll('.comment');
+      seeMoreBtn.style.display = visibleCount < comments.length ? 'inline-block' : 'none';
+      seeLessBtn.style.display = visibleCount > 3 ? 'inline-block' : 'none';
+    }
+
+    // Handle comment form submission
+    document.getElementById('commentForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = e.target.name.value;
+      const commentText = e.target.comment.value;
+      const photoInput = e.target.photo.files[0];
+
+      if (name && commentText && photoInput) {
+        const now = new Date();
+        const newComment = {
+          name: name,
+          text: commentText,
+          time: now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true }) + ' WAT, May 27, 2025',
+          photo: URL.createObjectURL(photoInput),
+          timestamp: now.getTime()
+        };
+
+        // Add to stored comments
+        storedComments.push(newComment);
+        localStorage.setItem('comments', JSON.stringify(storedComments));
+
+        // Re-render comments
+        renderComments([...initialComments, ...storedComments]);
+        e.target.reset();
+      } else {
+        alert('Please fill all fields and upload a photo.');
+      }
     });
 
-    // Review Carousel
-    let reviewIndex = 0;
-    const reviewItems = document.querySelectorAll('.review-item').length;
-    const reviewList = document.getElementById('reviewList');
+    // Clean up old comments every minute
+    setInterval(() => {
+      const now = new Date().getTime();
+      storedComments = storedComments.filter(comment => now - comment.timestamp < thirtyMinutes);
+      localStorage.setItem('comments', JSON.stringify(storedComments));
+      renderComments([...initialComments, ...storedComments]);
+    }, 60 * 1000);
 
-    function moveReviewCarousel(direction) {
-      if (direction === 'right' && reviewIndex < reviewItems - 1) {
-        reviewIndex++;
-      } else if (direction === 'left' && reviewIndex > 0) {
-        reviewIndex--;
+    // EmailJS and Modal Script
+    (function() {
+      emailjs.init('C2XqQE31DQCkxLD4b'); // Replace with your EmailJS User ID
+    })();
+
+    function showForm() {
+      document.getElementById('adoptFormModal').style.display = 'flex';
+    }
+
+    function closeForm() {
+      document.getElementById('adoptFormModal').style.display = 'none';
+    }
+
+    function contactAdmin() {
+      window.location.href = 'https://wa.link/uwqki4'; // Replace with your admin contact page URL
+    }
+
+    const submitButton = document.querySelector('.submit-btn');
+    document.getElementById('adoptForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const form = this;
+
+      // Show spinner
+      submitButton.classList.add('loading');
+      submitButton.disabled = true;
+
+      emailjs.sendForm('service_o0uvqdi', 'template_9u0az1w', form)
+        .then(function(response) {
+          console.log('SUCCESS!', response.status, response.text);
+          // Show success message briefly on the button
+          submitButton.classList.remove('loading');
+          submitButton.classList.add('success');
+          submitButton.querySelector('span').textContent = 'Success!';
+          submitButton.disabled = false;
+
+          // Delay to show success message, then show the success modal
+          setTimeout(() => {
+            submitButton.classList.remove('success');
+            submitButton.querySelector('span').textContent = 'Submit Application';
+            document.getElementById('adoptFormModal').style.display = 'none';
+            document.getElementById('successModal').style.display = 'flex';
+          }, 1500); // Show success for 1.5 seconds
+        }, function(error) {
+          console.log('FAILED...', error);
+          submitButton.classList.remove('loading');
+          submitButton.disabled = false;
+          alert('Failed to send adoption information. Please try again.');
+        });
+    });
+
+    // Close modal when clicking outside of it
+    window.onclick = function(event) {
+      const modal = document.getElementById('adoptFormModal');
+      const successModal = document.getElementById('successModal');
+      if (event.target === modal) {
+        closeForm();
+      } else if (event.target === successModal) {
+        document.getElementById('successModal').style.display = 'none';
       }
-      reviewList.style.transform = `translateX(-${reviewIndex * 100}%)`;
-    }
-
-    // Slideshow
-    const images = [
-      'https://i.im.ge/2025/05/31/vBI66X.3.png',
-      'https://i.im.ge/2025/05/31/vBI8V1.Blue-and-Gold-Elegant-Background-Zoom-Virtual-Background.png',
-      'https://i.im.ge/2025/05/31/vBIw29.2.png'
-    ];
-    let currentImageIndex = 0;
-    const slideshow = document.getElementById('slideshow');
-
-    function changeImage() {
-      slideshow.style.backgroundImage = `url(${images[currentImageIndex]})`;
-      currentImageIndex = (currentImageIndex + 1) % images.length;
-    }
-
-    setInterval(changeImage, 2000);
-    changeImage();
-
-    // Search Bar
-    const searchInput = document.querySelector('.search-bar input');
-    const searchButton = document.querySelector('.search-bar button');
-    searchButton.onclick = () => {
-      const query = searchInput.value.trim();
-      if (query) alert(`Searching for: ${query}`);
     };
-    searchInput.onkeypress = (e) => {
-      if (e.key === 'Enter') {
-        const query = searchInput.value.trim();
-        if (query) alert(`Searching for: ${query}`);
-      }
-    };
-
-    function redirectToProductPage(productName) {
-      alert(`Redirecting to ${productName} page!`);
-    }
   </script>
 </body>
 </html>
