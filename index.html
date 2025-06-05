@@ -13,170 +13,134 @@
       color: #333333;
       overflow-x: hidden;
     }
-     /* Header Styles */
-    .header-top {
-      background-color: #fff;
-      padding: clamp(0.5rem, 2vw, 0.75rem) clamp(1rem, 3vw, 1.5rem);
-      text-align: right;
-      border-bottom: 1px solid #ddd;
-    }
 
-    .header-top a {
-      color: #27ae60;
-      text-decoration: none;
-      font-size: clamp(0.8rem, 2vw, 0.9rem);
-      margin: 0 clamp(0.5rem, 1.5vw, 0.75rem);
-      padding: 0.5rem;
-      display: inline-block;
-    }
-
-    .header-top a:hover {
-      text-decoration: underline;
-    }
-
-    .header-main {
-      background-color: #fff;
-      padding: clamp(1rem, 3vw, 1.5rem);
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      position: relative;
-      text-align: center;
-    }
-
-    .header-main .logo {
-      font-size: clamp(1.5rem, 4vw, 2rem);
-      font-weight: bold;
-      color: #27ae60;
-      margin-bottom: 0.5rem;
-    }
-
-    .header-main .nav {
-      display: flex;
-      justify-content: center;
-      gap: clamp(0.5rem, 2vw, 1rem);
-      margin-bottom: 0.5rem;
-      flex-wrap: wrap;
-    }
-
-    .header-main .nav a {
-      color: #333;
-      text-decoration: none;
-      font-size: clamp(0.8rem, 2vw, 0.9rem);
-      padding: 0.5rem;
-      display: inline-block;
-    }
-
-    .header-main .nav a:hover {
-      color: #27ae60;
-    }
-
-    .header-main .search-bar {
-      margin: 0 auto;
-      width: min(100%, 400px);
-      position: relative;
-    }
-
-    .header-main .search-bar input {
+    /* Top Banner Styles */
+    .top-banner {
       width: 100%;
-      padding: clamp(0.5rem, 2.5vw, 0.75rem) clamp(2rem, 5vw, 2.5rem) clamp(0.5rem, 2.5vw, 0.75rem) clamp(0.5rem, 2.5vw, 0.75rem);
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      font-size: clamp(0.9rem, 2.5vw, 1rem);
-    }
-
-    .header-main .search-bar button {
-      position: absolute;
-      right: clamp(0.5rem, 2vw, 0.75rem);
-      top: 50%;
-      transform: translateY(-50%);
-      background: none;
-      border: none;
-      cursor: pointer;
-      width: 44px;
-      height: 44px;
+      height: 150px;
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: space-between;
+      background: transparent;
+      position: relative;
+    }
+    .top-banner img {
+      width: 100%;
+      height: 100%;
+      object-fit: center;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 0;
+    }
+    .top-banner nav {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 20px;
+      z-index: 1;
+    }
+    .top-banner .left-nav {
+      margin-left: 10px;
+    }
+    .top-banner .right-nav {
+      margin-right: 10px;
+    }
+    .top-banner a {
+      text-decoration: none;
+      color: #fff;
+      margin: 0 15px;
+      font-size: 1em;
+      font-weight: bold;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+      transition: color 0.3s;
+    }
+    .top-banner a:hover {
+      color: #ffd700;
+    }
+    /* Ensure banner is responsive */
+    @media (max-width: 600px) {
+      .top-banner {
+        height: 100px;
+      }
+      .top-banner nav {
+        flex-direction: column;
+        align-items: center;
+        padding: 5px 10px;
+      }
+      .top-banner .left-nav,
+      .top-banner .right-nav {
+        margin: 5px 0;
+      }
+      .top-banner a {
+        margin: 5px 10px;
+        font-size: 0.9em;
+      }
     }
 
-    .header-main .search-bar button svg {
-      width: 16px;
-      height: 16px;
-      stroke: #666;
-    }
-
-    
+    /* Existing Styles */
     .image-slider-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 0 auto;
-  padding: 10px;
-  width: 100%;
-  max-width: 600px;
-}
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 0 auto;
+      padding: 10px;
+      width: 100%;
+      max-width: 600px;
+    }
+    .image-slider1 {
+      width: 100%;
+      overflow: hidden;
+      margin-bottom: 10px;
+    }
+    .image-slider1 img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .thumbnails {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      padding: 5px;
+      width: 100%;
+      overflow-x: auto;
+      scrollbar-width: thin;
+      scrollbar-color: #ccc #f5f5f5;
+    }
+    .thumbnails::-webkit-scrollbar {
+      height: 6px;
+    }
+    .thumbnails::-webkit-scrollbar-track {
+      background: #f5f5f5;
+      border-radius: 3px;
+    }
+    .thumbnails::-webkit-scrollbar-thumb {
+      background: #ccc;
+      border-radius: 3px;
+    }
+    .thumbnails::-webkit-scrollbar-thumb:hover {
+      background: #aaa;
+    }
+    .thumbnail {
+      flex: 0 0 auto;
+    }
+    .thumbnail img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border: 2px solid #ffd700;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    .thumbnail img:hover {
+      transform: scale(1.1);
+    }
 
-.image-slider1 {
-  width: 100%;
-  overflow: hidden;
-  margin-bottom: 10px;
-}
-
-.image-slider1 img {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.thumbnails {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  padding: 5px;
-  width: 100%;
-  overflow-x: auto;
-  scrollbar-width: thin;
-  scrollbar-color: #ccc #f5f5f5;
-}
-
-.thumbnails::-webkit-scrollbar {
-  height: 6px;
-}
-
-.thumbnails::-webkit-scrollbar-track {
-  background: #f5f5f5;
-  border-radius: 3px;
-}
-
-.thumbnails::-webkit-scrollbar-thumb {
-  background: #ccc;
-  border-radius: 3px;
-}
-
-.thumbnails::-webkit-scrollbar-thumb:hover {
-  background: #aaa;
-}
-
-.thumbnail {
-  flex: 0 0 auto;
-}
-
-.thumbnail img {
-  width: 80px;
-  height: 80px;
-  object-fit: cover;
-  border: 2px solid #ffd700;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-
-.thumbnail img:hover {
-  transform: scale(1.1);
-}
-
-        /* Rumble Profile Section */
+    /* Rumble Profile Section */
     .rumble-profile {
       width: 90%;
       margin: 15px auto;
@@ -990,29 +954,19 @@
   </style>
 </head>
 <body>
- <div class="header-top">
-    <a href="#">Donate</a>
+  <!-- Top Banner Section -->
+  <div class="top-banner">
+    <img src="https://i.ibb.co/HDPRgDYQ/new-banner.jpg" alt="Top Banner">
+    <nav>
+      <div class="left-nav">
+        <a href="landing page.html">Shop Pets</a>
+      </div>
+      <div class="right-nav">
+        <a href="landing page.html">Home</a>
+        <a href="about us.html">About</a>
+      </div>
+    </nav>
   </div>
-  <div class="header-main">
-    <div class="logo">Petco</div>
-    <div class="nav">
-      <a href="#">Home</a>
-      <a href="#">Pets for Adoption</a>
-      <a href="#">Terms</a>
-      <a href="#">Privacy Policy</a>
-      <a href="https://weselldogs.blogspot.com/p/contact-us.html">Contact Us</a>
-      <a href="https://weselldogs.blogspot.com/p/about-us.html">About</a>
-    </div>
-    <div class="search-bar">
-      <input type="text" placeholder="Search Petco">
-      <button>
-        <svg viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-        </svg>
-      </button>
-    </div>
-  </div>
-
 
   <!-- Main Image and Alternative Images -->
   <div class="image-slider-container">
@@ -1056,8 +1010,8 @@
         <h3>Fill in adoption form to proceed</h3>
         <button class="adopt-button" onclick="showForm()">Adopt Rumble</button>
         <button>
-          <span style="display: inline-block; width: 14px; height: 14px; margin-right: 5px;">❤️</span> Add Rumble to your favourites
-        </button>
+          <a href="license.html"> <span style="display: inline-block; width: 14px; height: 14px; margin-right: 5px;">❤️</span> Print Rumbles License
+        </button></a> 
         <p>HELP ME FIND A HOME</p>
         <div class="social">
           <a href="#">🌟</a>
@@ -1237,10 +1191,10 @@
     <h2>Thanks for Stopping By!</h2>
     <p>Drop a review if you love our customer support! 💖</p>
     <div class="logo-container">
-      <img src="https://i.im.ge/2025/06/01/vBcRcJ.Pink-and-White-Aesthetic-Background-Fly.jpg" alt="Petco Logo">
+      <img src="https://i.ibb.co/tghW75d/logooo.png" alt="Petco Logo">
     </div>
     <h3>Petco</h3>
-    <p class="italic">petcoadopt.co online store & | Support</p>
+    <p class="italic">petcoadopt.co online store & | pet adopt</p>
     <button onclick="contactUs()">Get in Touch</button>
   </section>
 
@@ -1311,38 +1265,38 @@
     // Initial comments with image placeholders
     const initialComments = [
       {
-        name: "Sarah J.",
+          name: "Sarah J.",
         text: "Rumble is such a sweet dog! Can't wait to meet him!",
         time: "09:43 PM WAT, May 27, 2025",
-        photo: "https://i.im.ge/2025/05/29/vJ4HgT.download-5.jpeg",
+        photo: "https://i.ibb.co/VcSwj80C/download-8.jpg",
         timestamp: new Date("2025-05-27T21:43:00").getTime()
       },
       {
         name: "John Pets Lover.",
         text: "Loved the profile! Hope I can give Max a good home.",
         time: "09:40 PM WAT, May 27, 2025",
-        photo: "https://i.im.ge/2025/05/29/vJ4JDL.download-4.jpeg",
+        photo: "https://i.ibb.co/XxTYtRjz/download-7.jpg",
         timestamp: new Date("2025-05-27T21:40:00").getTime()
       },
       {
         name: "Emma Daniel.",
         text: "His playful energy is really adorable!, goodluck with adopting your pets from petco!",
         time: "09:38 PM WAT, May 27, 2025",
-        photo: "https://i.im.ge/2025/05/29/vJ4pec.download-3.jpeg",
+        photo: "https://i.ibb.co/p6DKvHzh/download-6.jpg",
         timestamp: new Date("2025-05-27T21:38:00").getTime()
       },
       {
         name: "Mike Damian.",
         text: "Its my second time getting a dog from petco, and its been seamless!",
         time: "09:35 PM WAT, May 27, 2025",
-        photo: "https://i.im.ge/2025/05/29/vJ4nCG.download-2.jpeg",
+        photo: "https://i.ibb.co/C520TDzw/download-5.jpg",
         timestamp: new Date("2025-05-27T21:35:00").getTime()
       },
       {
         name: "Lisa Kurty.",
         text: "Looking forward to buying a pet wolf!",
         time: "09:32 PM WAT, May 27, 2025",
-        photo: "https://i.im.ge/2025/05/29/vJ44vx.download-1.jpeg",
+        photo: "https://i.ibb.co/QFfdCXTd/download-4.jpg",
         timestamp: new Date("2025-05-27T21:32:00").getTime()
       }
     ];
