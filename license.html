@@ -1,0 +1,290 @@
+<!-- Enhanced Modernized Printable Pet Profile with Info Section -->
+<div class="pet-profile-container">
+  <div class="main-image">
+    <div class="image-overlay">
+      <img src="https://i.ibb.co/tghW75d/logooo.png" alt="Rumble Main Image">
+      <div class="overlay-text">Licensed</div>
+    </div>
+  </div>
+  <div class="pet-info">
+    <div class="info-details">
+      <p class="continue-reading">Continue reading about Rumble at https://www.petrescue.com.au/listings/1120517</p>
+      <ul>
+        <li><span>Age</span> <span>11 Weeks old</span></li>
+        <li><span>Vaccinated</span> <span>Yes</span></li>
+        <li><span>Desexed</span> <span>Yes</span></li>
+        <li><span>Wormed</span> <span>Yes</span></li>
+        <li><span>Source number</span> <span>Not Available</span></li>
+        <li><span>Breeder ID</span> <span>Mr-PetPark0011988</span></li>
+        <li><span>Adoption fee</span> <span>$900.00</span></li>
+        <li><span>Microchip number</span> <span>900164002349939</span></li>
+        <li><span>Co-rescue Organisation</span> <span>Doreen Pet Connection</span></li>
+      </ul>
+    </div>
+    <div class="logo-space">
+      <img src="https://i.ibb.co/0Rb1hFvm/Pink-and-White-Aesthetic-Background-Flyer-3.jpg" alt="Rescue Organisation Logo" class="logo">
+    </div>
+  </div>
+  <div class="print-button">
+    <button onclick="window.print()">Print License</button>
+  </div>
+  <div class="pet-rescue-footer">
+    <img src="https://i.ibb.co/tghW75d/logooo.png" alt="PetRescue Logo" class="footer-logo">
+    <span>Petco ID: 1120517</span>
+  </div>
+</div>
+
+<style>
+.pet-profile-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  padding: 20px;
+  width: 100%;
+  max-width: 700px;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  position: relative;
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.main-image {
+  width: 100%; /* Full width to remove white edges */
+  margin-bottom: 20px;
+  overflow: hidden;
+  border-radius: 15px;
+  position: relative;
+}
+
+.image-overlay {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.main-image img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block; /* Removes any potential gaps */
+  border-radius: 15px;
+  transition: transform 0.5s ease;
+}
+
+.main-image img:hover {
+  transform: scale(1.05);
+}
+
+.overlay-text {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  color: #fff;
+  font-size: 1.5em;
+  font-weight: 600;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  background: rgba(39, 174, 96, 0.5);
+  padding: 5px 15px;
+  border-radius: 5px;
+  animation: slideIn 1s ease-in-out;
+}
+
+@keyframes slideIn {
+  0% { opacity: 0; transform: translateX(-20px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+.pet-info {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 25px;
+  gap: 20px;
+}
+
+.info-details {
+  flex: 2;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(5px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.info-details:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.info-details ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.info-details li {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #e0e0e0;
+  transition: transform 0.2s ease;
+}
+
+.info-details li:hover {
+  transform: translateX(5px);
+}
+
+.info-details li span:first-child {
+  font-weight: 600;
+  color: #2c3e50;
+  text-transform: uppercase;
+  font-size: 0.9em;
+}
+
+.info-details li span:last-child {
+  color: #7f8c8d;
+  font-size: 0.95em;
+}
+
+.continue-reading {
+  font-size: 0.85em;
+  color: #7f8c8d;
+  margin-bottom: 15px;
+  font-style: italic;
+}
+
+.logo-space {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+
+.logo {
+  width: 180px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.1);
+}
+
+.print-button {
+  width: 100%;
+  text-align: center;
+  margin: 20px 0;
+}
+
+.print-button button {
+  background: linear-gradient(90deg, #27ae60, #2ecc71);
+  color: #fff;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 25px;
+  font-size: 1.1em;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(39, 174, 96, 0.4);
+}
+
+.print-button button:hover {
+  background: linear-gradient(90deg, #219653, #25a25a);
+  transform: translateY(-2px);
+  box-shadow: 0 7px 20px rgba(39, 174, 96, 0.6);
+}
+
+.pet-rescue-footer {
+  width: 100%;
+  background: linear-gradient(90deg, #27ae60, #2ecc71);
+  padding: 15px;
+  text-align: center;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  color: #fff;
+  font-weight: 600;
+  font-size: 1em;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  bottom: 0;
+}
+
+.footer-logo {
+  width: 25px;
+  height: auto;
+  vertical-align: middle;
+  filter: brightness(0) invert(1);
+}
+
+/* Print-specific styles */
+@media print {
+  body {
+    margin: 0;
+    padding: 0;
+  }
+  .pet-profile-container {
+    max-width: 100%;
+    padding: 20mm;
+    box-shadow: none;
+    background: none;
+  }
+  .main-image img {
+    max-height: 200mm;
+    page-break-inside: avoid;
+  }
+  .pet-info {
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20mm;
+    gap: 10mm;
+  }
+  .info-details {
+    width: 100%;
+    border: none;
+    padding: 0;
+    background: none;
+    box-shadow: none;
+  }
+  .logo-space {
+    display: none;
+  }
+  .print-button {
+    display: none;
+  }
+  .pet-rescue-footer {
+    width: 100%;
+    padding: 5mm;
+    font-size: 12pt;
+    background: none;
+    color: #000;
+    box-shadow: none;
+    position: static;
+  }
+  .footer-logo {
+    width: 15mm;
+    filter: none;
+  }
+  .main-image, .pet-info, .pet-rescue-footer {
+    page-break-inside: avoid;
+  }
+  .continue-reading, .overlay-text {
+    display: none;
+  }
+}
+</style>
