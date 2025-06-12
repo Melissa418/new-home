@@ -58,26 +58,73 @@
     .top-banner a:hover {
       color: #ffd700;
     }
-    /* Ensure banner is responsive */
+/* Hamburger Menu Styles */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: space-around;
+      width: 30px;
+      height: 25px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      z-index: 2;
+    }
+    .hamburger span {
+      width: 100%;
+      height: 3px;
+      background: #fff;
+      transition: all 0.3s ease;
+    }
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(7px, -7px);
+    }
+    .nav-links {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+    }
+    /* Mobile Styles */
     @media (max-width: 600px) {
       .top-banner {
         height: 100px;
       }
-      .top-banner nav {
+      .hamburger {
+        display: flex;
+        margin-right: 20px;
+      }
+      .nav-links {
+        display: none;
         flex-direction: column;
-        align-items: center;
-        padding: 5px 10px;
+        position: absolute;
+        top: 100px;
+        left: 0;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.9);
+        padding: 20px 0;
+        z-index: 1;
       }
-      .top-banner .left-nav,
-      .top-banner .right-nav {
-        margin: 5px 0;
+      .nav-links.active {
+        display: flex;
       }
-      .top-banner a {
-        margin: 5px 10px;
-        font-size: 0.9em;
+      .nav-links .left-nav,
+      .nav-links .right-nav {
+        margin: 0;
+        text-align: center;
+      }
+      .nav-links a {
+        display: block;
+        margin: 15px 0;
+        font-size: 1.1em;
       }
     }
-
     /* Existing Styles */
     .image-slider-container {
       display: flex;
@@ -958,12 +1005,19 @@
   <div class="top-banner">
     <img src="https://i.ibb.co/HDPRgDYQ/new-banner.jpg" alt="Top Banner">
     <nav>
-      <div class="left-nav">
-        <a href="landing page.html">Shop Pets</a>
-      </div>
-      <div class="right-nav">
-        <a href="landing page.html">Home</a>
-        <a href="about us.html">About</a>
+      <button class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="nav-links">
+        <div class="left-nav">
+          <a href="landing page.html">Shop Pets</a>
+        </div>
+        <div class="right-nav">
+          <a href="landing page.html">Home</a>
+          <a href="about us.html">About</a>
+        </div>
       </div>
     </nav>
   </div>
