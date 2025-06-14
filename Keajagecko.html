@@ -1,0 +1,1457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Keaja</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #ffffff;
+      color: #333333;
+      overflow-x: hidden;
+    }
+
+    /* Top Banner Styles */
+    .top-banner {
+      width: 100%;
+      height: 150px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: transparent;
+      position: relative;
+    }
+    .top-banner img {
+      width: 100%;
+      height: 100%;
+      object-fit: center;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 0;
+    }
+    .top-banner nav {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 20px;
+      z-index: 1;
+    }
+    .top-banner .left-nav {
+      margin-left: 10px;
+    }
+    .top-banner .right-nav {
+      margin-right: 10px;
+    }
+    .top-banner a {
+      text-decoration: none;
+      color: #fff;
+      margin: 0 15px;
+      font-size: 1em;
+      font-weight: bold;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+      transition: color 0.3s;
+    }
+    .top-banner a:hover {
+      color: #ffd700;
+    }
+    /* Ensure banner is responsive */
+    @media (max-width: 600px) {
+      .top-banner {
+        height: 100px;
+      }
+      .top-banner nav {
+        flex-direction: column;
+        align-items: center;
+        padding: 5px 10px;
+      }
+      .top-banner .left-nav,
+      .top-banner .right-nav {
+        margin: 5px 0;
+      }
+      .top-banner a {
+        margin: 5px 10px;
+        font-size: 0.9em;
+      }
+    }
+
+    /* Existing Styles */
+    .image-slider-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 0 auto;
+      padding: 10px;
+      width: 100%;
+      max-width: 600px;
+    }
+    .image-slider1 {
+      width: 100%;
+      overflow: hidden;
+      margin-bottom: 10px;
+    }
+    .image-slider1 img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .thumbnails {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      padding: 5px;
+      width: 100%;
+      overflow-x: auto;
+      scrollbar-width: thin;
+      scrollbar-color: #ccc #f5f5f5;
+    }
+    .thumbnails::-webkit-scrollbar {
+      height: 6px;
+    }
+    .thumbnails::-webkit-scrollbar-track {
+      background: #f5f5f5;
+      border-radius: 3px;
+    }
+    .thumbnails::-webkit-scrollbar-thumb {
+      background: #ccc;
+      border-radius: 3px;
+    }
+    .thumbnails::-webkit-scrollbar-thumb:hover {
+      background: #aaa;
+    }
+    .thumbnail {
+      flex: 0 0 auto;
+    }
+    .thumbnail img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border: 2px solid #ffd700;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    .thumbnail img:hover {
+      transform: scale(1.1);
+    }
+
+    /* Rumble Profile Section */
+    .rumble-profile {
+      width: 90%;
+      margin: 15px auto;
+      background: linear-gradient(135deg, #ab47bc, #f48fb1);
+      padding: 15px;
+      border-radius: 10px;
+      color: #fff;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      position: relative;
+      text-align: center;
+    }
+    .rumble-profile h1 {
+      font-size: 1.5em;
+      margin: 0 0 8px 0;
+      color: #fff;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      animation: pulse 2s infinite;
+    }
+    .rumble-profile p {
+      font-size: 0.9em;
+      margin: 0 0 15px 0;
+      color: #fff;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+      animation: fadeIn 2s;
+    }
+    .rumble-profile .details-container {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    .rumble-profile .details {
+      width: 100%;
+    }
+    .rumble-profile .details ul {
+      list-style: none;
+      padding: 10px;
+      margin: 0;
+      background: rgba(255,255,255,0.15);
+      border-radius: 8px;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+    }
+    .rumble-profile .details li {
+      display: flex;
+      justify-content: space-between;
+      padding: 5px 0;
+      border-bottom: 1px dashed #fff;
+      color: #fff;
+      transition: transform 0.3s;
+      font-size: 0.9em;
+    }
+    .rumble-profile .details li:hover {
+      transform: scale(1.02);
+    }
+    .rumble-profile .adopt-section {
+      background: linear-gradient(135deg, #8e24aa, #ec407a);
+      padding: 15px;
+      border-radius: 8px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+    .rumble-profile .adopt-section h3 {
+      font-size: 1em;
+      margin: 0 0 15px 0;
+      color: #fff;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    }
+    .adopt-button {
+      background: linear-gradient(90deg, #ce93d8, #f06292);
+      border: none;
+      padding: 10px;
+      color: #fff;
+      font-size: 0.9em;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+      margin-bottom: 10px;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+      font-weight: 600;
+      position: relative;
+      overflow: hidden;
+    }
+    .adopt-button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3);
+    }
+    .adopt-button:active {
+      transform: scale(0.95);
+    }
+    .rumble-profile .adopt-section button {
+      background: rgba(255,255,255,0.2);
+      border: none;
+      padding: 8px;
+      color: #fff;
+      font-size: 0.8em;
+      border-radius: 15px;
+      cursor: pointer;
+      width: 100%;
+      margin-bottom: 15px;
+      transition: background 0.3s;
+    }
+    .rumble-profile .adopt-section button:hover {
+      background: rgba(255,255,255,0.4);
+    }
+    .rumble-profile .adopt-section p {
+      font-size: 0.8em;
+      margin: 0 0 10px 0;
+      color: #fff;
+      font-weight: bold;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    }
+    .rumble-profile .adopt-section .social {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+    .rumble-profile .adopt-section .social a {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      color: #fff;
+      transition: all 0.3s;
+    }
+    .rumble-profile .adopt-section .social a:hover {
+      transform: rotate(360deg) scale(1.2);
+      color: #ffeb3b;
+    }
+    .rumble-profile .about-rumble {
+      margin-top: 20px;
+    }
+    .rumble-profile .about-rumble h2 {
+      font-size: 1.2em;
+      margin: 0 0 8px 0;
+      color: #fff;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+      transition: transform 0.3s;
+    }
+    .rumble-profile .about-rumble h2:hover {
+      transform: scale(1.02);
+    }
+    .rumble-profile .about-rumble p {
+      font-size: 0.9em;
+      margin: 0 0 15px 0;
+      color: #fff;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+      animation: fadeIn 2s;
+    }
+    /* Adoption Process Section */
+    .adoption-process {
+      width: 90%;
+      margin: 15px auto;
+      padding: 0 15px;
+      color: #333;
+      background-color: #fff;
+      position: relative;
+    }
+    .adoption-process h1 {
+      font-size: 1.5em;
+      margin: 0 0 15px 0;
+      color: #000;
+      font-weight: bold;
+      text-align: center;
+    }
+    .adoption-process .timeline {
+      position: relative;
+      padding-left: 30px;
+    }
+    .adoption-process .timeline::before {
+      content: '';
+      width: 2px;
+      background-color: #ffc107;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 10px;
+    }
+    .adoption-process .step {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 15px;
+      position: relative;
+    }
+    .adoption-process .step .number {
+      width: 20px;
+      height: 20px;
+      background-color: #ffc107;
+      border-radius: 50%;
+      color: #fff;
+      text-align: center;
+      line-height: 20px;
+      font-weight: bold;
+      margin-right: 10px;
+      position: absolute;
+      left: -25px;
+      font-size: 0.9em;
+    }
+    .adoption-process .step .content h3 {
+      font-size: 1em;
+      margin: 0 0 5px 0;
+      color: #000;
+      font-weight: bold;
+    }
+    .adoption-process .step .content p {
+      margin: 0 0 5px 0;
+      color: #757575;
+      font-size: 0.9em;
+    }
+    .adoption-process .step .content a {
+      color: #ffc107;
+      text-decoration: none;
+      font-size: 0.8em;
+    }
+    .adoption-process .step .content a:hover {
+      text-decoration: underline;
+    }
+    .adoption-process .step .content .details {
+      display: none;
+      margin-top: 8px;
+      padding: 8px;
+      background-color: #f5f5f5;
+      border-radius: 4px;
+      color: #333;
+      font-size: 0.8em;
+    }
+    /* Best Selling Products Section */
+    .best-selling {
+      margin-bottom: 30px;
+      position: relative;
+      z-index: 1;
+    }
+    .best-selling h2 {
+      font-size: 1.2em;
+      color: #fff;
+      background: linear-gradient(90deg, #ffc107, #ffca28);
+      padding: 10px 20px;
+      display: inline-flex;
+      align-items: center;
+      border-radius: 8px;
+      margin: 0 auto 20px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 700;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+      border: 1px solid #fff;
+    }
+    .best-selling h2 span:last-child {
+      margin-left: 10px;
+      font-size: 0.9em;
+      animation: bounce 1.5s infinite ease-in-out;
+    }
+    .product-strip {
+      display: flex;
+      gap: 15px;
+      overflow-x: auto;
+      padding: 10px 15px;
+      scrollbar-width: thin;
+      scrollbar-color: #ccc #f5f5f5;
+      -webkit-overflow-scrolling: touch;
+      flex-wrap: nowrap;
+      white-space: nowrap;
+    }
+    .product-strip::-webkit-scrollbar {
+      height: 6px;
+    }
+    .product-strip::-webkit-scrollbar-track {
+      background: #f5f5f5;
+      border-radius: 3px;
+    }
+    .product-strip::-webkit-scrollbar-thumb {
+      background: #ccc;
+      border-radius: 3px;
+    }
+    .product-strip::-webkit-scrollbar-thumb:hover {
+      background: #aaa;
+    }
+    .product-item {
+      min-width: 120px;
+      background-color: white;
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      text-align: center;
+      flex-shrink: 0;
+      display: inline-block;
+    }
+    .product-item img {
+      width: 100%;
+      max-width: 120px;
+      height: auto;
+      max-height: 120px;
+      object-fit: cover;
+    }
+    .product-item h3 {
+      font-size: 0.9em;
+      margin: 5px 0;
+      color: #333;
+    }
+    .product-item p {
+      font-size: 0.8em;
+      color: #ff4d4d;
+      margin: 5px 0;
+    }
+    .product-item p.reviews {
+      font-size: 0.7em;
+      color: #666;
+    }
+    .product-item p.discount {
+      font-size: 0.6em;
+      color: #800000;
+    }
+    /* Comment Section */
+    section.comment-section {
+      width: 90%;
+      margin: 0 auto 30px;
+      background: linear-gradient(135deg, #e0f7f9, #b2dfdb);
+      border-radius: 10px;
+      padding: 15px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+      position: relative;
+      overflow: hidden;
+      font-family: 'Roboto', sans-serif;
+    }
+    .comment-section .banner {
+      background: linear-gradient(90deg, #26a69a, #4db6ac);
+      padding: 10px;
+      text-align: center;
+      border-radius: 8px 8px 0 0;
+      position: relative;
+      z-index: 1;
+      animation: pulse 4s infinite;
+    }
+    .comment-section .banner p {
+      font-size: 1em;
+      color: #fff;
+      margin: 0;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-family: 'Playfair Display', serif;
+    }
+    .comment-section .banner::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255, 202, 40, 0.2) 0%, transparent 70%);
+      animation: rotate 15s infinite linear;
+      z-index: 0;
+    }
+    .comment-section h1 {
+      font-size: 1.3em;
+      color: #1a2b2e;
+      text-align: center;
+      margin: 15px 0;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 700;
+      background: linear-gradient(90deg, #ffc107, #ffca28);
+      padding: 8px 15px;
+      border-radius: 8px;
+      display: inline-block;
+      font-family: 'Playfair Display', serif;
+    }
+    .comments {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+    article.comment {
+      display: flex;
+      align-items: flex-start;
+      background: #fff;
+      padding: 10px;
+      width: 100%;
+      max-width: 100%;
+      border-radius: 10px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 2px solid transparent;
+      background: linear-gradient(to right, #fff, #fff) padding-box,
+                  linear-gradient(to right, #ffc107, #ffecb3) border-box;
+    }
+    article.comment.left {
+      align-self: flex-start;
+    }
+    article.comment.right {
+      align-self: flex-end;
+    }
+    article.comment:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(255, 193, 7, 0.3);
+    }
+    article.comment .avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      margin-right: 10px;
+      flex-shrink: 0;
+      overflow: hidden;
+      border: 2px solid #ffc107;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+    }
+    article.comment.right .avatar {
+      margin-right: 0;
+      margin-left: 10px;
+      order: 1;
+    }
+    article.comment .content {
+      flex: 1;
+    }
+    article.comment.right .content {
+      text-align: right;
+    }
+    article.comment .author {
+      color: #ffc107;
+      font-weight: 600;
+      margin: 0;
+      font-size: 0.9em;
+    }
+    article.comment p {
+      margin: 5px 0 0;
+      color: #555;
+      line-height: 1.4;
+      font-size: 0.9em;
+    }
+    article.comment .time {
+      color: #888;
+      font-size: 0.7em;
+      margin-top: 5px;
+    }
+    .hidden {
+      display: none;
+    }
+    .comment-form {
+      background: #fff;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+      border: 2px solid #26a69a;
+      margin-top: 15px;
+    }
+    .comment-form h2 {
+      font-size: 1.3em;
+      color: #1a2b2e;
+      text-align: center;
+      margin-bottom: 15px;
+      font-weight: 600;
+      font-family: 'Playfair Display', serif;
+    }
+    .comment-form form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .comment-form input[type="text"],
+    .comment-form textarea {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 0.9em;
+      outline: none;
+      transition: border-color 0.3s ease;
+      font-family: 'Roboto', sans-serif;
+    }
+    .comment-form input[type="text"]:focus,
+    .comment-form textarea:focus {
+      border-color: #ffc107;
+    }
+    .comment-form input[type="file"] {
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 0.9em;
+      font-family: 'Roboto', sans-serif;
+    }
+    .comment-form button {
+      background: linear-gradient(90deg, #ffc107, #ffca28);
+      color: #1a2b2e;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 20px;
+      font-size: 0.9em;
+      cursor: pointer;
+      font-weight: 600;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      font-family: 'Roboto', sans-serif;
+    }
+    .comment-form button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
+    }
+    .buttons {
+      text-align: center;
+      margin-bottom: 15px;
+    }
+    .buttons button {
+      background: linear-gradient(90deg, #26a69a, #4db6ac);
+      color: #fff;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 20px;
+      font-size: 0.9em;
+      cursor: pointer;
+      margin: 0 8px;
+      font-weight: 500;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      font-family: 'Roboto', sans-serif;
+    }
+    .buttons button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
+    }
+    .buttons button[onclick="showLess()"] {
+      background: linear-gradient(90deg, #ff4d4d, #ff6b6b);
+    }
+    /* Thanks Section */
+    .thanks-section {
+      padding: 15px;
+      text-align: center;
+      background: linear-gradient(135deg, #fff, #f0f0f0);
+      width: 90%;
+      margin: 0 auto;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+      position: relative;
+      overflow: hidden;
+      font-family: 'Roboto', sans-serif;
+    }
+    .thanks-section h2 {
+      font-size: 1.3em;
+      color: #1a2b2e;
+      margin-bottom: 8px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-family: 'Playfair Display', serif;
+    }
+    .thanks-section p {
+      font-size: 0.9em;
+      color: #1a2b2e;
+      margin-bottom: 15px;
+      font-weight: 500;
+      font-family: 'Roboto', sans-serif;
+    }
+    .thanks-section .logo-container {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(90deg, #26a69a, #4db6ac);
+      border-radius: 50%;
+      margin: 15px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease;
+    }
+    .thanks-section .logo-container img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+    }
+    .thanks-section h3 {
+      font-size: 1em;
+      color: #1a2b2e;
+      margin-bottom: 8px;
+      font-weight: 600;
+      font-family: 'Playfair Display', serif;
+    }
+    .thanks-section p.italic {
+      font-size: 0.8em;
+      color: #1a2b2e;
+      margin-bottom: 15px;
+      font-style: italic;
+      font-family: 'Roboto', sans-serif;
+    }
+    .thanks-section button {
+      background: linear-gradient(90deg, #ffc107, #ffca28);
+      color: #1a2b2e;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 20px;
+      font-size: 0.9em;
+      cursor: pointer;
+      font-weight: 600;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+      font-family: 'Roboto', sans-serif;
+    }
+    .thanks-section button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3);
+    }
+    .thanks-section::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(38,166,154,0.1) 0%, transparent 70%);
+      animation: rotate 20s infinite linear;
+      z-index: 0;
+    }
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      animation: fadeIn 0.3s ease;
+    }
+    .modal-content {
+      background: #fff;
+      padding: 15px;
+      border-radius: 10px;
+      width: 95%;
+      max-width: 90%;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      border: 2px solid transparent;
+      background: linear-gradient(to right, #fff, #fff) padding-box,
+                  linear-gradient(90deg, #ce93d8, #f06292);
+      position: relative;
+      z-index: 1001;
+    }
+    .modal-content::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(206,147,216,0.2), transparent 70%);
+      animation: rotate 10s linear infinite;
+      z-index: -1;
+      pointer-events: none;
+    }
+    .modal-content h2 {
+      color: #f06292;
+      margin-top: 0;
+      font-size: 1.3em;
+      text-align: center;
+      font-weight: 700;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+      z-index: 1002;
+    }
+    .modal-content input,
+    .modal-content textarea {
+      width: 100%;
+      padding: 8px;
+      margin: 8px 0;
+      border: 2px solid #e0e0e0;
+      border-radius: 6px;
+      font-size: 0.9em;
+      box-sizing: border-box;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      z-index: 1002;
+    }
+    .modal-content input:focus,
+    .modal-content textarea:focus {
+      border-color: #ce93d8;
+      box-shadow: 0 0 8px rgba(206,147,216,0.3);
+      outline: none;
+    }
+    .modal-content .button-group {
+      display: flex;
+      justify-content: center;
+      margin-top: 15px;
+      z-index: 1002;
+    }
+    .modal-content button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.9em;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      min-width: 120px;
+      z-index: 1002;
+      position: relative;
+      overflow: hidden;
+    }
+    .modal-content .submit-btn {
+      background: linear-gradient(90deg, #ce93d8, #f06292);
+      color: #fff;
+    }
+    .modal-content .submit-btn .spinner {
+      display: none;
+      width: 18px;
+      height: 18px;
+      border: 2px solid #fff;
+      border-top: 2px solid transparent;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .modal-content .submit-btn.loading .spinner {
+      display: inline-block;
+    }
+    .modal-content .submit-btn.loading span {
+      visibility: hidden;
+    }
+    .modal-content .submit-btn.success span {
+      content: "Success!";
+      visibility: visible;
+    }
+    .modal-content .submit-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 5px 12px rgba(0,0,0,0.3);
+    }
+    .modal-content .close {
+      position: absolute;
+      top: 8px;
+      right: 10px;
+      font-size: 1.2em;
+      cursor: pointer;
+      color: #666;
+      transition: color 0.3s ease;
+      z-index: 1002;
+    }
+    .modal-content .close:hover {
+      color: #ce93d8;
+    }
+    .success-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+      animation: fadeIn 0.3s ease;
+    }
+    .success-content {
+      background: #fff;
+      padding: 15px;
+      border-radius: 8px;
+      text-align: center;
+      width: 95%;
+      max-width: 90%;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      border: 2px solid transparent;
+      background: linear-gradient(to right, #fff, #fff) padding-box,
+                  linear-gradient(90deg, #ce93d8, #f06292);
+    }
+    .success-content p {
+      color: #f06292;
+      font-size: 1em;
+      margin: 0 0 15px;
+      font-weight: 600;
+    }
+    .success-content button {
+      background: linear-gradient(90deg, #ce93d8, #f06292);
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.9em;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    .success-content button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 5px 12px rgba(0,0,0,0.3);
+    }
+    /* Animations */
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    @keyframes rotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    @keyframes slideIn {
+      from { transform: translateY(15px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    @keyframes spin {
+      0% { transform: translate(-50%, -50%) rotate(0deg); }
+      100% { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+    article.comment.show {
+      animation: slideIn 0.5s ease-out;
+    }
+  </style>
+</head>
+<body>
+  <!-- Top Banner Section -->
+  <div class="top-banner">
+    <img src="https://i.ibb.co/HDPRgDYQ/new-banner.jpg" alt="Top Banner">
+    <nav>
+      <div class="left-nav">
+        <a href="landing page.html">Shop Pets</a>
+      </div>
+      <div class="right-nav">
+        <a href="landing page.html">Home</a>
+        <a href="about us.html">About</a>
+      </div>
+    </nav>
+  </div>
+
+  <!-- Main Image and Alternative Images -->
+  <div class="image-slider-container">
+    <div class="image-slider1">
+      <img id="mainImg" src="https://i.postimg.cc/k4WqFCsd/2-Keaja-female-600x600.jpg" alt="Main Dog Image">   
+      </div>
+    </div>
+
+  <!-- Rumble Profile Section -->
+  <div class="rumble-profile">
+  <h1>Keaja</h1>
+<p>Keaja is a calm, curious Gargoyle Gecko with eye-catching orange markings and a vibe that’s all chill, no chaos.</p>
+<div class="details-container">
+  <div class="details">
+    <ul>
+      <li><span>Breed</span> <span>Gargoyle Gecko</span></li>
+      <li><span>Age</span> <span>Adult</span></li>
+      <li><span>Sex</span> <span>Female</span></li>
+      <li><span>Location</span> <span>Petco store</span></li>
+      <li><span>May live with</span> <span>individuals or Family</span></li>
+      <li><span>Size</span> <span>Medium</span></li>
+      <li><span>Reference ID</span> <span>GEO-061425</span></li>
+      <li><span>Price</span> <span>$80.00</span></li>
+    </ul>
+  </div>
+      <div class="adopt-section">
+        <h3>Fill in adoption form to proceed</h3>
+        <button class="adopt-button" onclick="showForm()">Adopt Keaja</button>
+        <button>
+          <a href="license.html"> <span style="display: inline-block; width: 14px; height: 14px; margin-right: 5px;">❤️</span> Print Keaja's License
+        </button></a> 
+        <p>HELP ME FIND A HOME</p>
+        <div class="social">
+          <a href="#">🌟</a>
+          <a href="#">📢</a>
+          <a href="#">💌</a>
+        </div>
+      </div>
+    </div>
+    <div class="about-rumble">
+     <h2>Are you right for Keaja?</h2>
+<p>Okay, real talk — Keaja is kind of a queen. She’s chill, strikingly pretty (those orange patterns? Come on), and has that classic gecko vibe: quiet observer by day, smooth climber by night.
+
+She’s not one for drama — just give her a cozy vertical setup, the right humidity, and she’s golden. She’s easygoing, but like any reptile, she does best with someone who knows a bit about gecko care or is willing to learn. She’s basically the cool roommate who keeps to herself but still adds major aesthetic to your space.</p>
+
+<h2>Is Keaja right for you?</h2>
+<p>If you're into reptiles or thinking about starting your gecko journey, Keaja might be the one. She won’t demand much, but she’ll silently judge your décor choices from her favorite perch. In a sweet way.
+
+Perfect for someone who appreciates low-key companionship and loves just watching nature do its thing up close. And seriously — her coloring alone is worth showing off. 🌿🦎</p>
+</div>
+</div>
+
+  <!-- Adoption Process Section -->
+  <div class="adoption-process">
+    <h1>Our Adopting Process</h1>
+    <div class="timeline">
+      <div class="step">
+        <div class="number">1</div>
+        <div class="content">
+          <h3>Choose the pet you want</h3>
+          <p>Browse our available pets, like keaja, and select the one that captures your heart.</p>
+          <a href="#" onclick="this.nextElementSibling.style.display = (this.nextElementSibling.style.display === 'block' ? 'none' : 'block'); return false;">Show details ▼</a>
+          <div class="details">
+            <p>View pet profiles to learn about their age, breed, and needs. Add your favorite to your list.</p>
+          </div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="number">2</div>
+        <div class="content">
+          <h3>Fill in your adoption information</h3>
+          <p>Provide your name, address, and other details to start the adoption process.</p>
+          <a href="#" onclick="this.nextElementSibling.style.display = (this.nextElementSibling.style.display === 'block' ? 'none' : 'block'); return false;">Show details ▼</a>
+          <div class="details">
+            <p>Include contact info and home details to help us verify your suitability.</p>
+          </div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="number">3</div>
+        <div class="content">
+          <h3>Submit and contact Admin for adoption</h3>
+          <p>Submit your application and click "Contact Admin" to proceed with adoption.</p>
+          <a href="#" onclick="this.nextElementSibling.style.display = (this.nextElementSibling.style.display === 'block' ? 'none' : 'block'); return false;">Show details ▼</a>
+          <div class="details">
+            <p>An admin will review your application and reach out.</p>
+          </div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="number">4</div>
+        <div class="content">
+          <h3>Make payment for the pet and items</h3>
+          <p>Pay for your pet and any additional items you’ve added to your cart.</p>
+          <a href="#" onclick="this.nextElementSibling.style.display = (this.nextElementSibling.style.display === 'block' ? 'none' : 'block'); return false;">Show details ▼</a>
+          <div class="details">
+            <p>Payment covers adoption fees and optional items like pet supplies.</p>
+          </div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="number">5</div>
+        <div class="content">
+          <h3>Wait for delivery of your new pet and items.</h3>
+          <p>Your order will be added to the delivery queue as you await your pet and other items.</p>
+          <a href="#" onclick="this.nextElementSibling.style.display = (this.nextElementSibling.style.display === 'block' ? 'none' : 'block'); return false;">Show details ▼</a>
+          <div class="details">
+            <p>Delivery may take a few days; we’ll confirm the schedule after payment.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Best Selling Products Section -->
+  <div class="best-selling">
+    <h2>
+      <span>Best Selling Products</span>
+      <span>🐶</span>
+    </h2>
+    <div class="product-strip">
+      <div class="product-item">
+        <img src="https://i.im.ge/2025/05/29/vJGQqP.attachment-113748359.jpeg" alt="Dog Food">
+        <h3>Dog Food</h3>
+        <p>$11.00-$160.00</p>
+        <p class="reviews">4.3 ★★★★★ (219 Reviews)</p>
+        <p class="discount">New Buyers Gets 10% off all purchases</p>
+      </div>
+      <div class="product-item">
+        <img src="https://i.im.ge/2025/05/29/vnQChS.Screenshot-2025-05-29-005240.png" alt="Cat Food">
+        <h3>Cat Food</h3>
+        <p>$9.99-$59.00</p>
+        <p class="reviews">4.4 ★★★★★ (302 Reviews)</p>
+        <p class="discount">New Buyers Gets 10% off all purchases</p>
+      </div>
+      <div class="product-item">
+        <img src="https://i.im.ge/2025/05/29/vnTrpL.download-15.jpeg" alt="Cat Litter">
+        <h3>Cat Litter</h3>
+        <p>$9.99 - $31.99</p>
+        <p class="reviews">4.2 ★★★★★ (690 Reviews)</p>
+        <p class="discount">New Buyers Gets 10% off all purchases</p>
+      </div>
+      <div class="product-item">
+        <img src="https://i.im.ge/2025/06/01/vBg8kq.Screenshot-2025-06-01-074024.png" alt="Pet Toys">
+        <h3>Pet Toys</h3>
+        <p>$16.00 - $25.00</p>
+        <p class="reviews">4.7 ★★★★★ (2,789 Reviews)</p>
+        <p class="discount">New Buyers Gets 10% off all purchases</p>
+      </div>
+      <div class="product-item">
+        <img src="https://i.im.ge/2025/05/29/vnTlAc.1237380.webp" alt="Dog Flea & Tick">
+        <h3>Dog Flea & Tick</h3>
+        <p>$69.99 - $224.00</p>
+        <p class="reviews">4.7 ★★★★★ (1,198 Reviews)</p>
+        <p class="discount">New Buyers Gets 10% off all purchases</p>
+      </div>
+      <div class="product-item">
+        <img src="https://i.im.ge/2025/06/01/vBggPC.Screenshot-2025-06-01-074046.png" alt="Playpaw Touch Chew Ring">
+        <h3>Playpaw Touch Chew Ring</h3>
+        <p>$7.99 - $15.00</p>
+        <p class="reviews">4.7 ★★★★★ (98 Reviews)</p>
+        <p class="discount">New Buyers Gets 10% off all purchases</p>
+      </div>
+      <div class="product-item">
+        <img src="https://i.im.ge/2025/06/01/vBgcd4.Screenshot-2025-06-01-074058.png" alt="Smart Dog Toy Ball">
+        <h3>Smart Dog Toy Ball</h3>
+        <p>$36.99 - $79.00</p>
+        <p class="reviews">4.7 ★★★★★ (103 Reviews)</p>
+        <p class="discount">New Buyers Gets 10% off all purchases</p>
+      </div>
+      <div class="product-item">
+        <img src="https://i.im.ge/2025/06/01/vBbfmP.attachment-153827741.jpeg" alt="Pork Crackle">
+        <h3>Pork Crackle</h3>
+        <p>$69.99 - $224.00</p>
+        <p class="reviews">4.7 ★★★★★ (1,121 Reviews)</p>
+        <p class="discount">New Buyers Gets 10% off all purchases</p>
+      </div>
+      <div class="product-item">
+        <img src="https://i.im.ge/2025/06/01/vBbZHq.General-Offers-B-1000x1000-2.jpeg" alt="Rare Birds">
+        <h3>Rare Birds</h3>
+        <p>$189 - $599.99</p>
+        <p class="reviews">4.7 ★★★★★ (221 Reviews)</p>
+        <p class="discount">New Buyers Gets 10% off all purchases</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Comment Section -->
+  <section class="comment-section">
+    <div class="banner">
+      <p>Share Your Thoughts on Our Pets! 🐾</p>
+    </div>
+    <h1>Comments</h1>
+    <div class="comments" id="comments">
+    </div>
+    <div class="buttons">
+      <button onclick="showMore()">See More</button>
+      <button onclick="showLess()">Hide Comments</button>
+    </div>
+    <section class="comment-form">
+      <h2>Add Your Comment</h2>
+      <form id="commentForm">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <textarea name="comment" placeholder="Write your comment..." rows="4" required></textarea>
+        <input type="file" name="photo" accept="image/*" required>
+        <button type="submit">Submit Comment</button>
+      </form>
+    </section>
+  </section>
+
+  <!-- Thanks Section -->
+  <section class="thanks-section">
+    <h2>Thanks for Stopping By!</h2>
+    <p>Drop a review if you love our customer support! 💖</p>
+    <div class="logo-container">
+      <img src="https://i.ibb.co/tghW75d/logooo.png" alt="Petco Logo">
+    </div>
+    <h3>Petco</h3>
+    <p class="italic">petcoadopt.co online store & | pet adopt</p>
+    <button onclick="contactUs()">Get in Touch</button>
+  </section>
+
+  <!-- Modal for Adoption Form -->
+  <div class="modal" id="adoptFormModal">
+    <div class="modal-content">
+      <span class="close" onclick="closeForm()">×</span>
+      <h2>Adopt Keaja</h2>
+      <form id="adoptForm">
+        <input type="text" name="name" placeholder="Your Full Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <input type="tel" name="phone" placeholder="Your Phone Number" required>
+        <input type="text" name="country" placeholder="Your Country" required>
+        <input type="text" name="address" placeholder="Your Residential Address" required>
+        <textarea name="message" placeholder="Why do you want to adopt Keaja?" rows="4" required></textarea>
+        <input type="hidden" name="pet_name" value="Eris">
+        <div class="button-group">
+          <button type="submit" class="submit-btn">
+            <span>Submit Application</span>
+            <div class="spinner"></div>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Success Modal -->
+  <div class="success-modal" id="successModal">
+    <div class="success-content">
+      <p>Your adoption information has been received by Petco, proceed to contact admin</p>
+      <button onclick="contactAdmin()">Contact Admin</button>
+    </div>
+  </div>
+
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <script type="text/javascript">
+    const images = [
+      "https://i.ibb.co/SDmTNQLP/a4q3gqehyekvi3qrrp2n.webp",
+      "https://i.im.ge/2025/05/28/vvOeUh.k1p19qwctpxczsoa1xim.webp",
+      "https://i.im.ge/2025/05/28/vv1MYM.d7rbznhaxhlmlwfk2ryh.webp",
+      "https://i.im.ge/2025/05/28/vvO4WX.uru4b0qqmudocyr1ye9t.jpeg",
+      "https://i.im.ge/2025/05/28/vv1Q4Y.ci6jyclzobeo4hhfbfln-1.webp"
+    ];
+    let currentIndex = 0;
+
+    function changeImage(direction) {
+      currentIndex += direction;
+      if (currentIndex < 0) {
+        currentIndex = images.length - 1;
+      } else if (currentIndex >= images.length) {
+        currentIndex = 0;
+      }
+      document.getElementById("mainImg").src = images[currentIndex];
+    }
+
+    function setMainImage(src) {
+      document.getElementById("mainImg").src = src;
+      currentIndex = images.indexOf(src);
+    }
+
+    // JavaScript for Comments
+    let visibleCount = 3;
+    const commentsContainer = document.getElementById('comments');
+    const seeMoreBtn = document.querySelector('button[onclick="showMore()"]');
+    const seeLessBtn = document.querySelector('button[onclick="showLess()"]');
+    let commentCount = 0;
+
+    // Initial comments with image placeholders
+    const initialComments = [
+      {
+          name: "John",
+        text: "Keaja is *gorgeous*. That orange pattern?? Nature is showing off. 🧡 Might have to rearrange my terrarium plans 👀",
+  time: "10:12 AM EST, June 4, 2025",
+        photo: "https://i.postimg.cc/sxZ5K8ZR/profile_default_medium.jpg",
+        timestamp: new Date("2025-06-03T15:27:00-04:00").getTime()
+      },
+      {
+        name: "Neena",
+        text: "Thinking about getting back into reptiles and Keaja’s kinda pushing me over the edge. Do gargoyles do well solo?",
+  time: "08:59 PM EST, June 5, 2025",
+        photo: "https://i.ibb.co/XxTYtRjz/download-7.jpg",
+        timestamp: new Date("2025-03-27T21:60:00").getTime()
+      },
+      {
+        name: "Zara",
+        text: "Keaja looks like she belongs in a video game. If she’s still available next week, I might need to apply 😅",
+  time: "11:34 AM EST, June 6, 2025",
+        photo: "https://i.postimg.cc/qv9V56YV/FB-IMG-17374645502924063.jpg",
+        timestamp: new Date("2025-05-27T21:38:00").getTime()
+      },
+      {
+        name: "Rachel",
+        text: "That calm vibe you mentioned? Totally my speed. I love pets that just hang out and mind their own cool business.",
+  time: "04:16 PM EST, June 6, 2025",
+        photo: "https://i.postimg.cc/VvHH03PQ/FB-IMG-17374648164319423.jpg",
+        timestamp: new Date("2025-05-27T21:35:00").getTime()
+      },
+      {
+        name: "Marcus",
+        text: "What a sweetheart. Elijah’s future family is lucky already.",
+        time: "07:55 PM PST, June 1, 2025",
+        photo: "https://i.postimg.cc/MG83B7NT/FB-IMG-17374646103001753.jpg",
+        timestamp: new Date("2025-05-27T21:32:00").getTime()
+      }
+    ];
+
+    // Load comments from localStorage or use initial comments
+    let storedComments = JSON.parse(localStorage.getItem('comments')) || [];
+    const now = new Date().getTime();
+    const thirtyMinutes = 30 * 60 * 1000;
+
+    // Filter out comments older than 30 minutes
+    storedComments = storedComments.filter(comment => now - comment.timestamp < thirtyMinutes);
+
+    // Combine initial comments with stored comments
+    const allComments = [...initialComments, ...storedComments];
+
+    // Render comments
+    function renderComments(commentsToShow) {
+      commentsContainer.innerHTML = '';
+      commentCount = commentsToShow.length;
+      commentsToShow.forEach((comment, index) => {
+        const isLeft = index % 2 === 0;
+        const newComment = document.createElement('article');
+        newComment.className = `comment ${isLeft ? 'left' : 'right'} ${index < visibleCount ? 'show' : 'hidden'}`;
+        newComment.innerHTML = `
+          <div class="avatar"><img src="${comment.photo}" alt="${comment.name}"></div>
+          <div class="content">
+            <p class="author">${comment.name}</p>
+            <p>${comment.text}</p>
+            <p class="time">${comment.time}</p>
+          </div>
+          ${!isLeft ? `<div class="avatar"><img src="${comment.photo}" alt="${comment.name}"></div>` : ''}
+        `;
+        commentsContainer.appendChild(newComment);
+      });
+      updateButtons();
+    }
+
+    // Initial render
+    renderComments(allComments);
+
+    function showMore() {
+      const comments = document.querySelectorAll('.comment');
+      for (let i = visibleCount; i < Math.min(visibleCount + 2, comments.length); i++) {
+        comments[i].classList.remove('hidden');
+        comments[i].classList.add('show');
+      }
+      visibleCount += 2;
+      updateButtons();
+    }
+
+    function showLess() {
+      const comments = document.querySelectorAll('.comment');
+      for (let i = 3; i < comments.length; i++) {
+        comments[i].classList.add('hidden');
+        comments[i].classList.remove('show');
+      }
+      visibleCount = 3;
+      updateButtons();
+    }
+
+    function updateButtons() {
+      const comments = document.querySelectorAll('.comment');
+      seeMoreBtn.style.display = visibleCount < comments.length ? 'inline-block' : 'none';
+      seeLessBtn.style.display = visibleCount > 3 ? 'inline-block' : 'none';
+    }
+
+    // Handle comment form submission
+    document.getElementById('commentForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = e.target.name.value;
+      const commentText = e.target.comment.value;
+      const photoInput = e.target.photo.files[0];
+
+      if (name && commentText && photoInput) {
+        const now = new Date();
+        const newComment = {
+          name: name,
+          text: commentText,
+          time: now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true }) + ' WAT, May 27, 2025',
+          photo: URL.createObjectURL(photoInput),
+          timestamp: now.getTime()
+        };
+
+        // Add to stored comments
+        storedComments.push(newComment);
+        localStorage.setItem('comments', JSON.stringify(storedComments));
+
+        // Re-render comments
+        renderComments([...initialComments, ...storedComments]);
+        e.target.reset();
+      } else {
+        alert('Please fill all fields and upload a photo.');
+      }
+    });
+
+    // Clean up old comments every minute
+    setInterval(() => {
+      const now = new Date().getTime();
+      storedComments = storedComments.filter(comment => now - comment.timestamp < thirtyMinutes);
+      localStorage.setItem('comments', JSON.stringify(storedComments));
+      renderComments([...initialComments, ...storedComments]);
+    }, 60 * 1000);
+
+    // EmailJS and Modal Script
+    (function() {
+      emailjs.init('C2XqQE31DQCkxLD4b');
+    })();
+
+    function showForm() {
+      document.getElementById('adoptFormModal').style.display = 'flex';
+    }
+
+    function closeForm() {
+      document.getElementById('adoptFormModal').style.display = 'none';
+    }
+
+    function contactAdmin() {
+      window.location.href = 'https://wa.link/uwqki4';
+    }
+
+    function contactUs() {
+      window.location.href = 'mailto:support@petcoadopt.co';
+    }
+
+    const submitButton = document.querySelector('.submit-btn');
+    document.getElementById('adoptForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const form = this;
+
+      // Show spinner
+      submitButton.classList.add('loading');
+      submitButton.disabled = true;
+
+      emailjs.sendForm('service_o0uvqdi', 'template_9u0az1w', form)
+        .then(function(response) {
+          console.log('SUCCESS!', response.status, response.text);
+          submitButton.classList.remove('loading');
+          submitButton.classList.add('success');
+          submitButton.querySelector('span').textContent = 'Success!';
+          submitButton.disabled = false;
+
+          setTimeout(() => {
+            submitButton.classList.remove('success');
+            submitButton.querySelector('span').textContent = 'Submit Application';
+            document.getElementById('adoptFormModal').style.display = 'none';
+            document.getElementById('successModal').style.display = 'flex';
+          }, 1500);
+        }, function(error) {
+          console.log('FAILED...', error);
+          submitButton.classList.remove('loading');
+          submitButton.disabled = false;
+          alert('Failed to send adoption information. Please try again.');
+        });
+    });
+
+    window.onclick = function(event) {
+      const modal = document.getElementById('adoptFormModal');
+      const successModal = document.getElementById('successModal');
+      if (event.target === modal) {
+        closeForm();
+      } else if (event.target === successModal) {
+        document.getElementById('successModal').style.display = 'none';
+      }
+    };
+  </script>
+</body>
+</html>
