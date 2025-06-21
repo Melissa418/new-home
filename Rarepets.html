@@ -1,0 +1,1317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dogs</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Roboto', sans-serif;
+      background-color: #f0f4f8;
+      color: #2d3748;
+    }
+    
+    /* Header Styles */
+    .header-top {
+      background-color: #fff;
+      padding: clamp(0.5rem, 2vw, 0.75rem) clamp(1rem, 3vw, 1.5rem);
+      text-align: right;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .header-top a {
+      color: #27ae60;
+      text-decoration: none;
+      font-size: clamp(0.8rem, 2vw, 0.9rem);
+      margin: 0 clamp(0.5rem, 1.5vw, 0.75rem);
+      padding: 0.5rem;
+      display: inline-block;
+    }
+
+    .header-top a:hover {
+      text-decoration: underline;
+    }
+
+    .header-main {
+      background-color: #fff;
+      padding: clamp(1rem, 3vw, 1.5rem);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      position: relative;
+      text-align: center;
+    }
+
+    .header-main .logo {
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      font-weight: bold;
+      color: #27ae60;
+      margin-bottom: 0.5rem;
+    }
+
+    .header-main .nav {
+      display: flex;
+      justify-content: center;
+      gap: clamp(0.5rem, 2vw, 1rem);
+      margin-bottom: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .header-main .nav a {
+      color: #333;
+      text-decoration: none;
+      font-size: clamp(0.8rem, 2vw, 0.9rem);
+      padding: 0.5rem;
+      display: inline-block;
+    }
+
+    .header-main .nav a:hover {
+      color: #27ae60;
+    }
+
+    .header-main .search-bar {
+      margin: 0 auto;
+      width: min(100%, 400px);
+      position: relative;
+    }
+
+    .header-main .search-bar input {
+      width: 100%;
+      padding: clamp(0.5rem, 2.5vw, 0.75rem) clamp(2rem, 5vw, 2.5rem) clamp(0.5rem, 2.5vw, 0.75rem) clamp(0.5rem, 2.5vw, 0.75rem);
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: clamp(0.9rem, 2.5vw, 1rem);
+    }
+
+    .header-main .search-bar button {
+      position: absolute;
+      right: clamp(0.5rem, 2vw, 0.75rem);
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .header-main .search-bar button svg {
+      width: 16px;
+      height: 16px;
+      stroke: #666;
+    }
+ /* Main Content */
+    .main-content {
+      position: relative;
+      min-height: 50vh;
+      overflow: hidden;
+    }
+
+    .main-content .slideshow {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      animation: slideFade 6s infinite;
+    }
+
+    .main-content .slideshow::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+    }
+
+    .main-content .overlay-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #fff;
+      text-align: center;
+      z-index: 1;
+      padding: 1rem;
+    }
+
+    .main-content .overlay-text h1 {
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      font-weight: bold;
+      background: linear-gradient(45deg, #ffffff, #a3e635, #27ae60);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
+      animation: pulse 2s infinite ease-in-out;
+    }
+
+    .main-content .overlay-text .tagline {
+      font-size: clamp(0.8rem, 2.5vw, 1rem);
+      background: linear-gradient(90deg, rgba(255, 193, 7, 0.2), rgba(206, 147, 216, 0.2));
+      padding: clamp(0.5rem, 1.5vw, 0.75rem) clamp(1rem, 3vw, 1.5rem);
+      border: 2px solid #a3e635;
+      border-radius: 10px;
+      display: inline-block;
+      margin-top: 0.5rem;
+      transition: transform 0.3s ease;
+    }
+
+    .main-content .overlay-text .tagline:hover {
+      transform: scale(1.05);
+    }
+
+    .hamburger {
+      display: none;
+      font-size: clamp(1.2rem, 3vw, 1.5rem);
+      background: none;
+      border: none;
+      cursor: pointer;
+      position: absolute;
+      left: clamp(1rem, 3vw, 1.5rem);
+      top: clamp(1rem, 3vw, 1.5rem);
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .hamburger {
+      display: none;
+      cursor: pointer;
+    }
+    .hamburger div {
+      width: 25px;
+      height: 3px;
+      background-color: #2d3748;
+      margin: 5px;
+      transition: all 0.3s ease;
+    }
+    .nav-mobile {
+      display: none;
+      flex-direction: column;
+      background-color: #ffffff;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      border-bottom: 1px solid #e2e8f0;
+      z-index: 10;
+    }
+    .nav-mobile a {
+      padding: 15px 20px;
+      color: #2d3748;
+      text-decoration: none;
+      font-size: 1em;
+      font-weight: 500;
+    }
+    .nav-mobile a:hover {
+      background-color: #edf2f7;
+      color: #48bb78;
+    }
+    @media (max-width: 768px) {
+      .header-main .nav {
+        display: none;
+      }
+      .hamburger {
+        display: block;
+      }
+      .nav-mobile.active {
+        display: flex;
+      }
+      .adoption-container {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    @media (min-width: 769px) {
+      .header-main .nav {
+        display: flex;
+        space-x-4;
+      }
+      .hamburger {
+        display: none;
+      }
+      .adoption-container {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+     /* Meet the Pack */
+    .meet-the-pack {
+      max-width: 1200px;
+      margin: clamp(1rem, 2vw, 1.5rem) auto;
+      padding: clamp(1.5rem, 4vw, 2rem);
+      background-color: #1a2b2e;
+      color: #fff;
+      border-radius: 10px;
+      display: flex;
+      gap: clamp(0.5rem, 2vw, 1rem);
+    }
+
+    .meet-the-pack div {
+      flex: 1;
+    }
+
+    .meet-the-pack h2 {
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      color: #a3e635;
+      margin-bottom: 0.5rem;
+    }
+
+    .meet-the-pack p {
+      font-size: clamp(0.9rem, 2vw, 1.1rem);
+      margin-bottom: 1rem;
+    }
+
+    .meet-the-pack button {
+      background-color: #a3e635;
+      color: #1a2b2e;
+      border: none;
+      padding: clamp(0.5rem, 2vw, 0.75rem) clamp(1rem, 3vw, 1.5rem);
+      border-radius: 20px;
+      font-size: clamp(0.8rem, 2vw, 1rem);
+      cursor: pointer;
+      min-height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .meet-the-pack img {
+      max-width: 100%;
+      border-radius: 10px;
+    }
+    .pet-adoption {
+      text-align: center;
+      padding: 20px;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      background-color: #ffffff;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      margin: 20px;
+    }
+    .pet-adoption h1 {
+      font-size: 2.5em;
+      color: #2d3748;
+      margin-bottom: 15px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .adoption-container {
+      display: grid;
+      gap: 10px;
+      justify-items: center;
+      padding: 10px;
+    }
+    
+    .pet-card {
+      width: 100%;
+      max-width: 260px;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      border: 1px solid #e0e7ff;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      background-color: #f9fafb;
+    }
+    .pet-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 15px rgba(30, 58, 138, 0.2);
+    }
+    .pet-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      transition: opacity 0.3s ease;
+    }
+    .pet-card img:hover {
+      opacity: 0.9;
+    }
+    .pet-card .header {
+      background-color: #3b82f6;
+      color: white;
+      padding: 6px 12px;
+      text-align: center;
+      font-size: 1.1em;
+      font-weight: 700;
+      border-bottom: 1px solid #e0e7ff;
+    }
+    .pet-card .details {
+      padding: 10px;
+      text-align: left;
+      color: #4b5563;
+      background-color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .pet-card .details .info {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      font-size: 0.85em;
+    }
+    .pet-card .details .info span {
+      display: inline-flex;
+      align-items: center;
+      background-color: #eff6ff;
+      padding: 3px 8px;
+      border-radius: 6px;
+      border: 1px solid #dbeafe;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+    .pet-card .details .info span:hover {
+      background-color: #bfdbfe;
+      transform: scale(1.05);
+    }
+    .pet-card .details .price-tag {
+      font-size: 0.95em;
+      margin: 0;
+      color: #1e40af;
+      font-weight: 500;
+      background-color: #e0e7ff;
+      padding: 4px 10px;
+      border-radius: 4px;
+      display: inline-block;
+      border: 1px solid #dbeafe;
+      transition: background-color 0.3s ease;
+    }
+    .pet-card .details .price-tag:hover {
+      background-color: #bfdbfe;
+    }
+    .adopt-btn {
+      background-color: #10b981;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      text-decoration: none;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-block;
+      font-size: 0.95em;
+      border-radius: 6px;
+      text-align: center;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      margin-top: 8px;
+    }
+    .adopt-btn:hover {
+      background-color: #059669;
+      transform: translateY(-2px);
+    }
+    @media (max-width: 768px) {
+      .pet-adoption {
+        margin: 10px;
+        padding: 15px;
+      }
+      .pet-card {
+        max-width: 200px;
+      }
+      .pet-card img {
+        height: 150px;
+      }
+      .pet-adoption h1 {
+        font-size: 1.8em;
+      }
+    }
+    /* Top Categories */
+    .top-categories {
+      max-width: 1200px;
+      margin: clamp(1rem, 2vw, 1.5rem) auto;
+      padding: clamp(1.5rem, 4vw, 2rem) clamp(0.5rem, 2vw, 1rem);
+      background-color: #fff;
+      border-radius: 10px;
+    }
+
+    .top-categories h2 {
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    .top-categories > div {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(clamp(180px, 45vw, 200px), 1fr));
+      gap: clamp(0.5rem, 2vw, 1rem);
+    }
+
+    .top-categories div {
+      background: #f5f5f5;
+      border-radius: 5px;
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+
+    .top-categories div:hover {
+      transform: scale(1.05);
+    }
+
+    .top-categories img {
+      width: 100%;
+      height: clamp(120px, 30vw, 150px);
+      object-fit: cover;
+    }
+
+    .top-categories p {
+      font-size: clamp(0.9rem, 2vw, 1.1rem);
+      padding: clamp(0.3rem, 1vw, 0.5rem);
+    }
+    /* Our Pet Adopting Process */
+    .pet-adopting-process {
+      padding: clamp(1.5rem, 4vw, 2rem);
+      max-width: 1200px;
+      margin: 0 auto;
+      background: #f5f5f5;
+      border-radius: 10px;
+    }
+
+    .pet-adopting-process h2 {
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      color: #333;
+      text-align: center;
+      margin-bottom: clamp(1rem, 3vw, 1.5rem);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 700;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .pet-adopting-process .process-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(clamp(200px, 45vw, 250px), 1fr));
+      gap: clamp(0.5rem, 2vw, 1rem);
+    }
+
+    .pet-adopting-process .process-item {
+      background: #fff;
+      padding: clamp(1rem, 3vw, 1.5rem);
+      border-radius: 10px;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .pet-adopting-process .process-item:hover {
+      transform: scale(1.05);
+    }
+
+    .pet-adopting-process .process-item .icon {
+      font-size: clamp(2rem, 5vw, 2.5rem);
+      margin-bottom: 0.5rem;
+    }
+
+    .pet-adopting-process .process-item h3 {
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      color: #333;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    .pet-adopting-process .process-item p {
+      font-size: clamp(0.9rem, 2vw, 1rem);
+      color: #666;
+    }
+
+    /* Testimonials */
+    .testimonials-section {
+      padding: clamp(1.5rem, 4vw, 2rem);
+      background: #1a1a1a;
+      max-width: 1200px;
+      margin: 0 auto;
+      border-radius: 10px;
+    }
+
+    .testimonials-section h2 {
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      color: #fff;
+      text-align: center;
+      margin-bottom: clamp(1rem, 3vw, 1.5rem);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 700;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .testimonials-section .testimonials-grid {
+      display: flex;
+      justify-content: center;
+      gap: clamp(0.5rem, 2vw, 1rem);
+      flex-wrap: wrap;
+    }
+
+    .testimonials-section .testimonial-card {
+      background: #fff;
+      padding: clamp(1rem, 3vw, 1.5rem);
+      border-radius: 10px;
+      max-width: clamp(300px, 45vw, 400px);
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .testimonials-section .testimonial-card p {
+      font-size: clamp(0.9rem, 2vw, 1rem);
+      color: #333;
+      line-height: 1.6;
+      margin-bottom: 0.5rem;
+      font-style: italic;
+    }
+
+    .testimonials-section .testimonial-card .author {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .testimonials-section .testimonial-card .author img {
+      width: clamp(40px, 10vw, 50px);
+      height: clamp(40px, 10vw, 50px);
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .testimonials-section .testimonial-card .author p {
+      font-size: clamp(0.9rem, 2vw, 1rem);
+      color: #333;
+      font-weight: 600;
+      margin: 0;
+      font-style: normal;
+    }
+
+    .testimonials-section .nav-dots {
+      text-align: center;
+      margin-top: clamp(0.5rem, 2vw, 1rem);
+    }
+
+    .testimonials-section .nav-dots span {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      background: #fff;
+      border-radius: 50%;
+      margin: 0 5px;
+      opacity: 0.5;
+    }
+
+    .testimonials-section .nav-dots span.active {
+      opacity: 1;
+    }
+
+    /* Contact Us */
+    .contact-us-section {
+      padding: clamp(1.5rem, 4vw, 2rem);
+      max-width: 1200px;
+      margin: 0 auto;
+      background: #1a1a1a;
+      border-radius: 15px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+      margin-bottom: clamp(1rem, 2vw, 1.5rem);
+      position: relative;
+      overflow: hidden;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    .contact-us-section .banner {
+      background: linear-gradient(90deg, #26a69a, #4db6ac);
+      padding: clamp(1rem, 3vw, 1.5rem);
+      text-align: center;
+      border-radius: 10px 10px 0 0;
+      position: relative;
+      z-index: 1;
+      animation: pulse 4s infinite;
+    }
+
+    .contact-us-section .banner p {
+      font-size: clamp(1rem, 2.5vw, 1.5rem);
+      color: #fff;
+      margin: 0;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .contact-us-section .banner .bg-effect {
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255, 202, 40, 0.2) 0%, transparent 70%);
+      animation: rotate 15s infinite linear;
+      z-index: 0;
+    }
+
+    .contact-us-section h2 {
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      color: #fff;
+      text-align: center;
+      margin: clamp(1rem, 3vw, 1.5rem) 0;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 700;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .contact-us-section form {
+      background: #fff;
+      padding: clamp(1rem, 3vw, 1.5rem);
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      border: 2px solid #26a69a;
+      display: flex;
+      flex-direction: column;
+      gap: clamp(0.5rem, 2vw, 1rem);
+      max-width: 100%;
+      margin: 0 auto;
+    }
+
+    .contact-us-section input,
+    .contact-us-section textarea {
+      padding: clamp(0.5rem, 2.5vw, 0.75rem);
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: clamp(0.9rem, 2vw, 1rem);
+      outline: none;
+      transition: border-color 0.3s ease;
+      font-family: 'Roboto', sans-serif;
+      width: 100%;
+      box-sizing: border-box;
+      min-height: 48px;
+    }
+
+    .contact-us-section textarea {
+      resize: none;
+      min-height: clamp(100px, 20vw, 120px);
+    }
+
+    .contact-us-section button {
+      background: linear-gradient(90deg, #ffc107, #ffca28);
+      color: #1a2b2e;
+      border: none;
+      padding: clamp(0.5rem, 2vw, 0.75rem) clamp(1rem, 3vw, 1.5rem);
+      border-radius: 25px;
+      font-size: clamp(0.9rem, 2vw, 1rem);
+      cursor: pointer;
+      font-weight: 600;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      min-height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .contact-us-section input:focus,
+    .contact-us-section textarea:focus {
+      border-color: #26a69a;
+      box-shadow: 0 0 5px rgba(38, 166, 154, 0.3);
+    }
+
+    .contact-us-section button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Thanks Section */
+    .thanks-section {
+      max-width: 1200px;
+      margin: clamp(1rem, 2vw, 1.5rem) auto;
+      padding: clamp(1.5rem, 4vw, 2rem);
+      text-align: center;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .thanks-section h2 {
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      color: #1a2b2e;
+      margin-bottom: 0.5rem;
+    }
+
+    .thanks-section p {
+      font-size: clamp(0.9rem, 2vw, 1.2rem);
+      color: #1a2b2e;
+    }
+
+    .thanks-section img {
+      width: clamp(60px, 15vw, 80px);
+      height: clamp(60px, 15vw, 80px);
+      border-radius: 50%;
+      margin: clamp(0.5rem, 2vw, 1rem) auto;
+    }
+
+    .thanks-section button {
+      background: linear-gradient(90deg, #ffc107, #ffca28);
+      color: #1a2b2e;
+      border: none;
+      padding: clamp(0.5rem, 2vw, 0.75rem) clamp(1rem, 3vw, 1.5rem);
+      border-radius: 20px;
+      font-size: clamp(0.8rem, 2vw, 1rem);
+      cursor: pointer;
+      min-height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Footer */
+    .footer-section {
+      padding: clamp(1.5rem, 4vw, 2rem);
+      background: #1a1a1a;
+      color: #fff;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      font-family: 'Roboto', sans-serif;
+      font-size: clamp(0.9rem, 2vw, 1rem);
+      border-radius: 10px;
+    }
+
+    .footer-section .links {
+      margin-right: clamp(1rem, 3vw, 1.5rem);
+    }
+
+    .footer-section h3 {
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      color: #ff6200;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    .footer-section ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .footer-section ul li {
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-section ul li a {
+      color: #ff6200;
+      text-decoration: none;
+      transition: color 0.3s ease;
+      padding: 0.5rem;
+      display: inline-block;
+    }
+
+    .footer-section ul li a:hover {
+      color: #ff8c00;
+    }
+
+    .footer-section .about-us {
+      flex: 2;
+      margin-right: clamp(1rem, 3vw, 1.5rem);
+    }
+
+    .footer-section .about-us p {
+      color: #ccc;
+      line-height: 1.6;
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-section .connect {
+      text-align: center;
+    }
+
+    .footer-section .connect p {
+      color: #ccc;
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-section .connect a {
+      color: #ff6200;
+      text-decoration: none;
+    }
+
+    .footer-section .connect a:hover {
+      color: #ff8c00;
+    }
+
+    .footer-section .social-icons {
+      display: flex;
+      gap: clamp(0.5rem, 2vw, 1rem);
+      justify-content: center;
+    }
+
+    .footer-section .social-icons a {
+      color: #fff;
+      font-size: clamp(1.2rem, 3vw, 1.5rem);
+      transition: transform 0.3s ease;
+    }
+
+    .footer-section .social-icons a span {
+      display: inline-block;
+      width: clamp(25px, 6vw, 30px);
+      height: clamp(25px, 6vw, 30px);
+      background: #fff;
+      border-radius: 50%;
+      text-align: center;
+      line-height: clamp(25px, 6vw, 30px);
+    }
+
+    .footer-section .social-icons a:hover {
+      transform: scale(1.2);
+    }
+  </style>
+</head>
+<body class="bg-gray-100 font-sans">
+  <div class="header-top">
+    <a href="#">Donate</a>
+  </div>
+  <div class="header-main">
+    <button class="hamburger">☰</button>
+    <div class="logo">Petco</div>
+    <div class="nav">
+      <a href="landing page.html">Home</a>
+      <a href="landing page.html">Pets for Adoption</a>
+      <a href="Terms.html">Terms</a>
+      <a href="Privacypolicy.html">Privacy Policy</a>
+      <a href="contactus.html">Contact Us</a>
+      <a href="Aboutus.html">About</a>
+    </div>
+    <div class="search-bar">
+      <input type="text" placeholder="Search Petco">
+      <button>
+        <svg viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+ <div class="main-content">
+    <div class="slideshow" id="slideshow"></div>
+    <div class="overlay-text">
+      <h1>PETCO</h1>
+      <span class="tagline">Your trusted destination for premium pet care and dog essentials.</span>
+    </div>
+  </div>
+ <section class="meet-the-pack">
+    <div>
+      <h2>How our "Wild Adoption" works</h2>
+      <p>Our pet organization, dedicated to the care and adoption of a wide variety of animals, focuses on responsibly sourcing wild cubs and rare animals to ensure their well-being while supporting conservation efforts. We acquire wild cubs, such as tiger cubs, lynx cubs, and lion cubs and more, through ethical partnerships with reputable wildlife organizations and accredited safari entities. These collaborations allow us to work with experts who rescue animals from illegal trade or unsustainable environments, ensuring that our acquisition processes align with conservation goals. Our breeding programs are carefully managed, adhering to strict guidelines to maintain genetic diversity and healthy populations, with all breeding conducted under the supervision of licensed veterinarians and wildlife specialists....</p>
+    <a href= "Learnmore.html"> <button> Learn More</button></a>
+    </div>
+    <div>
+      <img src="https://i.ibb.co/YBFkYjj6/f8bc126e4b231b4ab7550f.jpg" alt="Person with dog">
+    </div>
+  </section>
+  <section class="pet-adoption">
+  <h1>Adopt a Pet</h1>
+  <div class="adoption-container grid grid-cols-2 md:grid-cols-4 gap-4">
+    <div class="pet-card">
+      <img src="https://i.postimg.cc/DfPNxyDC/1-Spice-female-600x600.jpg" alt="Spice">
+      <div class="header">Spice</div>
+      <div class="details">
+        <p class="info"><span>📅 6-Months</span></p>
+        <span>🐱North American Raccoon</span> 
+        <p class="price-tag">Price: $300.00</p>
+        <a href="Spiceracoon.html" class="adopt-btn">Adopt</a>
+      </div>
+    </div>
+  <div class="pet-card">
+      <img src="https://i.postimg.cc/L4jS2pWf/Teddy-male-300x300.jpg" alt="Teddy">
+      <div class="header">Teddy</div>
+      <div class="details">
+        <p class="info"><span>📅 5-Months</span></p>
+        <span>🐱North American Raccoon</span> 
+        <p class="price-tag">Price: $300.00</p>
+        <a href="Teddyracoon.html" class="adopt-btn">Adopt</a>
+      </div>
+    </div>
+ <div class="pet-card">
+      <img src="https://i.postimg.cc/sDF24mkP/6-Trouble-male-600x600.jpg" alt="Trouble">
+      <div class="header">Trouble</div>
+      <div class="details">
+        <p class="info"><span>📅 6-Months</span></p>
+        <span>🐱North American Raccoon</span> 
+        <p class="price-tag">Price: $300.00</p>
+        <a href="Troubleracoon.html" class="adopt-btn">Adopt</a>
+      </div>
+    </div>
+<div class="pet-card">
+      <img src="https://i.postimg.cc/cC7s2pgG/1-Eris-female-600x600.jpg" alt="Eris">
+      <div class="header">Eris</div>
+      <div class="details">
+        <p class="info"><span>📅 8-Months</span></p>
+        <span>🐱North American Raccoon</span> 
+        <p class="price-tag">Price: $300.00</p>
+        <a href="Erisracoon.html" class="adopt-btn">Adopt</a>
+      </div>
+    </div>
+    <div class="pet-card">
+      <img src="https://i.postimg.cc/8Pc2k6c9/2-Nev-male.jpg" alt="Nev">
+      <div class="header">Nev</div>
+      <div class="details">
+        <p class="info"><span>📅 8-Weeks</span></p>
+        <span>Scarlet Macaw Parrot</span> 
+        <p class="price-tag">Price: $200.00</p>
+        <a href="Nevparrot.html" class="adopt-btn">Adopt</a>
+      </div>
+    </div>
+    <div class="pet-card">
+      <img src="https://i.postimg.cc/Pqvdqmwx/3-Mona-female.jpg" alt="Mona">
+      <div class="header">Mona</div>
+      <div class="details">
+        <p class="info"><span>📅 8-Weeks</span></p>
+        <span>Blue and Gold Macaw</span> 
+        <p class="price-tag">Price: $200.00</p>
+        <a href="Monaparrot.html" class="adopt-btn">Adopt</a>
+      </div>
+    </div>
+    <div class="pet-card">
+    <img src="https://i.postimg.cc/k50hvShB/4-Paco-male.jpg" alt="Paco">
+      <div class="header">Paco</div>
+      <div class="details">
+        <p class="info"><span>📅 14-Weeks</span></p>
+        <span>Hahns Macaw Parrot</span> 
+        <p class="price-tag">Price: $200.00</p>
+        <a href="Pacoparrot.html" class="adopt-btn">Adopt</a>
+      </div>
+    </div>
+    <div class="pet-card">
+    <img src="https://i.postimg.cc/NFfznDsj/6-Hettie-female.jpg" alt="Hettie">
+      <div class="header">Hettie</div>
+      <div class="details">
+        <p class="info"><span>📅 15-Weeks</span></p>
+        <span>Macaw Parrot</span> 
+        <p class="price-tag">Price: $200.00</p>
+        <a href="Hettieparrot.html" class="adopt-btn">Adopt</a>
+      </div>
+    </div>
+    <div class="pet-card">
+    <img src="https://i.postimg.cc/jjgZgn8H/4-Mirud-male-600x600.jpg" alt="Mirud">
+      <div class="header">Mirud</div>
+      <div class="details">
+        <p class="info"><span>📅 1-Year</span></p>
+        <span>Gargoyle Gecko</span> 
+        <p class="price-tag">Price: $90.00</p>
+        <a href="Mirudgecko.html" class="adopt-btn">Adopt</a>
+      </div>
+    </div>
+   <div class="pet-card">
+    <img src="https://i.postimg.cc/k4WqFCsd/2-Keaja-female-600x600.jpg" alt="Keaja">
+      <div class="header">Keaja</div>
+      <div class="details">
+        <p class="info"><span>📅 7-Months</span></p>
+        <span>Gargoyle Gecko</span> 
+        <p class="price-tag">Price: $80.00</p>
+        <a href="Keajagecko.html" class="adopt-btn">Adopt</a>
+      </div>
+    </div>
+    <div class="pet-card">
+    <img src="https://i.postimg.cc/BvCYfwmG/5-Natser-male-600x600.jpg" alt="Natser">
+      <div class="header">Natser</div>
+      <div class="details">
+        <p class="info"><span>📅 1-Year</span></p>
+        <span>Crested Gecko</span> 
+        <p class="price-tag">Price: $75.00</p>
+        <a href="Natsergecko.html" class="adopt-btn">Adopt</a>
+      </div>
+    </div>
+         <div class="pet-card">
+    <img src="https://i.postimg.cc/gkPgrW1P/3-Jutso-female-600x600.jpg" alt="Jutso">
+      <div class="header">Jutso</div>
+      <div class="details">
+        <p class="info"><span>📅 Juvenile</span></p>
+        <span>Gargoyle Gecko</span> 
+        <p class="price-tag">Price: $80.00</p>
+        <a href="Jutsogecko.html" class="adopt-btn">Adopt</a>
+      </div>
+    </div>
+     <div class="pet-card">
+    <img src="https://i.ibb.co/q3Rm6pvS/Screenshot-2025-06-12-133359.png" alt="Rose">
+      <div class="header">Sleepy Rose</div>
+      <div class="details">
+        <p class="info"><span>📅 3-Years</span></p>
+        <span>High Content Wolfdog</span> 
+        <p class="price-tag">Price: $1000.00</p>
+        <a href="sleepyrosewolf.html" class="adopt-btn">Adopt</a>
+      </div>
+    </div>
+    <div class="pet-card">
+    <img src="https://i.ibb.co/tTR75vKv/Screenshot-2025-06-12-134231.png" alt="Morgan">
+      <div class="header">Morgan</div>
+      <div class="details">
+        <p class="info"><span>📅 2-Months</span></p>
+        <span>Low Content Wolfdog</span> 
+        <p class="price-tag">Price: $800.00</p>
+        <a href="Morganwolf.html" class="adopt-btn">Adopt</a>
+      </div>
+    </div>
+     <div class="pet-card">
+    <img src="https://i.ibb.co/zTS2WfpY/Screenshot-2025-06-12-140452.png" alt="Mickey">
+      <div class="header">Mickey</div>
+      <div class="details">
+        <p class="info"><span>📅 14-Weeks</span></p>
+        <span>Squirrel Monkey</span> 
+        <p class="price-tag">Price: $4000.00</p>
+        <a href="Mickeysqmonkey.html" class="adopt-btn">Adopt</a>
+      </div>
+    </div>
+      <div class="pet-card">
+    <img src="https://i.postimg.cc/ZK9P4KTc/5-Hope-female.jpg" alt="Hope">
+      <div class="header">Hope</div>
+      <div class="details">
+        <p class="info"><span>📅 6-Months</span></p>
+        <span>Fennec Fox</span> 
+        <p class="price-tag">Price: $250.00</p>
+        <a href="Hopefox.html" class="adopt-btn">Adopt</a>
+      </div>
+    </div>
+     <div class="pet-card">
+    <img src="https://i.postimg.cc/vT40Jrq7/6-Thor-male.jpg" alt="Thor">
+      <div class="header">Thor</div>
+      <div class="details">
+        <p class="info"><span>📅 6-Months</span></p>
+        <span>Fennec Fox</span> 
+        <p class="price-tag">Price: $250.00</p>
+        <a href="Thorfox.html" class="adopt-btn">Adopt</a>
+      </div>
+    </div>
+      <div class="pet-card">
+    <img src="https://i.postimg.cc/PqzfDZMM/7-Wolf-male.jpg" alt="Wolf">
+      <div class="header">Wolf</div>
+      <div class="details">
+        <p class="info"><span>📅 5-Months</span></p>
+        <span>Fennec Fox</span> 
+        <p class="price-tag">Price: $240.00</p>
+        <a href="Wolffox.html" class="adopt-btn">Adopt</a>
+      </div>
+    </div>
+      <div class="pet-card">
+    <img src="https://i.postimg.cc/g089LWGF/8-Shaggy-male.jpg" alt="Shaggy">
+      <div class="header">Shaggy</div>
+      <div class="details">
+        <p class="info"><span>📅 5-Months</span></p>
+        <span>Fennec Fox</span> 
+        <p class="price-tag">Price: $240.00</p>
+        <a href="Shaggyfox.html" class="adopt-btn">Adopt</a>
+      </div>
+    </div>
+<div class="pet-card">
+    <img src="https://i.ibb.co/Vp5bhGbm/f8bc126e4b231b4ab79f13.jpg" alt="Blake&Jager">
+      <div class="header">Blake & Jager</div>
+      <div class="details">
+        <p class="info"><span>📅 12-13 - Weeks</span></p>
+        <span>Bengal Tiger</span> 
+        <p class="price-tag">Price: $15,000.00</p>
+        <a href="blakejagertiger.html" class="adopt-btn">Adopt</a>
+      </div>
+    </div>
+<div class="pet-card">
+    <img src="https://i.ibb.co/N6xgHt7z/f8bc126e4b231b4ab79f11.jpg" alt="Snow">
+      <div class="header">Snow</div>
+      <div class="details">
+        <p class="info"><span>📅 14-Weeks</span></p>
+        <span>Bengal Tiger</span> 
+        <p class="price-tag">Price: $20,000.00</p>
+        <a href="Snowtiger.html" class="adopt-btn">Adopt</a>
+      </div>
+    </div>
+<div class="pet-card">
+    <img src="https://i.ibb.co/vxpHgPVP/Screenshot-2025-06-19-062622.png" alt="Scarr">
+      <div class="header">Scarr</div>
+      <div class="details">
+        <p class="info"><span>📅 15-16 - Weeks</span></p>
+        <span>Panther</span> 
+        <p class="price-tag">Price: $14,000.00</p>
+        <a href="Scarrpanther.html" class="adopt-btn">Adopt</a>
+      </div>
+    </div>
+<div class="pet-card">
+    <img src="https://i.ibb.co/nszc9f8q/Screenshot-2025-06-19-064209.png" alt="Jar">
+      <div class="header">Jar</div>
+      <div class="details">
+        <p class="info"><span>📅 18-Weeks</span></p>
+        <span>Lion</span> 
+        <p class="price-tag">Price: $18,000.00</p>
+        <a href="Jarlion.html" class="adopt-btn">Adopt</a>
+      </div>
+    </div>
+    </div>
+</section>
+  
+   <section class="top-categories">
+    <h2>Top Categories</h2>
+    <div>
+      <div>
+        <img src="https://i.im.ge/2025/06/01/vBc80a.Screenshot-2025-05-31-201727.png" alt="Dog Food">
+        <p>Rare Dog Feed</p>
+      </div>
+      <div>
+        <img src="https://i.im.ge/2025/05/29/vndImz.Elite-Parrot-Food-12-75kg.png" alt="Dog Treats">
+        <p>Rare Treats x1</p>
+      </div>
+      <div>
+        <img src="https://i.im.ge/2025/05/29/vn2iV6.Blue-and-Gold-Elegant-Background-Zoom-Virtual-Background.jpeg" alt="Dog Bowls & Feeders">
+        <p>Pet Toys & Feeders</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="pet-adopting-process">
+    <h2>Our Pet Adopting Process</h2>
+    <div class="process-grid">
+      <div class="process-item">
+        <div class="icon">🐾</div>
+        <h3>Find a Pet</h3>
+        <p>Browse our selection of adorable pets and find the one that steals your heart.</p>
+      </div>
+      <div class="process-item">
+        <div class="icon">📝</div>
+        <h3>Fill Out Application</h3>
+        <p>Complete a quick application to help us ensure a great match for you and your pet.</p>
+      </div>
+      <div class="process-item">
+        <div class="icon">🤝</div>
+        <h3>Meet Your New Best Friend</h3>
+        <p>Schedule a meet-and-greet to bond with your potential new companion.</p>
+      </div>
+      <div class="process-item">
+        <div class="icon">🏡</div>
+        <h3>Take Your Pet Home</h3>
+        <p>Finalize the adoption and bring your new family member home to start your journey together.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="testimonials-section">
+    <h2>Testimonials</h2>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <p>"Adopting Rumble was the best decision we ever made! The process was smooth, and the team was incredibly supportive."</p>
+        <div class="author">
+          <img src="https://i.im.ge/2025/05/29/vJ4HgT.download-5.jpeg" alt="Sarah J.">
+          <p>Sarah J.</p>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <p>"The Vetlane team made adopting Max so easy. He’s brought so much joy to our home!"</p>
+        <div class="author">
+          <img src="https://i.im.ge/2025/05/29/vJ4JDL.download-4.jpeg" alt="John Pets Lover">
+          <p>John Pets Lover</p>
+        </div>
+      </div>
+    </div>
+    <div class="nav-dots">
+      <span class="active"></span>
+      <span></span>
+      <span></span>
+    </div>
+  </section>
+
+  <section class="contact-us-section">
+    <div class="banner">
+      <p>Get in Touch with Us! 🐾</p>
+      <div class="bg-effect"></div>
+    </div>
+    <h2>Contact us</h2>
+    <form id="contactForm">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <section class="thanks-section">
+    <h2>Thanks for Stopping By!</h2>
+    <p>Drop a review if you love our customer support! 💙</p>
+    <img src="https://i.im.ge/2025/06/01/vBcRcJ.Pink-and-White-Aesthetic-Background-Flyer-3.jpeg" alt="Logo">
+    <h3>Petco</h3>
+    <p>petcoadopt.co online store & Support</p>
+    <button>Get in Touch</button>
+  </section>
+
+  <footer class="footer-section">
+    <div class="links">
+      <h3>Useful Links</h3>
+      <ul>
+        <li><a href="landing page.html">Home</a></li>
+        <li><a href="landingpage.html">About us</a></li>
+        <li><a href="#">Products</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Legal</a></li>
+        <li><a href="Privacypolicy.html">Privacy Policy</a></li>
+        <li><a href="Contactus.html">Contact us</a></li>
+      </ul>
+    </div>
+    <div class="about-us">
+      <h3>About us</h3>
+      <p>We are a team of passionate pet care providers committed to delivering super-standard pets, pet products and healthcare services while enriching the bond between our clients and their pet companions.</p>
+      <p>Our vision is to become a leading brand name in pet supply and in the Veterinary field, effortlessly promoting responsible pet ownership and commitment to improving the quality of life for all humans and their pets.</p>
+      <p>PETCO Online Store delivers to all U.S. States and more countries - Alabama | Alaska | Arizona | Arkansas | California | Colorado | Connecticut | Delaware | Florida | Georgia | Hawaii | Idaho | Illinois | Indiana | Iowa | Kansas | Kentucky | Louisiana | Maine | Maryland | Massachusetts | Michigan | Minnesota | Mississippi | Missouri | Montana | Nebraska | Nevada | New Hampshire | New Jersey | New Mexico | New York | North Carolina | North Dakota | Ohio | Oklahoma | Oregon | Pennsylvania | Rhode Island | South Carolina | South Dakota | Tennessee | Texas | Utah | Vermont | Virginia | Washington | West Virginia | Wisconsin | Wyoming</p>
+    </div>
+    <div class="connect">
+      <h3>Connect with us</h3>
+      <p><a href="petcoonlinepetstore.com">petcoadopt.co</a></p>
+      <p>+1 (939) 203-3919</p>
+      <div class="Petco">
+        <a href="#"><span>🐦</span></a>
+        <a href="#"><span>🐷</span></a>
+        <a href="#"><span>🐮</span></a>
+        <a href="#"><span>🐴</span></a>
+      </div>
+    </div>
+  </footer>
+  <div style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">
+    <a href="https://wa.link/uwqki4" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="Contact Support on WhatsApp" style="width: 60px; height: 60px; border-radius: 50%; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+    </a>
+</div>
+  <script>
+    function toggleMenu() {
+      const navMobile = document.querySelector('.nav-mobile');
+      navMobile.classList.toggle('active');
+    }
+     // Slideshow
+    const images = [
+      'https://i.ibb.co/60YdJr56/2.jpg',
+      'https://i.ibb.co/MDd5Wpc6/3.jpg',
+      'https://i.ibb.co/bg3cTVXn/1.jpg'
+    ];
+    let currentImageIndex = 0;
+    const slideshow = document.getElementById('slideshow');
+
+    function changeImage() {
+      slideshow.style.backgroundImage = `url(${images[currentImageIndex]})`;
+      currentImageIndex = (currentImageIndex + 1) % images.length;
+    }
+
+    setInterval(changeImage, 2000);
+    changeImage();
+
+    // Search Bar
+    const searchInput = document.querySelector('.search-bar input');
+    const searchButton = document.querySelector('.search-bar button');
+    searchButton.onclick = () => {
+      const query = searchInput.value.trim();
+      if (query) alert(`Searching for: ${query}`);
+    };
+    searchInput.onkeypress = (e) => {
+      if (e.key === 'Enter') {
+        const query = searchInput.value.trim();
+        if (query) alert(`Searching for: ${query}`);
+      }
+    };
+
+    function redirectToProductPage(productName) {
+      alert(`Redirecting to ${productName} page!`);
+    }
+  </script>
+</body>
+</html>
