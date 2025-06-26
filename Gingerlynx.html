@@ -58,71 +58,23 @@
     .top-banner a:hover {
       color: #ffd700;
     }
-    /* Hamburger Menu Styles */
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      justify-content: space-around;
-      width: 30px;
-      height: 25px;
-      background: transparent;
-      border: none;
-      cursor: pointer;
-      padding: 0;
-      z-index: 2;
-    }
-    .hamburger span {
-      width: 100%;
-      height: 3px;
-      background: #fff;
-      transition: all 0.3s ease;
-    }
-    .hamburger.active span:nth-child(1) {
-      transform: rotate(45deg) translate(5px, 5px);
-    }
-    .hamburger.active span:nth-child(2) {
-      opacity: 0;
-    }
-    .hamburger.active span:nth-child(3) {
-      transform: rotate(-45deg) translate(7px, -7px);
-    }
-    .nav-links {
-      display: flex;
-      justify-content: space-between;
-      width: 100%;
-    }
-    /* Mobile Styles */
+    /* Ensure banner is responsive */
     @media (max-width: 600px) {
       .top-banner {
         height: 100px;
       }
-      .hamburger {
-        display: flex;
-        margin-right: 20px;
-      }
-      .nav-links {
-        display: none;
+      .top-banner nav {
         flex-direction: column;
-        position: absolute;
-        top: 100px;
-        left: 0;
-        width: 100%;
-        background: rgba(0, 0, 0, 0.9);
-        padding: 20px 0;
-        z-index: 1;
+        align-items: center;
+        padding: 5px 10px;
       }
-      .nav-links.active {
-        display: flex;
+      .top-banner .left-nav,
+      .top-banner .right-nav {
+        margin: 5px 0;
       }
-      .nav-links .left-nav,
-      .nav-links .right-nav {
-        margin: 0;
-        text-align: center;
-      }
-      .nav-links a {
-        display: block;
-        margin: 15px 0;
-        font-size: 1.1em;
+      .top-banner a {
+        margin: 5px 10px;
+        font-size: 0.9em;
       }
     }
 
@@ -1006,19 +958,12 @@
   <div class="top-banner">
     <img src="https://i.ibb.co/HDPRgDYQ/new-banner.jpg" alt="Top Banner">
     <nav>
-      <button class="hamburger">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-      <div class="nav-links">
-        <div class="left-nav">
-          <a href="landing page.html">Shop Pets</a>
-        </div>
-        <div class="right-nav">
-          <a href="landing page.html">Home</a>
-          <a href="about us.html">About</a>
-        </div>
+      <div class="left-nav">
+        <a href="landing page.html">Shop Pets</a>
+      </div>
+      <div class="right-nav">
+        <a href="landing page.html">Home</a>
+        <a href="about us.html">About</a>
       </div>
     </nav>
   </div>
@@ -1032,17 +977,16 @@
       <div class="thumbnail">
         <img src="https://i.ibb.co/DHDQBZkz/Screenshot-2025-06-12-135754.png" alt="Dog 1" onclick="setMainImage(this.src)">
       </div>
-       <div class="thumbnails">
       <div class="thumbnail">
-        <img src="https://i.ibb.co/qYjb8yMp/Screenshot-2025-06-12-135719.png" alt="Dog 1" onclick="setMainImage(this.src)">
+        <img src="https://i.ibb.co/qYjb8yMp/Screenshot-2025-06-12-135719.png" alt="Dog 2" onclick="setMainImage(this.src)">
       </div>
     </div>
   </div>
 
   <!-- Rumble Profile Section -->
   <div class="rumble-profile">
-    <h1>Ginger</h1>
-    <p>Hey, This is Ginger' would you be her new owner and bring her to her forever home?</p>
+    <h1>Sleepy Rose</h1>
+    <p>Hey, I'm Ginger, I am looking for my forever home. Could you be my perfect match?</p>
     <div class="details-container">
       <div class="details">
         <ul>
@@ -1070,10 +1014,9 @@
         </div>
       </div>
     </div>
-    <div class="about-rumble">
-     <h2>About Ginger!</h2>
-<p>Ginger is just a 14- Weeks old lynx, she is lonely and cute, pls be her new owner.</p>
-<h2>Please Note!?</h2>
+    <div class="about-Dixie">
+      <h2>About Ginger!</h2>
+     <p>Ginger is just a 14- Weeks old lynx, she is lonely and cute, pls be her new owner.</p></div></div>
   <!-- Adoption Process Section -->
   <div class="adoption-process">
     <h1>Our Adopting Process</h1>
@@ -1082,7 +1025,7 @@
         <div class="number">1</div>
         <div class="content">
           <h3>Choose the pet you want</h3>
-          <p>Browse our available pets, and select the one that captures your heart.</p>
+          <p>Browse our available pets, like Rose, and select the one that captures your heart.</p>
           <a href="#" onclick="this.nextElementSibling.style.display = (this.nextElementSibling.style.display === 'block' ? 'none' : 'block'); return false;">Show details ▼</a>
           <div class="details">
             <p>View pet profiles to learn about their age, breed, and needs. Add your favorite to your list.</p>
@@ -1256,7 +1199,7 @@
         <input type="text" name="country" placeholder="Your Country" required>
         <input type="text" name="address" placeholder="Your Residential Address" required>
         <textarea name="message" placeholder="Why do you want to adopt Ginger?" rows="4" required></textarea>
-        <input type="hidden" name="pet_name" value="Jersey">
+        <input type="hidden" name="pet_name" value="Rumble">
         <div class="button-group">
           <button type="submit" class="submit-btn">
             <span>Submit Application</span>
@@ -1332,16 +1275,6 @@
         timestamp: new Date("2025-05-27T21:38:00").getTime()
       },
     ];
-
-    // Function to shuffle array (Fisher-Yates shuffle)
-    function shuffleArray(array) {
-      for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-      }
-      return array;
-    }
-
     // Load comments from localStorage or use initial comments
     let storedComments = JSON.parse(localStorage.getItem('comments')) || [];
     const now = new Date().getTime();
@@ -1350,8 +1283,8 @@
     // Filter out comments older than 30 minutes
     storedComments = storedComments.filter(comment => now - comment.timestamp < thirtyMinutes);
 
-    // Combine initial comments with stored comments and shuffle
-    const allComments = shuffleArray([...initialComments, ...storedComments]);
+    // Combine initial comments with stored comments
+    const allComments = [...initialComments, ...storedComments];
 
     // Render comments
     function renderComments(commentsToShow) {
@@ -1425,8 +1358,8 @@
         storedComments.push(newComment);
         localStorage.setItem('comments', JSON.stringify(storedComments));
 
-        // Re-render comments with randomization
-        renderComments(shuffleArray([...initialComments, ...storedComments]));
+        // Re-render comments
+        renderComments([...initialComments, ...storedComments]);
         e.target.reset();
       } else {
         alert('Please fill all fields and upload a photo.');
@@ -1438,7 +1371,7 @@
       const now = new Date().getTime();
       storedComments = storedComments.filter(comment => now - comment.timestamp < thirtyMinutes);
       localStorage.setItem('comments', JSON.stringify(storedComments));
-      renderComments(shuffleArray([...initialComments, ...storedComments]));
+      renderComments([...initialComments, ...storedComments]);
     }, 60 * 1000);
 
     // EmailJS and Modal Script
@@ -1502,12 +1435,6 @@
         document.getElementById('successModal').style.display = 'none';
       }
     };
-
-    // Hamburger Menu Toggle
-    document.querySelector('.hamburger').addEventListener('click', function() {
-      this.classList.toggle('active');
-      document.querySelector('.nav-links').classList.toggle('active');
-    });
   </script>
 </body>
 </html>
